@@ -3,7 +3,7 @@ import "./Home.css";
 import motoVideo from "../assets/HOME_IMG/MotoVid.mp4";
 
 import motoImg from "../assets/HOME_IMG/R1-1.jpg";
-import locaImg from "../assets/HOME_IMG/Loca-1.jpg";
+import locaImg from "../assets/HOME_IMG/Loca-1.webp";
 import marineImg from "../assets/HOME_IMG/JetSki-1.jpg";
 import equipImg from "../assets/HOME_IMG/Equip-1.avif";
 
@@ -59,7 +59,7 @@ function Home() {
       id: 2,
       title: "Location & Trips",
       subtitle: "DISCOVER FREEDOM",
-      image: locaImg,
+      image: motoImg, /* Utilisation temporaire de la R1 en attendant une image avec un fond clair */
       link: "/location-trips"
     },
     {

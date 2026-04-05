@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-import yamahaLogo from "../assets/HOME_IMG/Logo-1.png";
 import aaLogo from "../assets/HOME_IMG/Logo-2.png";
 
 function Navbar() {
@@ -31,8 +30,9 @@ function Navbar() {
         <nav className={`navbar ${isVisible ? "" : "navbar-hidden"}`}>
             {/* LEFT: LOGOS */}
             <div className="logo-section">
-                <img src={yamahaLogo} alt="Yamaha" className="yamaha-logo" />
-                <img src={aaLogo} alt="AA Motors" className="aa-logo" />
+                <Link to="/">
+                    <img src={aaLogo} alt="AA Motors" className="aa-logo" />
+                </Link>
             </div>
 
             {/* CENTER: NAV PILL */}

@@ -9,7 +9,6 @@
   top: 0;
   z-index: 1000;
   font-family: 'Inter', sans-serif;
-  height: 60px;
   transition: transform 0.4s ease-in-out; /* Smooth slide animation */
 }
 
@@ -24,24 +23,17 @@
   gap: 15px;
 }
 
-.yamaha-logo {
-  height: 32px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-
-.yamaha-logo:hover {
-  transform: scale(1.05);
-}
-
 .aa-logo {
-  height: 55px;
+  width: 350px; 
+  height: auto;
+  max-height: 80px; 
   object-fit: contain;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .aa-logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Effet au survol maintenu */
 }
 
 /* CENTER: NAVIGATION PILL */
