@@ -58,7 +58,7 @@ function Home() {
     {
       id: 2,
       title: "Location&Trips",
-      subtitle: "DISCOVER FREEDOM",
+      subtitle: "DISCOVER   FREEDOM",
       image: motoImg, /* Utilisation temporaire de la R1 en attendant une image avec un fond clair */
       link: "/location-trips"
     },
