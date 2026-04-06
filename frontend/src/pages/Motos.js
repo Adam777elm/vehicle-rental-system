@@ -10,6 +10,12 @@ import roadsterImg from "../assets/MOTO_IMG/roadster.png";
 import sporttouringImg from "../assets/MOTO_IMG/sporttouring.png";
 import offroadImg from "../assets/MOTO_IMG/offroad.png";
 
+// Background Images for descriptions
+import bgSupersport from "../assets/MOTO_IMG/bg-supersport.jpg";
+import bgRoadster from "../assets/MOTO_IMG/bg-roadster.jpg";
+import bgSportTouring from "../assets/MOTO_IMG/bg-sporttouring.jpg";
+import bgOffroad from "../assets/MOTO_IMG/bg-offroad.jpg";
+
 function Motos() {
   useEffect(() => {
     const observerOptions = {
@@ -61,20 +67,43 @@ function Motos() {
     }
   ];
 
+  const fullDescriptions = [
+    {
+      id: "ss",
+      title: "L'Univers Supersport",
+      desc: "Développées sur les circuits les plus prestigieux du monde, nos Supersport YZF-R offrent des performances aérodynamiques sans compromis et une précision chirurgicale en virage.",
+      bg: bgSupersport,
+      side: "left"
+    },
+    {
+      id: "rd",
+      title: "Le Côté Sombre : Roadster",
+      desc: "Brutes, agressives et dépouillées du superflu. La gamme MT combine un couple foudroyant à un style urbain radical pour dompter la jungle de béton.",
+      bg: bgRoadster,
+      side: "right"
+    },
+    {
+      id: "st",
+      title: "L'Horizon Sport Touring",
+      desc: "Parce que le voyage compte autant que la destination. Alliez le confort d'un voyage luxueux à la sportivité légendaire de nos moteurs pour des aventures sans fin.",
+      bg: bgSportTouring,
+      side: "left"
+    },
+    {
+      id: "or",
+      title: "Dominez l'Inconnu : Off Road",
+      desc: "Du sable saharien aux sentiers de l'Atlas. Nos motos Ténéré sont forgées pour l'aventure pure, offrant une endurance et une fiabilité à toute épreuve.",
+      bg: bgOffroad,
+      side: "right"
+    }
+  ];
+
   return (
     <div className="motos-page">
-      {/* Signature Red Bar */}
       <div className="motos-top-bar"></div>
 
-      {/* HERO SECTION: VIDEO HEADER */}
       <section className="motos-hero">
-        <video 
-          className="hero-video" 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-        >
+        <video className="hero-video" autoPlay muted loop playsInline>
           <source src={motoHeroVid} type="video/mp4" />
         </video>
         <div className="hero-overlay reveal">
@@ -83,7 +112,6 @@ function Motos() {
         </div>
       </section>
 
-      {/* CATEGORIES GRID */}
       <section className="motos-categories-section">
         <div className="categories-grid-container">
           {categories.map((cat, index) => (
@@ -104,6 +132,24 @@ function Motos() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* FULL WIDTH DESCRIPTIONS SECTION */}
+      <section className="motos-detailed-descriptions">
+        {fullDescriptions.map((item) => (
+          <div key={item.id} className={`featured-row ${item.side}`}>
+            <div className="featured-image-box reveal">
+              <img src={item.bg} alt={item.title} />
+              <div className="image-overlay-gradient"></div>
+            </div>
+            <div className="featured-text-box reveal">
+              <h3 className="featured-title">{item.title}</h3>
+              <div className="divider-red"></div>
+              <p className="featured-desc">{item.desc}</p>
+              <button className="featured-explore-btn">EN SAVOIR PLUS</button>
+            </div>
+          </div>
+        ))}
       </section>
     </div>
   );
