@@ -1,15 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "./Cart.css";
 
 function Cart() {
   return (
-    <div style={{ padding: "40px" }}>
+    <div className="cart-container">
+      {/* Top red bar */}
+      <div className="cart-top-bar"></div>
 
-      <h1>Panier</h1>
+      {/* Empty cart banner */}
+      <div className="empty-cart-banner">
+        <p className="empty-cart-text">
+          Votre panier est actuellement vide.
+        </p>
+      </div>
 
-      <p>
-        Votre panier est vide
-      </p>
-
+      {/* Return to shop button */}
+      <Link to="/" className="btn-return-shop">
+        RETOUR À LA BOUTIQUE
+      </Link>
     </div>
   );
 }
