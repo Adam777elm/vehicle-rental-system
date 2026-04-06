@@ -9,6 +9,7 @@ import {
 import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
+import Motos from "./pages/Motos";
 import Login from "./pages/Login";
 import MyReservations from "./pages/MyReservations";
 import About from "./pages/About";
@@ -40,6 +41,11 @@ function App() {
         <Route
           path="/login"
           element={<Login />}
+        />
+
+        <Route
+          path="/motos"
+          element={<Motos />}
         />
 
         <Route
