@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Motos.css";
 
 // Hero Video from MOTO_IMG
@@ -11,6 +11,25 @@ import sporttouringImg from "../assets/MOTO_IMG/sporttouring.png";
 import offroadImg from "../assets/MOTO_IMG/offroad.png";
 
 function Motos() {
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+        }
+      });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   const categories = [
     {
       id: 1,
@@ -44,6 +63,9 @@ function Motos() {
 
   return (
     <div className="motos-page">
+      {/* Signature Red Bar */}
+      <div className="motos-top-bar"></div>
+
       {/* HERO SECTION: VIDEO HEADER */}
       <section className="motos-hero">
         <video 
@@ -55,7 +77,7 @@ function Motos() {
         >
           <source src={motoHeroVid} type="video/mp4" />
         </video>
-        <div className="hero-overlay">
+        <div className="hero-overlay reveal">
           <h1 className="hero-title">GAMME MOTOS</h1>
           <p className="hero-subtitle">Choisissez votre terrain de jeu</p>
         </div>
@@ -64,8 +86,12 @@ function Motos() {
       {/* CATEGORIES GRID */}
       <section className="motos-categories-section">
         <div className="categories-grid-container">
-          {categories.map((cat) => (
-            <div key={cat.id} className="category-card">
+          {categories.map((cat, index) => (
+            <div 
+              key={cat.id} 
+              className="category-card reveal" 
+              style={{ transitionDelay: `${index * 0.1}s` }}
+            >
               <div className="category-image-wrapper">
                 <img src={cat.image} alt={cat.title} className="category-img" />
               </div>
