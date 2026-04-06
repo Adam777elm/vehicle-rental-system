@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "./Login.css";
@@ -7,6 +7,34 @@ function Login() {
   const [isRegister, setIsRegister] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+    showToast("Tu as bien été déconnecté.", "success");
+    // On met à jour la navbar
+    setTimeout(() => window.location.reload(), 1500);
+  };
+
+  // Toast Notification state
+  const [toast, setToast] = useState({ message: "", type: "", visible: false });
+
+  const showToast = (message, type) => {
+    setToast({ message, type, visible: true });
+    setTimeout(() => {
+      setToast(prev => ({ ...prev, visible: false }));
+    }, 2500); // Disparaît après 2.5s
+  };
 
   // Form states
   const [formData, setFormData] = useState({
@@ -29,7 +57,7 @@ function Login() {
           email: formData.email,
           password: formData.password
         });
-        alert("Account created! Please sign in.");
+        showToast("Account created! Please sign in.", "success");
         setIsRegister(false); // Switch to login tab
       } else {
         // LOGIN
@@ -39,19 +67,62 @@ function Login() {
         });
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
-        alert("Welcome back!");
-        navigate("/"); // Redirect to home
-        window.location.reload(); // Refresh to update navbar if needed
+        showToast("Welcome back!", "success");
+        
+        // Attendre que la notification soit lue avant de rafraichir
+        setTimeout(() => {
+          setUser(res.data.user);
+          window.location.reload(); 
+        }, 1500);
       }
     } catch (error) {
-      alert(error.response?.data?.message || "An error occurred");
+      showToast(error.response?.data?.message || "An error occurred", "error");
     }
   };
 
   return (
     <div className="auth-container">
-      {/* TABS */}
-      <div className="auth-tabs">
+      {/* TOAST NOTIFICATION MODAL */}
+      {toast.visible && (
+        <div className={`toast-notification ${toast.type}`}>
+          {toast.type === "success" ? (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          ) : (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+          )}
+          <span>{toast.message}</span>
+        </div>
+      )}
+
+      {user ? (
+        <div className="profile-wrapper">
+          <div className="auth-tabs">
+            <button className="auth-tab active" style={{ cursor: 'default' }}>MON ESPACE</button>
+          </div>
+          <p className="auth-description">
+            Content de vous revoir parmi nous ! Vous êtes bien connecté. Voici vos coordonnées d'utilisateur.
+          </p>
+          
+          <div className="profile-card">
+            <div className="profile-info-group">
+              <span className="profile-label">Nom complet</span>
+              <p className="profile-value">{user.name}</p>
+            </div>
+            
+            <div className="profile-info-group" style={{ marginBottom: '30px' }}>
+              <span className="profile-label">Adresse Email</span>
+              <p className="profile-value">{user.email}</p>
+            </div>
+            
+            <button onClick={handleLogout} className="auth-button logout-btn">
+              Se déconnecter
+            </button>
+          </div>
+        </div>
+      ) : (
+        <>
+          {/* TABS */}
+          <div className="auth-tabs">
         <button
           className={`auth-tab ${!isRegister ? "active" : ""}`}
           onClick={() => setIsRegister(false)}
@@ -133,6 +204,8 @@ function Login() {
           {isRegister ? "Create Account" : "Sign In"}
         </button>
       </form>
+      </>
+    )}
     </div>
   );
 }

@@ -134,6 +134,83 @@
   background-color: #5a6268;
 }
 
+/* TOAST NOTIFICATION MODAL */
+.toast-notification {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  z-index: 9999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: slideDownFade 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.toast-notification.success {
+  background-color: #0b1a2b; /* Yamaha Dark Blue */
+  border-left: 4px solid #d71a17; /* Yamaha Red accent */
+}
+
+.toast-notification.error {
+  background-color: #d71a17;
+}
+
+@keyframes slideDownFade {
+  0% { transform: translate(-50%, -30px); opacity: 0; }
+  100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* PROFILE VIEW */
+.profile-wrapper {
+  animation: slideIn 0.3s ease;
+}
+
+.profile-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 25px;
+  border: 1px solid #ebebeb;
+}
+
+.profile-info-group {
+  margin-bottom: 20px;
+}
+
+.profile-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #888;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.profile-value {
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.logout-btn {
+  background-color: #0b1a2b; /* dark blue */
+  width: 100%;
+}
+
+.logout-btn:hover {
+  background-color: #d71a17; /* racing red */
+}
+
 @media (max-width: 600px) {
   .auth-container {
     padding: 10px;
