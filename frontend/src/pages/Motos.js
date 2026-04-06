@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Motos.css";
 
 // Hero Video from MOTO_IMG
@@ -17,11 +17,12 @@ import bgSportTouring from "../assets/MOTO_IMG/bg-sporttouring.jpg";
 import bgOffroad from "../assets/MOTO_IMG/bg-offroad.jpg";
 
 function Motos() {
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1
-    };
+  const [muted, setMuted] = useState(true);
+  const videoRef = useRef(null);
 
+  useEffect(() => {
+    // Scroll reveal observer (previous logic)
+    const observerOptions = { threshold: 0.1 };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -33,8 +34,41 @@ function Motos() {
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach(el => observer.observe(el));
 
-    return () => observer.disconnect();
+    // Sound scroll logic (like Home.js)
+    const handleScroll = () => {
+      if (videoRef.current) {
+        const videoHeight = videoRef.current.offsetHeight;
+        if (window.scrollY > videoHeight * 0.9 && !videoRef.current.muted) {
+          videoRef.current.muted = true;
+          setMuted(true);
+        }
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden && videoRef.current && !videoRef.current.muted) {
+        videoRef.current.muted = true;
+        setMuted(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
   }, []);
+
+  const toggleSound = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setMuted(videoRef.current.muted);
+    }
+  };
+
 
   const categories = [
     {
@@ -103,13 +137,35 @@ function Motos() {
       <div className="motos-top-bar"></div>
 
       <section className="motos-hero">
-        <video className="hero-video" autoPlay muted loop playsInline>
+        <video 
+          ref={videoRef}
+          className="hero-video" 
+          autoPlay 
+          muted={muted} 
+          loop 
+          playsInline
+        >
           <source src={motoHeroVid} type="video/mp4" />
         </video>
         <div className="hero-overlay reveal">
           <h1 className="hero-title">GAMME MOTOS</h1>
           <p className="hero-subtitle">Choisissez votre terrain de jeu</p>
         </div>
+
+        {/* SOUND TOGGLE */}
+        <button className="sound-toggle" onClick={toggleSound}>
+          {muted ? (
+            <>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z" /><path d="M23 9l-6 6" /><path d="M17 9l6 6" /></svg>
+              <span>SOUND OFF</span>
+            </>
+          ) : (
+            <>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /></svg>
+              <span>SOUND ON</span>
+            </>
+          )}
+        </button>
       </section>
 
       <section className="motos-categories-section">
