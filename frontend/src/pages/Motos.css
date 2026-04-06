@@ -16,7 +16,7 @@
 .motos-hero {
   position: relative;
   width: 100%;
-  height: 75vh; /* Agrandissement de la vidéo */
+  height: calc(100vh - 80px); /* Agrandissement plein écran */
   overflow: hidden;
   display: flex;
   align-items: center;

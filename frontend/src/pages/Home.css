@@ -8,12 +8,10 @@
 .hero {
   position: relative;
   width: 100%;
-  height: calc(100vh - 80px);
-  /* Taller section as requested */
+  height: calc(100vh - 80px); /* Agrandissement pour occuper tout l'écran visible */
   overflow: hidden;
   background-color: #000;
   border-top: 6px solid #ff0000;
-  /* Red separator as in image */
 }
 
 .hero-video {
