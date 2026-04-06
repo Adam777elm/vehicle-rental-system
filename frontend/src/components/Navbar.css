@@ -3,13 +3,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 40px;
-  background-color: #0b1a2b; /* Dark blue background from Yamaha photo */
+  background-color: #0b1a2b;
+  /* Dark blue background from Yamaha photo */
   color: white;
   position: sticky;
   top: 0;
   z-index: 1000;
   font-family: 'Inter', sans-serif;
-  transition: transform 0.4s ease-in-out; /* Smooth slide animation */
+  transition: transform 0.4s ease-in-out;
+  /* Smooth slide animation */
 }
 
 .navbar-hidden {
@@ -24,16 +26,17 @@
 }
 
 .aa-logo {
-  width: 350px; 
+  width: 300px;
   height: auto;
-  max-height: 80px; 
+  max-height: 80px;
   object-fit: contain;
   transition: transform 0.3s ease;
   cursor: pointer;
 }
 
 .aa-logo:hover {
-  transform: scale(1.05); /* Effet au survol maintenu */
+  transform: scale(1.05);
+  /* Effet au survol maintenu */
 }
 
 /* CENTER: NAVIGATION PILL */
@@ -46,8 +49,10 @@
 .nav-pill {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05); /* Very subtle background */
-  border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle white border as in photo */
+  background: rgba(255, 255, 255, 0.05);
+  /* Very subtle background */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* Subtle white border as in photo */
   border-radius: 50px;
   padding: 2px 15px;
 }
@@ -98,7 +103,10 @@
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #333;
   transition: 0.4s;
   border-radius: 24px;
@@ -130,15 +138,15 @@
   transition: 0.2s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #ff0000;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   transform: translateX(20px);
 }
 
-input:checked + .slider .on-label {
+input:checked+.slider .on-label {
   opacity: 1;
   right: auto;
   left: 6px;
@@ -180,8 +188,15 @@ input:checked + .slider .on-label {
 }
 
 @keyframes slideIn {
-  from { width: 0; opacity: 0; }
-  to { width: 150px; opacity: 1; }
+  from {
+    width: 0;
+    opacity: 0;
+  }
+
+  to {
+    width: 150px;
+    opacity: 1;
+  }
 }
 
 .nav-icon {
