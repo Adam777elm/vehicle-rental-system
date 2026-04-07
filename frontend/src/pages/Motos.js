@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Motos.css";
 
 // Hero Video from MOTO_IMG
@@ -201,7 +202,9 @@ function Motos() {
                 <span className="category-tag">YAMAHA RANGE</span>
                 <h2 className="category-title">{cat.title}</h2>
                 <p className="category-desc">{cat.subtitle}</p>
-                <button className="category-btn">DÉCOUVRIR</button>
+                <Link to={cat.link}>
+                  <button className="category-btn">DÉCOUVRIR</button>
+                </Link>
               </div>
             </div>
           ))}

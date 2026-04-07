@@ -10,6 +10,10 @@ import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
 import Motos from "./pages/Motos";
+import Supersport from "./pages/Supersport";
+import Roadster from "./pages/Roadster";
+import SportTouring from "./pages/SportTouring";
+import OffRoad from "./pages/OffRoad";
 import Login from "./pages/Login";
 import MyReservations from "./pages/MyReservations";
 import About from "./pages/About";
@@ -46,6 +50,26 @@ function App() {
         <Route
           path="/motos"
           element={<Motos />}
+        />
+
+        <Route
+          path="/motos/supersport"
+          element={<Supersport />}
+        />
+
+        <Route
+          path="/motos/roadster"
+          element={<Roadster />}
+        />
+
+        <Route
+          path="/motos/sport-touring"
+          element={<SportTouring />}
+        />
+
+        <Route
+          path="/motos/off-road"
+          element={<OffRoad />}
         />
 
         <Route
