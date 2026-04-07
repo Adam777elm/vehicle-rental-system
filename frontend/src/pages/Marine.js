@@ -1,7 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Marine.css";
 import heroImg from "../assets/MARINE_IMG/marine-hero.jpg";
-import marineVideo from "../assets/MARINE_IMG/hero-video.mp4"; // Le chemin sera prêt pour votre vidéo
+import marineVideo from "../assets/MARINE_IMG/hero-video.mp4";
+import jetskiImg from "../assets/MARINE_IMG/marine-jetski.jpg";
+import superjetImg from "../assets/MARINE_IMG/marine-superjet.jpg";
+import waveboatImg from "../assets/MARINE_IMG/marine-waveboat.jpg";
 
 function Marine() {
   const [isMuted, setIsMuted] = useState(true);
@@ -96,9 +99,55 @@ function Marine() {
         </button>
       </section>
 
-      <section className="marine-content-section">
-        <h2 className="marine-section-title">Découvrir la gamme Marine</h2>
-        <div className="marine-placeholder-grid"></div>
+      {/* DETAILED FEATURES SECTIONS */}
+      <section className="marine-detailed-descriptions">
+        {/* ROW 1: WaveRunner (Jet Ski) - Image Left */}
+        <div className="marine-featured-row">
+          <div className="marine-featured-image-box">
+            <img src={jetskiImg} alt="Yamaha WaveRunner Jet Ski" />
+            <div className="marine-image-overlay-gradient"></div>
+          </div>
+          <div className="marine-featured-text-box">
+            <h2 className="marine-featured-title">WaveRunner</h2>
+            <div className="marine-divider-red"></div>
+            <p className="marine-featured-desc">
+              Découvrez la quintessence du pilotage sur l'eau avec les Waverunners Yamaha. Moteurs suralimentés, confort exceptionnel et agilité chirurgicale pour dompter chaque vague avec un frisson infini.
+            </p>
+            <button className="marine-featured-explore-btn">DÉCOUVRIR</button>
+          </div>
+        </div>
+
+        {/* ROW 2: SuperJet - Image Right */}
+        <div className="marine-featured-row marine-right">
+          <div className="marine-featured-image-box">
+            <img src={superjetImg} alt="Yamaha SuperJet" />
+            <div className="marine-image-overlay-gradient"></div>
+          </div>
+          <div className="marine-featured-text-box">
+            <h2 className="marine-featured-title">SuperJet</h2>
+            <div className="marine-divider-red"></div>
+            <p className="marine-featured-desc">
+              La légende du jet à bras sublimée. Taillé pour la course et le freestyle, le SuperJet délivre une accélération phénoménale et une légèreté absolue pour vous offrir une liberté d'action hors norme.
+            </p>
+            <button className="marine-featured-explore-btn">DÉCOUVRIR</button>
+          </div>
+        </div>
+
+        {/* ROW 3: Wave Boat - Image Left */}
+        <div className="marine-featured-row">
+          <div className="marine-featured-image-box">
+            <img src={waveboatImg} alt="Yamaha Jet Boat" />
+            <div className="marine-image-overlay-gradient"></div>
+          </div>
+          <div className="marine-featured-text-box">
+            <h2 className="marine-featured-title">Wave Boat</h2>
+            <div className="marine-divider-red"></div>
+            <p className="marine-featured-desc">
+              Le mélange parfait entre luxe, convivialité et adrénaline sportive. Profitez d'un cockpit spacieux et de l'iconique technologie de propulsion Yamaha Jet Drive pour partager la mer autrement.
+            </p>
+            <button className="marine-featured-explore-btn">DÉCOUVRIR</button>
+          </div>
+        </div>
       </section>
     </div>
   );
