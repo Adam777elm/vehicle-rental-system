@@ -16,6 +16,9 @@ import bgRoadster from "../assets/MOTO_IMG/bg-roadster.jpg";
 import bgSportTouring from "../assets/MOTO_IMG/bg-sporttouring.jpg";
 import bgOffroad from "../assets/MOTO_IMG/bg-offroad.jpg";
 
+// Panoramic Banner
+import lineupBanner from "../assets/MOTO_IMG/moto-lineup.jpg";
+
 function Motos() {
   const [muted, setMuted] = useState(true);
   const videoRef = useRef(null);
@@ -136,7 +139,26 @@ function Motos() {
     <div className="motos-page">
       <div className="motos-top-bar"></div>
 
-      <section className="motos-hero">
+      {/* PANORAMIC LINEUP BANNER BECOMES MAIN HERO */}
+      <section className="motos-lineup-banner reveal" style={{ position: 'relative' }}>
+        <img src={lineupBanner} alt="Gamme Yamaha complète" className="lineup-banner-img" />
+        <div className="lineup-banner-overlay"></div>
+        
+        <div className="hero-overlay reveal" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10, width: '100%' }}>
+          <h1 className="hero-title">GAMME MOTOS</h1>
+          <p className="hero-subtitle">Choisissez votre terrain de jeu</p>
+        </div>
+      </section>
+
+      {/* SEPARATEUR FUTURISTE */}
+      <div className="futuristic-separator">
+        <div className="separator-line"></div>
+        <div className="separator-diamond"></div>
+        <div className="separator-line"></div>
+      </div>
+
+      {/* VIDEO BECOMES SECONDARY BANNER */}
+      <section className="motos-hero secondary-video">
         <video 
           ref={videoRef}
           className="hero-video" 
@@ -147,10 +169,6 @@ function Motos() {
         >
           <source src={motoHeroVid} type="video/mp4" />
         </video>
-        <div className="hero-overlay reveal">
-          <h1 className="hero-title">GAMME MOTOS</h1>
-          <p className="hero-subtitle">Choisissez votre terrain de jeu</p>
-        </div>
 
         {/* SOUND TOGGLE */}
         <button className="sound-toggle" onClick={toggleSound}>
