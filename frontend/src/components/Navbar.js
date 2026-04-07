@@ -39,11 +39,11 @@ function Navbar() {
             <div className="nav-center">
                 <div className="nav-pill">
                     <Link to="/">ACCUEIL</Link>
-                    <Link to="/motos">MOTOS</Link>
+                    <Link to="/motos">ROUTE</Link>
                     <Link to="/location-trips">LOCATION & TRIPS</Link>
                     <Link to="/marine">MARINE</Link>
                     <Link to="/equipement">EQUIPEMENT</Link>
-                    <Link to="/about">À PROPOS</Link>
+                    <Link to="/about">POLITIQUES DE QUALITÉ</Link>
                 </div>
 
                 {/* AI AGENT SWITCH */}
