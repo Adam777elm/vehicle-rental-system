@@ -1,5 +1,9 @@
 .motos-page {
-  background-color: #ffffff; /* Clean white background for the categories as in the previous boxes */
+  background-color: #050914; /* Deep dark blue/black abyss for futuristic feel */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(215, 26, 23, 0.05), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(0, 100, 255, 0.05), transparent 25%);
+  color: #fff;
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
 }
@@ -50,6 +54,12 @@
   letter-spacing: 8px;
   text-transform: uppercase;
   font-style: italic; /* Un look plus racing */
+  animation: titlePulse 4s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate;
+}
+
+@keyframes titlePulse {
+  0% { transform: scale(1); letter-spacing: 8px; text-shadow: 0 10px 30px rgba(0,0,0,0.7); }
+  100% { transform: scale(1.02); letter-spacing: 14px; text-shadow: 0 0 40px rgba(215, 26, 23, 0.9), 0 10px 30px rgba(0,0,0,0.7); }
 }
 
 .hero-subtitle {
@@ -61,6 +71,25 @@
   padding: 8px 20px;
   background: rgba(215, 26, 23, 0.8); /* Fond rouge semi-transparent pour l'écriture */
   display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Light reflection sweep effect on subtitle */
+.hero-subtitle::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: sweep 4s infinite linear;
+  transform: skewX(-20deg);
+}
+
+@keyframes sweep {
+  0% { left: -100%; }
+  20% { left: 200%; }
+  100% { left: 200%; }
 }
 
 /* CATEGORIES SECTION */
@@ -68,6 +97,8 @@
   padding: 80px 40px;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  z-index: 5;
 }
 
 .categories-grid-container {
@@ -77,83 +108,129 @@
 }
 
 .category-card {
-  background: white;
-  border-radius: 4px;
+  background: rgba(18, 25, 40, 0.5); /* Glassmorphism sombre */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Ligne futuriste ultra fine */
+  border-radius: 12px;
   overflow: hidden;
-  transition: all 0.4s ease;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   cursor: pointer;
   display: flex;
   flex-direction: column;
 }
 
+/* Red Laser Border Hover Animation */
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: all 0.5s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
 .category-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* Soft shadow on hover */
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 30px rgba(215, 26, 23, 0.15); /* Glowing red Yamaha aura shadow */
+  background: rgba(22, 30, 48, 0.8);
+}
+
+.category-card:hover::before {
+  border-color: rgba(215, 26, 23, 0.6); /* Red glowing stroke */
 }
 
 .category-image-wrapper {
-  height: 220px;
-  background: radial-gradient(circle, #f8f8f8 40%, #e8e8e8 100%);
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: relative;
+}
+
+/* Subtle glowing grid background behind the bikes */
+.category-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.3;
+  z-index: 0;
 }
 
 .category-img {
   width: 90%;
   height: auto;
   object-fit: contain;
-  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.8s ease;
+  filter: drop-shadow(0 15px 15px rgba(0,0,0,0.5)); /* Apporte profondeur 3D à la moto détourée */
+  position: relative;
+  z-index: 5;
 }
 
 .category-card:hover .category-img {
-  transform: scale(1.1);
+  transform: scale(1.15) translateY(-5px);
+  filter: drop-shadow(0 25px 20px rgba(0,0,0,0.8));
 }
 
 .category-content {
   padding: 30px;
   text-align: left;
+  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Séparateur */
 }
 
 .category-tag {
-  color: #d71a17; /* Yamaha Racing Red */
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-  display: block;
+  color: #fff;
+  background-color: #d71a17; /* Cyberpunk solid pill tag */
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.70rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
+  display: inline-block;
 }
 
 .category-title {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: 850;
-  color: #000;
+  color: #ffffff;
   margin: 0 0 10px 0;
-  letter-spacing: -0.5px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .category-desc {
   font-size: 14px;
-  color: #666;
-  margin-bottom: 25px;
+  color: #9ea3b0; /* Light blueish grey */
+  margin-bottom: 30px;
 }
 
 .category-btn {
   background: transparent;
-  border: 1px solid #000;
-  color: #000;
-  padding: 10px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 12px 28px;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
+  border-radius: 4px;
+  letter-spacing: 1px;
 }
 
 .category-card:hover .category-btn {
-  background: #000;
+  background: #d71a17; /* Button fills red upon hover intuitively */
+  border-color: #d71a17;
   color: white;
+  box-shadow: 0 0 15px rgba(215, 26, 23, 0.5);
 }
 
 /* SCROLL REVEAL ANIMATIONS */
@@ -199,11 +276,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s ease;
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1.2s ease;
+  filter: grayscale(40%) contrast(1.1); /* Dramatique par défaut */
 }
 
 .featured-row:hover .featured-image-box img {
-  transform: scale(1.05); /* Slow immersive zoom */
+  transform: scale(1.1) rotate(1.5deg); /* Zoom épique avec légère inclinaison */
+  filter: grayscale(0%) contrast(1.2); /* Révélation complète des couleurs au survol */
 }
 
 .image-overlay-gradient {
@@ -228,10 +307,20 @@
 }
 
 .divider-red {
-  width: 60px;
+  width: 0px;
   height: 4px;
   background-color: #d71a17;
   margin-bottom: 30px;
+}
+
+.reveal-visible .divider-red {
+  animation: expandLine 1.2s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+  animation-delay: 0.3s; /* Révélation ligne après apparition texte */
+}
+
+@keyframes expandLine {
+  0% { width: 0; opacity: 0; box-shadow: 0 0 0 transparent; }
+  100% { width: 120px; opacity: 1; box-shadow: 0 0 15px rgba(215, 26, 23, 0.8); }
 }
 
 .featured-desc {
@@ -249,14 +338,31 @@
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-explore-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -150%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg);
+  transition: all 0.6s ease;
+}
+
+.featured-explore-btn:hover::before {
+  left: 150%;
 }
 
 .featured-explore-btn:hover {
   background-color: #d71a17;
   border-color: #d71a17;
-  box-shadow: 0 10px 20px rgba(215, 26, 23, 0.3);
+  box-shadow: 0 15px 30px rgba(215, 26, 23, 0.4);
+  transform: translateY(-3px);
 }
 
 @media (max-width: 1024px) {
