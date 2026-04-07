@@ -14,6 +14,7 @@ import Supersport from "./pages/Supersport";
 import Roadster from "./pages/Roadster";
 import SportTouring from "./pages/SportTouring";
 import OffRoad from "./pages/OffRoad";
+import Marine from "./pages/Marine";
 import Login from "./pages/Login";
 import MyReservations from "./pages/MyReservations";
 import About from "./pages/About";
@@ -75,6 +76,11 @@ function App() {
         <Route
           path="/my-reservations"
           element={<MyReservations />}
+        />
+
+        <Route
+          path="/marine"
+          element={<Marine />}
         />
 
       </Routes>
