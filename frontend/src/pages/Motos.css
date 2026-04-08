@@ -158,7 +158,7 @@
 
 .categories-grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 30px;
 }
 
@@ -438,3 +438,46 @@
     font-size: 2.2rem;
   }
 }
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
+    letter-spacing: 4px;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    padding: 8px 10px;
+    white-space: normal;
+  }
+
+  .motos-categories-section {
+    padding: 40px 20px;
+  }
+
+  .featured-image-box {
+    height: 300px;
+  }
+
+  .featured-text-box {
+    padding: 40px 20px;
+  }
+
+  .featured-title {
+    font-size: 1.8rem;
+  }
+
+  .motos-detailed-descriptions {
+    padding: 50px 0;
+  }
+
+  .featured-row {
+    margin-bottom: 60px;
+  }
+
+  .category-content {
+    padding: 20px;
+  }
+}
+
