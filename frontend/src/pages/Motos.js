@@ -10,12 +10,14 @@ import supersportImg from "../assets/MOTO_IMG/supersport.png";
 import roadsterImg from "../assets/MOTO_IMG/roadster.png";
 import sporttouringImg from "../assets/MOTO_IMG/sporttouring.png";
 import offroadImg from "../assets/MOTO_IMG/offroad.png";
+import scooterImg from "../assets/MOTO_IMG/scooter.png";
 
 // Background Images for descriptions
 import bgSupersport from "../assets/MOTO_IMG/bg-supersport.jpg";
 import bgRoadster from "../assets/MOTO_IMG/bg-roadster.jpg";
 import bgSportTouring from "../assets/MOTO_IMG/bg-sporttouring.jpg";
 import bgOffroad from "../assets/MOTO_IMG/bg-offroad.jpg";
+import bgScooter from "../assets/MOTO_IMG/scooter.png"; // Using the scooter image for background as well
 
 // Panoramic Banner
 import lineupBanner from "../assets/MOTO_IMG/moto-lineup.jpg";
@@ -102,6 +104,13 @@ function Motos() {
       subtitle: "Beyond the Horizon",
       image: offroadImg,
       link: "/motos/off-road"
+    },
+    {
+      id: 5,
+      title: "SCOOTERS",
+      subtitle: "Nothing but the MAX",
+      image: scooterImg,
+      link: "/motos/scooters"
     }
   ];
 
@@ -133,6 +142,13 @@ function Motos() {
       desc: "Du sable saharien aux sentiers de l'Atlas. Nos motos Ténéré sont forgées pour l'aventure pure, offrant une endurance et une fiabilité à toute épreuve.",
       bg: bgOffroad,
       side: "right"
+    },
+    {
+      id: "sc",
+      title: "La Ville en Mouvement : Scooters",
+      desc: "Réinventez vos trajets quotidiens urbains et périurbains. Avec les séries MAX, vous bénéficiez de performances de pointe, d'une grande agilité et d'un confort premium.",
+      bg: bgScooter,
+      side: "left"
     }
   ];
 
@@ -192,7 +208,7 @@ function Motos() {
           {categories.map((cat, index) => (
             <div 
               key={cat.id} 
-              className="category-card reveal" 
+              className={`category-card reveal ${cat.id === 5 ? 'category-card-scooters' : ''}`} 
               style={{ transitionDelay: `${index * 0.1}s` }}
             >
               <div className="category-image-wrapper">
