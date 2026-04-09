@@ -1,8 +1,11 @@
 import axios from "axios";
 
-// Use the current hostname dynamically to allow local network access (e.g. from mobile phones)
+const isProduction = window.location.hostname.includes("vercel.app");
+
 const API = axios.create({
-  baseURL: `http://${window.location.hostname}:5000/api`,
+  baseURL: isProduction 
+    ? "https://vehicle-rental-system-y8jx.onrender.com/api" 
+    : `http://${window.location.hostname}:5000/api`,
 });
 
 export default API;
