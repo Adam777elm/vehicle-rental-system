@@ -71,10 +71,10 @@ function Home() {
     },
     {
       id: 4,
-      title: "Equipement",
-      subtitle: "RIDE IN STYLE",
+      title: "Marketplace",
+      subtitle: "BUY & SELL BIKES",
       image: equipImg,
-      link: "/equipement"
+      link: "/marketplace"
     }
   ];
 

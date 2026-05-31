@@ -24,6 +24,7 @@ import Scooters from "./pages/Scooters";
 import SearchResults from "./pages/SearchResults";
 import LocationTrips from "./pages/LocationTrips";
 import RentalDetail from "./pages/RentalDetail";
+import Marketplace from "./pages/Marketplace";
 import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
@@ -113,6 +114,11 @@ function App() {
         <Route
           path="/location/:id"
           element={<RentalDetail />}
+        />
+
+        <Route
+          path="/marketplace"
+          element={<Marketplace />}
         />
 
       </Routes>

@@ -148,7 +148,7 @@ function Navbar() {
                     <Link to="/motos">ROUTE</Link>
                     <Link to="/location-trips">LOCATION & TRIPS</Link>
                     <Link to="/marine">MARINE</Link>
-                    <Link to="/equipement">EQUIPEMENT</Link>
+                    <Link to="/marketplace">MARKETPLACE</Link>
                     <Link to="/about">POLITIQUES DE QUALITÉ</Link>
                 </div>
 
@@ -254,7 +254,7 @@ function Navbar() {
                 <Link to="/motos" onClick={() => setMenuOpen(false)}>ROUTE</Link>
                 <Link to="/location-trips" onClick={() => setMenuOpen(false)}>LOCATION & TRIPS</Link>
                 <Link to="/marine" onClick={() => setMenuOpen(false)}>MARINE</Link>
-                <Link to="/equipement" onClick={() => setMenuOpen(false)}>EQUIPEMENT</Link>
+                <Link to="/marketplace" onClick={() => setMenuOpen(false)}>MARKETPLACE</Link>
                 <Link to="/about" onClick={() => setMenuOpen(false)}>POLITIQUES DE QUALITÉ</Link>
                 
                 {/* LIGHT/DARK MODE SWITCH MOBILE */}
