@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Motos.css";
+import "./CSS/Motos.css";
 
 // Hero Video from MOTO_IMG
 import motoHeroVid from "../assets/MOTO_IMG/MotoHeroVid.mp4";
@@ -17,7 +17,7 @@ import bgSupersport from "../assets/MOTO_IMG/bg-supersport.jpg";
 import bgRoadster from "../assets/MOTO_IMG/bg-roadster.jpg";
 import bgSportTouring from "../assets/MOTO_IMG/bg-sporttouring.jpg";
 import bgOffroad from "../assets/MOTO_IMG/bg-offroad.jpg";
-import bgScooter from "../assets/MOTO_IMG/scooter.png"; // Using the scooter image for background as well
+import bgScooter from "../assets/MOTO_IMG/bg-scooter.png";
 
 // Panoramic Banner
 import lineupBanner from "../assets/MOTO_IMG/moto-lineup.jpg";

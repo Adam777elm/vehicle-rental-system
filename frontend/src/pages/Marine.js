@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./Marine.css";
+import "./CSS/Marine.css";
 import heroImg from "../assets/MARINE_IMG/marine-hero.jpg";
 import marineVideo from "../assets/MARINE_IMG/hero-video.mp4";
 import jetskiImg from "../assets/MARINE_IMG/marine-jetski.jpg";
@@ -11,27 +11,27 @@ function Marine() {
   const videoRef = useRef(null);
 
   useEffect(() => {
+    const video = videoRef.current;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Si la vidéo n'est plus visible (ex: scroll haut ou bas)
-          if (!entry.isIntersecting && videoRef.current && !videoRef.current.muted) {
-            videoRef.current.muted = true;
+          if (!entry.isIntersecting && video && !video.muted) {
+            video.muted = true;
             setIsMuted(true);
           }
         });
       },
-      { threshold: 0.1 } // Déclenche dès que - de 10% de la vidéo est visible
+      { threshold: 0.1 }
     );
 
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
+    if (video) {
+      observer.observe(video);
     }
 
     const handleVisibilityChange = () => {
-      // Couper le son si on change d'onglet
-      if (document.hidden && videoRef.current && !videoRef.current.muted) {
-        videoRef.current.muted = true;
+      if (document.hidden && video && !video.muted) {
+        video.muted = true;
         setIsMuted(true);
       }
     };
@@ -39,8 +39,8 @@ function Marine() {
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
-      if (videoRef.current) {
-        observer.unobserve(videoRef.current);
+      if (video) {
+        observer.unobserve(video);
       }
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };

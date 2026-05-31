@@ -1,0 +1,275 @@
+.supersport-page {
+  width: 100%;
+  background-color: #0f0f12; /* Fond sombre premium */
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.supersport-red-bar {
+  width: 100%;
+  height: 5px;
+  background-color: #ea3f33;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ─── HERO BANNER ─── */
+.supersport-hero-banner {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.supersport-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  transition: transform 10s ease;
+}
+
+.supersport-hero-banner:hover .supersport-banner-img {
+  transform: scale(1.15);
+}
+
+.supersport-banner-overlay {
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+}
+
+.supersport-banner-title {
+  font-size: 5rem;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  margin-bottom: 10px;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.supersport-banner-subtitle {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+}
+
+/* ─── CONTENT AREA ─── */
+.supersport-content-section {
+  padding: 100px 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.supersport-section-title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+}
+
+.supersport-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: #ea3f33;
+}
+
+/* ─── GRID & CARDS ─── */
+.supersport-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+}
+
+.ss-bike-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+}
+
+.ss-bike-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(234, 63, 51, 0.3);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.ss-card-image-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 40px;
+}
+
+.ss-bike-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: transform;
+}
+
+.ss-bike-card:hover .ss-bike-image {
+  transform: scale(1.15) rotate(-2deg);
+}
+
+.ss-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #ea3f33;
+  color: white;
+  padding: 8px 16px;
+  font-weight: 800;
+  font-size: 11px;
+  border-radius: 4px;
+  z-index: 5;
+}
+
+.ss-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.ss-bike-card:hover .ss-hover-overlay {
+  opacity: 1;
+}
+
+.ss-action-btn {
+  background: white;
+  color: black;
+  border: none;
+  padding: 15px 30px;
+  font-weight: 800;
+  cursor: pointer;
+  border-radius: 4px;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+}
+
+.ss-bike-card:hover .ss-action-btn {
+  transform: translateY(0);
+}
+
+.ss-card-content {
+  padding: 40px;
+}
+
+.ss-brand-container {
+  margin-bottom: 20px;
+}
+
+.ss-bike-brand {
+  color: #ea3f33;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.ss-bike-name {
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+
+.ss-bike-desc {
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  font-size: 15px;
+  margin-bottom: 30px;
+  height: 60px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ss-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ss-bike-price {
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.ss-buy-btn {
+  background: #ea3f33;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-weight: 800;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ss-buy-btn:hover {
+  background: #ff4136;
+}
+
+/* ─── CATEGORY DIVIDERS ─── */
+.ss-category-divider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.ss-category-divider span {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ea3f33;
+  letter-spacing: 3px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.ss-divider-line {
+  height: 1px;
+  background: linear-gradient(90deg, #ea3f33, transparent);
+  flex: 1;
+}
+
+@media (max-width: 992px) {
+  .supersport-grid {
+    grid-template-columns: 1fr;
+  }
+}

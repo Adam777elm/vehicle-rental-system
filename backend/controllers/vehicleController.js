@@ -22,10 +22,14 @@ exports.createVehicle = async (req, res) => {
   }
 };
 
-// Voir tous les véhicules
+// Voir tous les véhicules (?type=rent|sale)
 exports.getAllVehicles = async (req, res) => {
   try {
-    const vehicles = await Vehicle.find();
+    const filter = {};
+    if (req.query.type) {
+      filter.type = req.query.type;
+    }
+    const vehicles = await Vehicle.find(filter);
 
     res.json(vehicles);
   } catch (error) {

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./Home.css";
+import "./CSS/Home.css";
 import motoVideo from "../assets/HOME_IMG/MotoVid.mp4";
 
 import motoImg from "../assets/HOME_IMG/R1-1.jpg";

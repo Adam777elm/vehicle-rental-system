@@ -17,6 +17,7 @@ const vehicleSchema = new mongoose.Schema(
         "offroad",
         "quad",
         "jetski",
+        "roadster",
         "equipment",
       ],
     },
@@ -46,6 +47,25 @@ const vehicleSchema = new mongoose.Schema(
     },
 
     image: {
+      type: String,
+    },
+    
+    // --- MARKETPLACE FIELDS ---
+    isMarketplace: {
+      type: Boolean,
+      default: false,
+    },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    mileage: {
+      type: Number, // km
+    },
+    year: {
+      type: Number,
+    },
+    location: {
       type: String,
     },
   },

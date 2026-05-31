@@ -18,9 +18,6 @@ router.post(
   upload.single("image"),
   createVehicle
 );
-// Ajouter un véhicule
-router.post("/", createVehicle);
-
 // Voir tous les véhicules
 router.get("/", getAllVehicles);
 

@@ -1,4 +1,4 @@
-# AA Motors 🏍️ - Vehicle Rental & Sales System
+# AA Motors  - Vehicle Rental & Sales System
 
 ![Project Status](https://img.shields.io/badge/Status-En_Production-success) 
 ![Stack](https://img.shields.io/badge/Stack-MERN-blue) 

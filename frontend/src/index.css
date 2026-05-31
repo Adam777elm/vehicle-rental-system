@@ -117,4 +117,97 @@ code {
   font-size: 1rem;
 }
 
+/* LIGHT MODE GLOBAL OVERRIDES */
+body.light-mode {
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+body.light-mode .st-page,
+body.light-mode .supersport-page,
+body.light-mode .offroad-page,
+body.light-mode .motos-page,
+body.light-mode .home-page,
+body.light-mode .roadster-page,
+body.light-mode .scooters-page {
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+body.light-mode .st-bike-card,
+body.light-mode .supersport-card,
+body.light-mode .offroad-card,
+body.light-mode .rd-bike-card,
+body.light-mode .sc-bike-card {
+  background: #f8f9fa !important;
+  border-color: #e9ecef !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.light-mode .st-bike-name,
+body.light-mode .st-bike-price,
+body.light-mode .st-section-title,
+body.light-mode .offroad-section-title,
+body.light-mode .rd-bike-name,
+body.light-mode .sc-bike-name {
+  color: #1a1a1a !important;
+}
+
+body.light-mode .st-bike-desc,
+body.light-mode .st-bike-category {
+  color: #4a5568 !important;
+}
+
+body.light-mode .st-card-footer {
+  border-top-color: #e2e8f0 !important;
+}
+
+body.light-mode .navbar {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+body.light-mode .nav-pill a {
+  color: #2d3748 !important;
+}
+
+body.light-mode .nav-pill a:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: #000 !important;
+}
+
+body.light-mode .ai-text {
+  color: #2d3748 !important;
+}
+
+body.light-mode .nav-icon svg {
+  stroke: #2d3748 !important;
+}
+
+body.light-mode .mobile-menu-overlay {
+  background: rgba(255, 255, 255, 0.98) !important;
+}
+
+body.light-mode .mobile-menu-links a,
+body.light-mode .ai-agent-mobile span {
+  color: #1a1a1a !important;
+}
+
+body.light-mode .close-menu-btn svg {
+  stroke: #1a1a1a !important;
+}
+
+body.light-mode .bottom-nav {
+  background-color: #ffffff !important;
+  border-top-color: #e2e8f0 !important;
+}
+
+body.light-mode .bottom-nav-item {
+  color: #4a5568 !important;
+}
+
+body.light-mode .bottom-nav-item svg {
+  stroke: #4a5568 !important;
+}
+
 

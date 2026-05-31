@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import API from "../services/api";
-import "./Login.css";
+import "./CSS/Login.css";
 
 function Login() {
   const [isRegister, setIsRegister] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
+
 
   const [user, setUser] = useState(null);
 

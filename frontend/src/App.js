@@ -18,11 +18,18 @@ import Marine from "./pages/Marine";
 import Login from "./pages/Login";
 import MyReservations from "./pages/MyReservations";
 import About from "./pages/About";
+import MotoDetail from "./pages/MotoDetail";
 import Cart from "./pages/Cart";
+import Scooters from "./pages/Scooters";
+import SearchResults from "./pages/SearchResults";
+import LocationTrips from "./pages/LocationTrips";
+import RentalDetail from "./pages/RentalDetail";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
 
       <Navbar />
 
@@ -74,13 +81,38 @@ function App() {
         />
 
         <Route
+          path="/moto/:id"
+          element={<MotoDetail />}
+        />
+
+        <Route
           path="/my-reservations"
           element={<MyReservations />}
         />
 
         <Route
+          path="/motos/scooters"
+          element={<Scooters />}
+        />
+
+        <Route
           path="/marine"
           element={<Marine />}
+        />
+
+        <Route
+          path="/search"
+          element={<SearchResults />}
+        />
+
+        <Route
+          path="/location-trips"
+          element={<LocationTrips />}
+        />
+
+        <Route
+          path="/location/:id"
+          element={<RentalDetail />}
         />
 
       </Routes>
