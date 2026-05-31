@@ -2,223 +2,40 @@ import React, { useState, useEffect } from "react";
 import "./CSS/Marketplace.css";
 
 // Moroccan cities and prominent motorcycle brands
-const BRANDS = ["Yamaha", "BMW", "Kawasaki", "Honda", "Suzuki", "Ducati"];
-const LOCATIONS = ["Casablanca", "Rabat", "Marrakech", "Tanger", "Agadir", "Fès"];
+const BRANDS = ["Yamaha", "BMW", "Kawasaki", "Honda", "Suzuki", "Ducati", "Harley-Davidson", "KTM", "Triumph"];
+const LOCATIONS = ["Casablanca", "Rabat", "Marrakech", "Tanger", "Agadir", "Fès", "Oujda", "Meknès", "Kenitra"];
 const CONDITIONS = [
   { id: "neuf", label: "Neuf (État Vitrine)" },
   { id: "excellent", label: "Excellent" },
   { id: "tres-bon", label: "Très bon" }
 ];
-const CATEGORIES = ["Toutes", "Supersport", "Roadster", "Adventure", "Sport Touring", "Scooter"];
+const CATEGORIES = ["Roadster", "Supersport", "Adventure", "Sport Touring", "Scooter"];
+const FILTER_CATEGORIES = ["Toutes", ...CATEGORIES];
 
-// Premium high-quality mock data for Used Motorcycles in Morocco
-const USED_MOTORCYCLES = [
-  {
-    id: 1,
-    title: "Yamaha MT-09 SP - Öhlins Edition",
-    brand: "Yamaha",
-    model: "MT-09 SP",
-    category: "Roadster",
-    year: 2023,
-    mileage: 6200,
-    price: 129000,
-    condition: "excellent",
-    conditionLabel: "Excellent",
-    location: "Casablanca",
-    image: "https://danfay.ie/cdn/shop/files/2024-Yamaha-MT09DX-EU-Icon_Performance-360-Degrees-001-03.jpg?v=1706098490&width=1946",
-    description: "Superbe MT-09 SP en état irréprochable. Suspensions semi-actives Öhlins haut de gamme, Shifter Up & Down très fluide, cartographie moteur réglable, pneus Michelin neufs. Entretiens exclusifs chez la maison Yamaha. Première main.",
-    specs: {
-      engine: "CP3 - 890 cm³ (3 cylindres)",
-      power: "119 ch",
-      color: "Icon Performance (Bleu/Noir)",
-      gearbox: "Manuelle 6 rapports + Shifter",
-      fuel: "Essence (Sans Plomb)",
-      owners: "1ère Main"
-    },
-    sellerName: "Youssef El Alami",
-    sellerPhone: "+212774593031"
-  },
-  {
-    id: 2,
-    title: "BMW R 1250 GS Adventure - HP Pack",
-    brand: "BMW",
-    model: "R 1250 GS Adventure",
-    category: "Adventure",
-    year: 2021,
-    mileage: 18400,
-    price: 215000,
-    condition: "excellent",
-    conditionLabel: "Excellent",
-    location: "Rabat",
-    image: "https://www.bmw-motorrad.ch/content/dam/bmwmotorradnsc/marketCH/common/images/models/adventure/r1250gs-adventure/2022/22-09/stage/nsc-r1250gsa-stage-1920x1080.jpg.asset.1663155799757.jpg",
-    description: "Vends magnifique R 1250 GSA finition HP toutes options. Écran TFT connecté, suspension pilotée ESA dynamic, 3 valises alu BMW d'origine, feux additionnels LED, barres de protection moteur et réservoir. Prête pour les longs voyages.",
-    specs: {
-      engine: "Boxer - 1254 cm³ ShiftCam",
-      power: "136 ch",
-      color: "Coloris HP (Blanc/Bleu/Rouge)",
-      gearbox: "Manuelle 6 rapports",
-      fuel: "Essence",
-      owners: "2ème Main"
-    },
-    sellerName: "Karim Benchakroun",
-    sellerPhone: "+212774593031"
-  },
-  {
-    id: 3,
-    title: "Kawasaki Z900 Performance - Carbon",
-    brand: "Kawasaki",
-    model: "Z900",
-    category: "Roadster",
-    year: 2022,
-    mileage: 9500,
-    price: 99000,
-    condition: "tres-bon",
-    conditionLabel: "Très bon",
-    location: "Marrakech",
-    image: "https://images.caradisiac.com/images/1/3/3/0/191330/S0-kawasaki-z900-et-z900-se-2022-de-nouveaux-coloris-au-programme-687258.jpg",
-    description: "Z900 version Performance avec échappement Akrapovič Carbone homologué. Capot de selle arrière sport, bulle fumée haute performance, protections moteur d'origine. Moto très soignée, dort toujours dans un garage fermé.",
-    specs: {
-      engine: "4 cylindres en ligne - 948 cm³",
-      power: "125 ch",
-      color: "Tech Black / Lime Green",
-      gearbox: "Manuelle 6 rapports",
-      fuel: "Essence",
-      owners: "1ère Main"
-    },
-    sellerName: "Abdou Boumchita",
-    sellerPhone: "+212774593031"
-  },
-  {
-    id: 4,
-    title: "Yamaha YZF-R1 - Edition 60ème Anniversaire",
-    brand: "Yamaha",
-    model: "YZF-R1",
-    category: "Supersport",
-    year: 2022,
-    mileage: 4800,
-    price: 245000,
-    condition: "neuf",
-    conditionLabel: "Neuf (État Vitrine)",
-    location: "Casablanca",
-    image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2022/YZF1000R1WGP/2022-Yamaha-YZF1000R1WGP-EU-Silky_White-Studio-001-03.jpg",
-    description: "Rarissime Yamaha R1 en livrée mythique WGP 60th Anniversary (Blanc & Rouge Speedblock). Moto de passionné achetée neuve chez le concessionnaire officiel. Entièrement d'origine, aucune modification esthétique ou mécanique. État concours.",
-    specs: {
-      engine: "CP4 Crossplane - 998 cm³",
-      power: "200 ch",
-      color: "WGP 60th Anniversary (Blanc/Rouge)",
-      gearbox: "Manuelle 6 vitesses + Shifter QSS",
-      fuel: "Essence",
-      owners: "1ère Main"
-    },
-    sellerName: "Mohamed Alami",
-    sellerPhone: "+212774593031"
-  },
-  {
-    id: 5,
-    title: "Honda CRF1100L Africa Twin Adventure",
-    brand: "Honda",
-    model: "CRF1100L Africa Twin",
-    category: "Adventure",
-    year: 2020,
-    mileage: 22000,
-    price: 138000,
-    condition: "tres-bon",
-    conditionLabel: "Très bon",
-    location: "Tanger",
-    image: "https://www.honda.co.jp/news/2019/image/2191023-crf1100l.jpg",
-    description: "Africa Twin Adventure Sports avec boîte séquentielle DCT double embrayage. Bulle haute réglable, poignées chauffantes, protections de radiateur, bagagerie souple d'aventure incluse. Moto robuste idéale pour les pistes de l'Atlas.",
-    specs: {
-      engine: "Bicylindre en ligne - 1084 cm³",
-      power: "102 ch",
-      color: "Tricolore HRC (Bleu/Blanc/Rouge)",
-      gearbox: "Automatique DCT double embrayage",
-      fuel: "Essence",
-      owners: "2ème Main"
-    },
-    sellerName: "Anass El Miri",
-    sellerPhone: "+212774593031"
-  },
-  {
-    id: 6,
-    title: "Yamaha TMAX 560 Tech MAX - Dark Petrol",
-    brand: "Yamaha",
-    model: "TMAX 560 Tech MAX",
-    category: "Scooter",
-    year: 2023,
-    mileage: 3200,
-    price: 168000,
-    condition: "neuf",
-    conditionLabel: "Neuf (État Vitrine)",
-    location: "Agadir",
-    image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2023/XP500A/2023-Yamaha-XP500A-EU-Dark_Petrol-360-Degrees-001-03_Mobile.jpg",
-    description: "Le roi incontesté des maxi-scooters dans sa version haut de gamme Tech MAX. Coloris exclusif Dark Petrol, selle chauffante, poignées chauffantes, pare-brise à réglage électrique, régulateur de vitesse, suspension arrière réglable. Carnet de garantie à jour.",
-    specs: {
-      engine: "Bicylindre parallèle - 562 cm³",
-      power: "47.6 ch (A2 éligible)",
-      color: "Dark Petrol",
-      gearbox: "Automatique CVT",
-      fuel: "Essence",
-      owners: "1ère Main"
-    },
-    sellerName: "Yassine Mansouri",
-    sellerPhone: "+212774593031"
-  },
-  {
-    id: 7,
-    title: "BMW S 1000 XR - M Pack Touring",
-    brand: "BMW",
-    model: "S 1000 XR",
-    category: "Sport Touring",
-    year: 2022,
-    mileage: 8100,
-    price: 198000,
-    condition: "excellent",
-    conditionLabel: "Excellent",
-    location: "Rabat",
-    image: "https://www.press.bmwgroup.com/global/photo/comp/T0318536EN/the-new-bmw-s-1000-xr-m-package-09/2020",
-    description: "L'hybride parfait entre performances supersportives de la S1000RR et confort de voyage d'un trail routier. Équipé du Pack M complet (silencieux Akrapovič Titane, jantes forgées M légères, selle sport M) et du Pack Touring (supports valises, GPS Navigator 6). Une vraie bombe routière.",
-    specs: {
-      engine: "4 cylindres en ligne - 999 cm³",
-      power: "165 ch",
-      color: "M Motorsport (Blanc/Bleu/Rouge)",
-      gearbox: "Manuelle 6 rapports + Shifter Pro",
-      fuel: "Essence",
-      owners: "1ère Main"
-    },
-    sellerName: "Mehdi Benjelloun",
-    sellerPhone: "+212774593031"
-  },
-  {
-    id: 8,
-    title: "Suzuki GSX-S 1000 GT - Grand Tourisme",
-    brand: "Suzuki",
-    model: "GSX-S 1000 GT",
-    category: "Sport Touring",
-    year: 2023,
-    mileage: 5500,
-    price: 135000,
-    condition: "excellent",
-    conditionLabel: "Excellent",
-    location: "Casablanca",
-    image: "https://images.caradisiac.com/images/3/0/0/2/193002/S0-essai-suzuki-gsx-s1000gt-le-sport-tourisme-est-de-retour-695079.jpg",
-    description: "Sportive routière dynamique et technologique. Équipée du Shifter bidirectionnel ultra rapide, valises latérales peintes couleur carrosserie incluses, régulateur de vitesse, connectivité smartphone complète sur grand écran TFT. Très agréable en duo.",
-    specs: {
-      engine: "4 cylindres en ligne issu de la GSX-R - 999 cm³",
-      power: "152 ch",
-      color: "Deep Blue Metallic",
-      gearbox: "Manuelle 6 rapports + Shifter Up/Down",
-      fuel: "Essence",
-      owners: "1ère Main"
-    },
-    sellerName: "Houssam Tazi",
-    sellerPhone: "+212774593031"
-  }
-];
+// Category fallback images (high resolution) to ensure stunning listings if user doesn't provide an image URL
+const CATEGORY_IMAGES = {
+  Roadster: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&q=80&w=800",
+  Supersport: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=800",
+  Adventure: "https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?auto=format&fit=crop&q=80&w=800",
+  "Sport Touring": "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=800",
+  Scooter: "https://images.unsplash.com/photo-1563260797-cb5cd70254c8?auto=format&fit=crop&q=80&w=800"
+};
 
 function Marketplace() {
-  // Navigation / Scroll-Reveal Simulation
+  // Listings state initialized from localStorage to enable fully dynamic persistency
+  const [bikes, setBikes] = useState([]);
+
+  // Load from localStorage on mount
   useEffect(() => {
     window.scrollTo(0, 0);
+    const saved = localStorage.getItem("aa_marketplace_motos");
+    if (saved) {
+      setBikes(JSON.parse(saved));
+    } else {
+      // Initialize with an empty array as requested: "remove the actual motos occasion"
+      setBikes([]);
+    }
+
     // Scroll reveal observer
     const observerOptions = { threshold: 0.05 };
     const observer = new IntersectionObserver((entries) => {
@@ -235,6 +52,12 @@ function Marketplace() {
     return () => observer.disconnect();
   }, []);
 
+  // Sync state to localStorage whenever listing changes
+  const saveToLocalStorage = (updatedBikes) => {
+    localStorage.setItem("aa_marketplace_motos", JSON.stringify(updatedBikes));
+    setBikes(updatedBikes);
+  };
+
   // Filter States
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
@@ -249,6 +72,105 @@ function Marketplace() {
 
   // Selected Listing for Detail Modal
   const [selectedBike, setSelectedBike] = useState(null);
+
+  // Add Product Form / Modal State
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newBike, setNewBike] = useState({
+    title: "",
+    brand: "Yamaha",
+    model: "",
+    category: "Roadster",
+    year: "",
+    mileage: "",
+    price: "",
+    condition: "excellent",
+    location: "Casablanca",
+    image: "",
+    description: "",
+    engine: "",
+    power: "",
+    gearbox: "",
+    fuel: "Essence",
+    sellerName: "",
+    sellerPhone: ""
+  });
+
+  // Handle new listing submission
+  const handleAddBikeSubmit = (e) => {
+    e.preventDefault();
+    if (!newBike.title || !newBike.model || !newBike.price || !newBike.sellerName || !newBike.sellerPhone) {
+      alert("Veuillez remplir tous les champs obligatoires (Titre, Modèle, Prix, Nom et Téléphone).");
+      return;
+    }
+
+    const defaultImg = CATEGORY_IMAGES[newBike.category] || CATEGORY_IMAGES.Roadster;
+    const finalImage = newBike.image.trim() !== "" ? newBike.image.trim() : defaultImg;
+
+    const conditionObj = CONDITIONS.find(c => c.id === newBike.condition);
+
+    const bikeToAdd = {
+      id: Date.now(), // Unique ID
+      title: newBike.title,
+      brand: newBike.brand,
+      model: newBike.model,
+      category: newBike.category,
+      year: parseInt(newBike.year) || new Date().getFullYear(),
+      mileage: parseInt(newBike.mileage) || 0,
+      price: parseFloat(newBike.price) || 0,
+      condition: newBike.condition,
+      conditionLabel: conditionObj ? conditionObj.label : "Excellent",
+      location: newBike.location,
+      image: finalImage,
+      description: newBike.description || "Aucune description fournie par le vendeur.",
+      specs: {
+        engine: newBike.engine || "Non spécifié",
+        power: newBike.power || "Non spécifié",
+        color: "D'origine",
+        gearbox: newBike.gearbox || "Manuelle",
+        fuel: newBike.fuel || "Essence",
+        owners: "1ère Main"
+      },
+      sellerName: newBike.sellerName,
+      sellerPhone: newBike.sellerPhone
+    };
+
+    const updated = [bikeToAdd, ...bikes];
+    saveToLocalStorage(updated);
+
+    // Reset Form & Close
+    setNewBike({
+      title: "",
+      brand: "Yamaha",
+      model: "",
+      category: "Roadster",
+      year: "",
+      mileage: "",
+      price: "",
+      condition: "excellent",
+      location: "Casablanca",
+      image: "",
+      description: "",
+      engine: "",
+      power: "",
+      gearbox: "",
+      fuel: "Essence",
+      sellerName: "",
+      sellerPhone: ""
+    });
+    setShowAddForm(false);
+  };
+
+  // Delete product (Allows user to manage their marketplace)
+  const handleDeleteBike = (bikeId, e) => {
+    e.stopPropagation();
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette annonce ?")) {
+      const updated = bikes.filter(b => b.id !== bikeId);
+      saveToLocalStorage(updated);
+      if (selectedBike && selectedBike.id === bikeId) {
+        setSelectedBike(null);
+      }
+    }
+  };
 
   // Reset all filters
   const handleResetFilters = () => {
@@ -265,7 +187,7 @@ function Marketplace() {
   };
 
   // Filter & Sort Logic
-  const filteredBikes = USED_MOTORCYCLES.filter(bike => {
+  const filteredBikes = bikes.filter(bike => {
     const matchSearch = bike.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         bike.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         bike.brand.toLowerCase().includes(searchTerm.toLowerCase());
@@ -295,7 +217,16 @@ function Marketplace() {
   // Generate WhatsApp Link
   const getWhatsAppLink = (bike) => {
     const message = `Bonjour, je suis intéressé par votre annonce de la "${bike.title} (${bike.year})" affichée à ${bike.price.toLocaleString("fr-FR")} DH sur AA Motors. Est-elle toujours disponible ?`;
-    return `https://wa.me/212774593031?text=${encodeURIComponent(message)}`;
+    // Standardize phone format
+    let cleanPhone = bike.sellerPhone.replace(/\s+/g, '').replace('+', '');
+    if (!cleanPhone.startsWith('212')) {
+      if (cleanPhone.startsWith('0')) {
+        cleanPhone = '212' + cleanPhone.substring(1);
+      } else {
+        cleanPhone = '212' + cleanPhone;
+      }
+    }
+    return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
   };
 
   // Generate Email Link
@@ -326,7 +257,7 @@ function Marketplace() {
             Motorcycle <span className="market-title-gradient">Marketplace</span>
           </h1>
           <p className="market-hero-desc">
-            Découvrez notre sélection exclusive de motos d’occasion de prestige. Inspectées avec soin, garanties et prêtes à prendre la route au meilleur prix du marché marocain.
+            Découvrez notre sélection exclusive de motos d’occasion de prestige ou vendez la vôtre en quelques clics. Connectez-vous instantanément avec des acheteurs passionnés partout au Maroc.
           </p>
         </div>
       </section>
@@ -399,7 +330,7 @@ function Marketplace() {
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
               >
-                {CATEGORIES.map((cat, i) => (
+                {FILTER_CATEGORIES.map((cat, i) => (
                   <option key={i} value={cat}>{cat === "Toutes" ? "Toutes les catégories" : cat}</option>
                 ))}
               </select>
@@ -504,12 +435,22 @@ function Marketplace() {
       {/* SUBSECTION FOR "LES MOTOS D'OCCASION" */}
       <div className="market-section-title-wrapper">
         <div className="market-section-title-container">
-          <span className="market-section-subtitle">Exclusivité Maroc</span>
+          <span className="market-section-subtitle">Marché Collaboratif</span>
           <h2 className="market-section-title">Les Motos d'Occasion</h2>
         </div>
-        <span className="market-results-count">
-          {sortedBikes.length} {sortedBikes.length > 1 ? "annonces trouvées" : "annonce trouvée"}
-        </span>
+        
+        <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+          <span className="market-results-count">
+            {sortedBikes.length} {sortedBikes.length > 1 ? "annonces trouvées" : "annonce trouvée"}
+          </span>
+          <button 
+            className="market-card-btn-primary"
+            onClick={() => setShowAddForm(true)}
+            style={{ padding: "12px 24px", fontSize: "14px" }}
+          >
+            Publier une annonce 🏍️
+          </button>
+        </div>
       </div>
 
       {/* MOTORCYCLE LISTINGS GRID */}
@@ -533,6 +474,16 @@ function Marketplace() {
                       {bike.conditionLabel}
                     </span>
                   </div>
+                  
+                  {/* Delete button (Allows user to delete listings they added) */}
+                  <button 
+                    className="market-delete-badge"
+                    onClick={(e) => handleDeleteBike(bike.id, e)}
+                    title="Supprimer cette annonce"
+                  >
+                    🗑️
+                  </button>
+
                   <span className="market-card-price-tag">
                     {bike.price.toLocaleString("fr-FR")} DH
                   </span>
@@ -599,18 +550,280 @@ function Marketplace() {
         ) : (
           <div className="market-empty-state">
             <div className="market-empty-icon">🏍️🔍</div>
-            <h3>Aucun résultat trouvé</h3>
-            <p>Nous n'avons trouvé aucune moto correspondant à vos critères de recherche actuels. Essayez de réinitialiser vos filtres ou d'élargir votre recherche.</p>
+            <h3>Aucune moto en vente</h3>
+            <p>Le marché est actuellement vide. Devenez le premier vendeur et commencez à publier vos propres annonces d’occasion dès maintenant !</p>
             <button 
-              className="market-reset-btn"
-              onClick={handleResetFilters}
-              style={{ float: "none", display: "inline-block" }}
+              className="market-card-btn-primary"
+              onClick={() => setShowAddForm(true)}
+              style={{ float: "none", display: "inline-block", padding: "14px 28px", marginTop: "10px" }}
             >
-              Réinitialiser tous les filtres
+              Publier ma première annonce 🏍️
             </button>
           </div>
         )}
       </section>
+
+      {/* ADD PRODUCT FORM MODAL */}
+      {showAddForm && (
+        <div className="market-modal-overlay" onClick={() => setShowAddForm(false)}>
+          <div className="market-modal-content form-modal" onClick={(e) => e.stopPropagation()} style={{ maxWidth: "700px" }}>
+            
+            <button 
+              className="market-modal-close" 
+              onClick={() => setShowAddForm(false)}
+              aria-label="Fermer le formulaire"
+            >
+              ✕
+            </button>
+
+            <form onSubmit={handleAddBikeSubmit} className="market-form">
+              <h2 className="market-form-title">🏍️ Publier une Moto d'Occasion</h2>
+              <p className="market-form-desc">Complétez les informations pour ajouter instantanément votre moto sur notre Marketplace.</p>
+
+              <div className="market-form-grid">
+                
+                {/* Title */}
+                <div className="market-form-group full-width">
+                  <label className="market-form-label">Titre de l'annonce *</label>
+                  <input 
+                    type="text" 
+                    className="market-form-input" 
+                    placeholder="Ex: Yamaha MT-09 SP - Öhlins Edition"
+                    value={newBike.title}
+                    onChange={(e) => setNewBike({...newBike, title: e.target.value})}
+                    required
+                  />
+                </div>
+
+                {/* Brand */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Marque *</label>
+                  <select 
+                    className="market-form-select"
+                    value={newBike.brand}
+                    onChange={(e) => setNewBike({...newBike, brand: e.target.value})}
+                  >
+                    {BRANDS.map((brand, i) => (
+                      <option key={i} value={brand}>{brand}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Model */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Modèle *</label>
+                  <input 
+                    type="text" 
+                    className="market-form-input" 
+                    placeholder="Ex: MT-09 SP"
+                    value={newBike.model}
+                    onChange={(e) => setNewBike({...newBike, model: e.target.value})}
+                    required
+                  />
+                </div>
+
+                {/* Category */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Catégorie *</label>
+                  <select 
+                    className="market-form-select"
+                    value={newBike.category}
+                    onChange={(e) => setNewBike({...newBike, category: e.target.value})}
+                  >
+                    {CATEGORIES.map((cat, i) => (
+                      <option key={i} value={cat}>{cat}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Year */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Année-Modèle *</label>
+                  <input 
+                    type="number" 
+                    className="market-form-input" 
+                    placeholder="Ex: 2023"
+                    min="1990"
+                    max={new Date().getFullYear() + 1}
+                    value={newBike.year}
+                    onChange={(e) => setNewBike({...newBike, year: e.target.value})}
+                    required
+                  />
+                </div>
+
+                {/* Price */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Prix (DH) *</label>
+                  <input 
+                    type="number" 
+                    className="market-form-input" 
+                    placeholder="Ex: 129000"
+                    value={newBike.price}
+                    onChange={(e) => setNewBike({...newBike, price: e.target.value})}
+                    required
+                  />
+                </div>
+
+                {/* Mileage */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Kilométrage (km) *</label>
+                  <input 
+                    type="number" 
+                    className="market-form-input" 
+                    placeholder="Ex: 6200"
+                    value={newBike.mileage}
+                    onChange={(e) => setNewBike({...newBike, mileage: e.target.value})}
+                    required
+                  />
+                </div>
+
+                {/* Condition */}
+                <div className="market-form-group">
+                  <label className="market-form-label">État général</label>
+                  <select 
+                    className="market-form-select"
+                    value={newBike.condition}
+                    onChange={(e) => setNewBike({...newBike, condition: e.target.value})}
+                  >
+                    {CONDITIONS.map((cond) => (
+                      <option key={cond.id} value={cond.id}>{cond.label}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Location */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Ville *</label>
+                  <select 
+                    className="market-form-select"
+                    value={newBike.location}
+                    onChange={(e) => setNewBike({...newBike, location: e.target.value})}
+                  >
+                    {LOCATIONS.map((loc, i) => (
+                      <option key={i} value={loc}>{loc}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Image URL */}
+                <div className="market-form-group full-width">
+                  <label className="market-form-label">URL de l'image (Laissez vide pour utiliser une image de démonstration premium de la catégorie)</label>
+                  <input 
+                    type="url" 
+                    className="market-form-input" 
+                    placeholder="Ex: https://..."
+                    value={newBike.image}
+                    onChange={(e) => setNewBike({...newBike, image: e.target.value})}
+                  />
+                </div>
+
+                {/* Description */}
+                <div className="market-form-group full-width">
+                  <label className="market-form-label">Description détaillée</label>
+                  <textarea 
+                    className="market-form-textarea" 
+                    placeholder="Décrivez l'état de la moto, les options installées, les entretiens effectués..."
+                    value={newBike.description}
+                    onChange={(e) => setNewBike({...newBike, description: e.target.value})}
+                    rows="3"
+                  />
+                </div>
+
+                {/* Specs: Engine size */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Cylindrée Moteur</label>
+                  <input 
+                    type="text" 
+                    className="market-form-input" 
+                    placeholder="Ex: 890 cm³ (3 cylindres)"
+                    value={newBike.engine}
+                    onChange={(e) => setNewBike({...newBike, engine: e.target.value})}
+                  />
+                </div>
+
+                {/* Specs: Power */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Puissance (ch)</label>
+                  <input 
+                    type="text" 
+                    className="market-form-input" 
+                    placeholder="Ex: 119 ch"
+                    value={newBike.power}
+                    onChange={(e) => setNewBike({...newBike, power: e.target.value})}
+                  />
+                </div>
+
+                {/* Specs: Gearbox */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Boîte de vitesses</label>
+                  <input 
+                    type="text" 
+                    className="market-form-input" 
+                    placeholder="Ex: Manuelle 6 rapports"
+                    value={newBike.gearbox}
+                    onChange={(e) => setNewBike({...newBike, gearbox: e.target.value})}
+                  />
+                </div>
+
+                {/* Specs: Fuel */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Carburant</label>
+                  <select 
+                    className="market-form-select"
+                    value={newBike.fuel}
+                    onChange={(e) => setNewBike({...newBike, fuel: e.target.value})}
+                  >
+                    <option value="Essence">Essence</option>
+                    <option value="Electrique">Électrique</option>
+                  </select>
+                </div>
+
+                {/* Seller Name */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Nom complet du vendeur *</label>
+                  <input 
+                    type="text" 
+                    className="market-form-input" 
+                    placeholder="Ex: Youssef El Alami"
+                    value={newBike.sellerName}
+                    onChange={(e) => setNewBike({...newBike, sellerName: e.target.value})}
+                    required
+                  />
+                </div>
+
+                {/* Seller Phone */}
+                <div className="market-form-group">
+                  <label className="market-form-label">Téléphone WhatsApp *</label>
+                  <input 
+                    type="tel" 
+                    className="market-form-input" 
+                    placeholder="Ex: +212 600 000 000 ou 06..."
+                    value={newBike.sellerPhone}
+                    onChange={(e) => setNewBike({...newBike, sellerPhone: e.target.value})}
+                    required
+                  />
+                </div>
+
+              </div>
+
+              <div className="market-form-actions">
+                <button 
+                  type="button" 
+                  className="market-reset-btn"
+                  onClick={() => setShowAddForm(false)}
+                  style={{ height: "auto", alignSelf: "unset" }}
+                >
+                  Annuler
+                </button>
+                <button type="submit" className="market-card-btn-primary" style={{ padding: "14px 28px" }}>
+                  Publier l'annonce
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      )}
 
       {/* MOTORCYCLE DETAIL MODAL */}
       {selectedBike && (

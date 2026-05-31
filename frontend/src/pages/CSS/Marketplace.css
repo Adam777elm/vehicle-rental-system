@@ -839,3 +839,120 @@
     padding: 16px;
   }
 }
+
+/* ── COLLABORATIVE FORM STYLING ── */
+.market-form {
+  padding: 40px;
+  background: #0d0d19;
+}
+
+.market-form-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 10px;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.market-form-desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.market-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+@media (max-width: 600px) {
+  .market-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.market-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.market-form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.market-form-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.market-form-input, .market-form-select, .market-form-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.market-form-textarea {
+  font-family: inherit;
+  resize: vertical;
+}
+
+.market-form-input:focus, .market-form-select:focus, .market-form-textarea:focus {
+  border-color: #ef4444;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.15);
+}
+
+.market-form-select option {
+  background: #0d0d19;
+  color: #fff;
+}
+
+.market-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 25px;
+}
+
+/* Delete button on Card */
+.market-delete-badge {
+  position: absolute;
+  top: 15px;
+  right: 135px; /* Offset from price tag */
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.market-delete-badge:hover {
+  background: #ef4444;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+  transform: scale(1.1);
+}
+
