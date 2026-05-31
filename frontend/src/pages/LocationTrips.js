@@ -6,12 +6,83 @@ import API from "../services/api";
 import { RENTAL_FLEET, RENTAL_CATEGORIES, formatPricePerDay, mergeWithDbVehicles } from "../data/rentalFleet";
 import { getUploadUrl, resolveVehicleImage } from "../utils/imageUrl";
 
+// Trip Images
+import packImg from "../assets/TRIPS_IMG/pack-decouverte.png";
+import coastImg from "../assets/TRIPS_IMG/trips-coast.png";
+import desertImg from "../assets/TRIPS_IMG/trips-desert.png";
+import tripsHeroImg from "../assets/TRIPS_IMG/trips-hero.png";
+
 function LocationTrips() {
   const navigate = useNavigate();
   const [fleet, setFleet] = useState(RENTAL_FLEET);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("Tous");
   const [hoveredCard, setHoveredCard] = useState(null);
+
+  const [formData, setFormData] = useState({
+    nom: "",
+    email: "",
+    telephone: "",
+    destination: "",
+    message: "",
+  });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [alertSubmitted, setAlertSubmitted] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleDevisSubmit = (e) => {
+    e.preventDefault();
+    console.log("Demande de devis:", formData);
+    setFormSubmitted(true);
+    setTimeout(() => {
+      setFormSubmitted(false);
+      setFormData({ nom: "", email: "", telephone: "", destination: "", message: "" });
+    }, 4000);
+  };
+
+  const handleAlertSubmit = () => {
+    setAlertSubmitted(true);
+    setTimeout(() => setAlertSubmitted(false), 3000);
+  };
+
+  const handleRentSelect = (bikeKey) => {
+    setFormData((prev) => ({ ...prev, destination: bikeKey }));
+    document.getElementById("trips-contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const tripPackages = useMemo(() => [
+    {
+      id: 1,
+      tag: "AVENTURE",
+      title: "Route de l'Atlas",
+      desc: "Traversée épique des cols de l'Atlas avec des paysages à couper le souffle. Routes sinueuses et panoramas grandioses.",
+      image: tripsHeroImg,
+      duration: "5 jours",
+      price: "4 500",
+    },
+    {
+      id: 2,
+      tag: "CÔTE ATLANTIQUE",
+      title: "Essaouira Ride",
+      desc: "Longez la côte atlantique marocaine, d'Agadir à Essaouira. Falaises, plages sauvages et villages de pêcheurs.",
+      image: coastImg,
+      duration: "3 jours",
+      price: "2 800",
+    },
+    {
+      id: 3,
+      tag: "DÉSERT",
+      title: "Sahara Express",
+      desc: "Aventure dans les dunes de Merzouga. Bivouac sous les étoiles et traversée de paysages lunaires inoubliables.",
+      image: desertImg,
+      duration: "4 jours",
+      price: "5 200",
+    },
+  ], []);
 
   const secondaryImg = getUploadUrl("1776370846917-Loca-1.webp");
 
@@ -23,6 +94,22 @@ function LocationTrips() {
       .catch(() => setFleet(RENTAL_FLEET))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    const observerOptions = { threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("trips-reveal-visible");
+        }
+      });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll(".trips-reveal");
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [loading]);
 
   const filteredFleet = useMemo(() => {
     if (activeCategory === "Tous") return fleet;
@@ -272,25 +359,195 @@ function LocationTrips() {
           </div>
         </div>
 
-        {/* Trips teaser */}
-        <div className="loc-trips-teaser">
-          <div className="loc-trips-icon">🗺️</div>
-          <div className="loc-trips-text">
-            <h3>Trips organisés — Bientôt disponible</h3>
-            <p>
-              Sorties guidées Atlas, côte Atlantique et désert. Des aventures clé-en-main en préparation.
-              Laissez votre contact pour être informé en premier.
+        {/* ===================== SEPARATOR ===================== */}
+        <div className="trips-separator">
+          <div className="separator-line"></div>
+          <div className="separator-diamond"></div>
+          <div className="separator-line"></div>
+        </div>
+
+        {/* ===================== TRIP PACKAGES GRID ===================== */}
+        <section className="trips-packages-section">
+          <div className="trips-section-header trips-reveal">
+            <span className="trips-section-tag">NOS CIRCUITS</span>
+            <h2 className="trips-section-title">Trips Organisés</h2>
+            <p className="trips-section-subtitle">
+              Des circuits pensés pour chaque type de rider. Du débutant au pilote
+              confirmé, choisissez votre prochaine aventure marocaine.
             </p>
           </div>
-          <a
-            href="https://wa.me/212774593031"
-            className="loc-btn-outline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            M'ALERTER
-          </a>
-        </div>
+
+          <div className="trips-packages-grid">
+            {tripPackages.map((trip, index) => (
+              <div
+                key={trip.id}
+                className="trip-package-card trips-reveal"
+                style={{ transitionDelay: `${index * 0.15}s` }}
+                onClick={() => handleRentSelect(trip.id === 1 ? "atlas" : trip.id === 2 ? "coast" : "desert")}
+              >
+                <div className="trip-package-image">
+                  <img src={trip.image} alt={trip.title} />
+                  <span className="trip-package-duration">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    {trip.duration}
+                  </span>
+                </div>
+                <div className="trip-package-body">
+                  <span className="trip-package-tag">{trip.tag}</span>
+                  <h3 className="trip-package-title">{trip.title}</h3>
+                  <p className="trip-package-desc">{trip.desc}</p>
+                  <div className="trip-package-footer">
+                    <div className="trip-package-price">
+                      {trip.price} DHS <span>/ pers</span>
+                    </div>
+                    <button
+                      className="trip-package-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleRentSelect(trip.id === 1 ? "atlas" : trip.id === 2 ? "coast" : "desert");
+                      }}
+                    >
+                      RÉSERVER
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ===================== COMING SOON BANNER ===================== */}
+        <section className="trips-coming-soon-section trips-reveal">
+          <div className="trips-coming-soon-banner">
+            <div className="trips-coming-soon-icon">🗺️</div>
+            <div className="trips-coming-soon-content">
+              <h3 className="trips-coming-soon-title">
+                Trips organisés — Bientôt disponible
+                <span className="trips-coming-soon-tag">COMING SOON</span>
+              </h3>
+              <p className="trips-coming-soon-desc">
+                Sorties guidées Atlas, côte Atlantique et désert. Des aventures
+                clé-en-main en préparation. Laissez votre contact pour être informé
+                en premier.
+              </p>
+            </div>
+            <button className="trips-coming-soon-btn" onClick={handleAlertSubmit}>
+              {alertSubmitted ? "✓ INSCRIT !" : "M'ALERTER"}
+            </button>
+          </div>
+        </section>
+
+        {/* ===================== CONTACT / DEVIS FORM ===================== */}
+        <section className="trips-contact-section" id="trips-contact">
+          <div className="trips-contact-card trips-reveal">
+            <div className="trips-contact-icon">✉️</div>
+            <h2 className="trips-contact-title">Demander un Devis / S'inscrire</h2>
+            <p className="trips-contact-desc">
+              Laissez vos coordonnées et décrivez votre projet de trip ou location. Nous vous
+              répondrons sous 24h avec un devis personnalisé.
+            </p>
+
+            {formSubmitted ? (
+              <div className="trips-form-success">
+                <span className="trips-form-success-icon">✅</span>
+                <h3>Demande envoyée avec succès !</h3>
+                <p>
+                  Nous avons bien reçu votre demande. Notre équipe vous contactera
+                  sous 24h.
+                </p>
+              </div>
+            ) : (
+              <form className="trips-contact-form" onSubmit={handleDevisSubmit}>
+                <div className="trips-form-row">
+                  <div className="trips-form-group">
+                    <label htmlFor="trips-nom">Nom complet</label>
+                    <input
+                      id="trips-nom"
+                      type="text"
+                      name="nom"
+                      placeholder="Votre nom"
+                      value={formData.nom}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="trips-form-group">
+                    <label htmlFor="trips-email">Email</label>
+                    <input
+                      id="trips-email"
+                      type="email"
+                      name="email"
+                      placeholder="votre@email.com"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="trips-form-row">
+                  <div className="trips-form-group">
+                    <label htmlFor="trips-telephone">Téléphone</label>
+                    <input
+                      id="trips-telephone"
+                      type="tel"
+                      name="telephone"
+                      placeholder="+212 6XX XXX XXX"
+                      value={formData.telephone}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="trips-form-group">
+                    <label htmlFor="trips-destination">Véhicule / Destination</label>
+                    <select
+                      id="trips-destination"
+                      name="destination"
+                      value={formData.destination}
+                      onChange={handleInputChange}
+                      required
+                    >
+                      <option value="">Choisir une option</option>
+                      <optgroup label="Trips Organisés (Circuits)">
+                        <option value="atlas">Route de l'Atlas (Guided)</option>
+                        <option value="coast">Essaouira Ride (Guided)</option>
+                        <option value="desert">Sahara Express (Guided)</option>
+                        <option value="custom">Sur mesure / Autre</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="trips-form-group">
+                  <label htmlFor="trips-message">Message</label>
+                  <textarea
+                    id="trips-message"
+                    name="message"
+                    placeholder="Décrivez votre projet (nombre de personnes, dates souhaitées, niveau d'expérience...)"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows="4"
+                  />
+                </div>
+
+                <div className="trips-form-submit">
+                  <button type="submit" className="trips-btn-primary">
+                    DEMANDER UN DEVIS
+                  </button>
+                  <button
+                    type="button"
+                    className="trips-btn-secondary"
+                    onClick={handleAlertSubmit}
+                  >
+                    {alertSubmitted ? "✓ INSCRIT !" : "M'ALERTER"}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </section>
       </section>
     </div>
   );
