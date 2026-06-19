@@ -437,4 +437,487 @@ input:checked+.slider .on-label {
   text-transform: uppercase;
   letter-spacing: 1px;
   opacity: 0.8;
-}
+}
+
+/* =========================================================
+   AI AGENT PREMIUM UI STYLES
+   ========================================================= */
+
+/* AI Agent Typography (Photo 2) */
+.ai-agent-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #cbd5e1;
+  letter-spacing: -0.2px;
+}
+
+.ai-agent-text span {
+  background: linear-gradient(90deg, #f472b6, #fb7185);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+}
+
+/* Custom Gradient Switch Capsule (Photo 2) */
+.ai-switch-wrapper {
+  display: inline-flex;
+  padding: 1.5px;
+  background: linear-gradient(90deg, #ef4444, #ec4899, #3b82f6);
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.15);
+  transition: all 0.3s ease;
+}
+
+.ai-switch-wrapper:hover {
+  box-shadow: 0 0 15px rgba(236, 72, 153, 0.3);
+}
+
+.ai-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.ai-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ai-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #0f172a;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.ai-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background: linear-gradient(135deg, #334155, #0f172a);
+  transition: 0.3s;
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.ai-on-label {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 8px;
+  font-weight: 900;
+  color: #0f172a;
+  opacity: 0;
+  transition: 0.2s;
+  z-index: 1;
+}
+
+input:checked + .ai-slider {
+  background-color: #ffffff;
+}
+
+input:checked + .ai-slider:before {
+  transform: translateX(26px);
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+}
+
+input:checked + .ai-slider .ai-on-label {
+  opacity: 1;
+}
+
+/* AI Prompt Bar at Bottom (Photo 3) */
+.ai-prompt-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 75px;
+  background: rgba(11, 26, 43, 0.85);
+  backdrop-filter: blur(20px);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 9999;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+  animation: slideBarUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideBarUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.ai-prompt-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.yamaha-ai-logo {
+  font-size: 15px;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.yamaha-ai-separator {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.yamaha-ai-text {
+  font-size: 14px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #f472b6, #fb7185);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ai-prompt-center {
+  flex: 1;
+  max-width: 800px;
+  margin: 0 30px;
+}
+
+.ai-input-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.ai-prompt-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 12px 50px 12px 20px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.ai-prompt-input:focus {
+  border-color: rgba(239, 68, 68, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.15);
+}
+
+.ai-send-btn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.ai-send-btn:hover {
+  color: #ef4444;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.ai-prompt-close-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.ai-prompt-close-btn:hover {
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+/* Slide-out Chat Drawer */
+.ai-chat-drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 420px;
+  max-width: 100vw;
+  background: rgba(10, 15, 30, 0.95);
+  backdrop-filter: blur(25px);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.08);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.6);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ai-chat-drawer.open {
+  transform: translateX(0);
+}
+
+.ai-drawer-header {
+  padding: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ai-drawer-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.yamaha-drawer-logo {
+  font-size: 16px;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.yamaha-drawer-sep {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.yamaha-drawer-text {
+  font-size: 15px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #f472b6, #fb7185);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ai-drawer-close-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ai-drawer-close-btn:hover {
+  color: #ef4444;
+  transform: rotate(90deg);
+}
+
+.ai-drawer-messages {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ai-message-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+}
+
+.ai-message-wrapper.bot {
+  align-self: flex-start;
+}
+
+.ai-message-wrapper.user {
+  align-self: flex-end;
+}
+
+.ai-message-bubble {
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: white;
+}
+
+.ai-message-wrapper.bot .ai-message-bubble {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top-left-radius: 4px;
+}
+
+.ai-message-wrapper.user .ai-message-bubble {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  border-top-right-radius: 4px;
+}
+
+.ai-message-bubble p {
+  margin: 0;
+}
+
+.ai-message-time {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 4px;
+  padding: 0 4px;
+}
+
+.ai-message-wrapper.user .ai-message-time {
+  align-self: flex-end;
+}
+
+/* Markdown chat link style */
+.ai-chat-link {
+  color: #60a5fa;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.ai-chat-link:hover {
+  color: #93c5fd;
+}
+
+/* Typing indicator */
+.typing-dots {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.typing-dots span {
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: typingDot 1.4s infinite both;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: .2s;
+}
+
+.typing-dots span:nth-child(3) {
+  animation-delay: .4s;
+}
+
+@keyframes typingDot {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* Quick Replies Pills */
+.ai-drawer-quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ai-drawer-quick-replies button {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ai-drawer-quick-replies button:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  transform: translateY(-1px);
+}
+
+/* Drawer Footer Form */
+.ai-drawer-footer {
+  padding: 20px 24px 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  gap: 12px;
+}
+
+.ai-drawer-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: white;
+  font-size: 13px;
+  outline: none;
+  font-family: inherit;
+}
+
+.ai-drawer-input:focus {
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.ai-drawer-send-btn {
+  background: #ef4444;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.ai-drawer-send-btn:hover {
+  background: #dc2626;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .ai-prompt-bar {
+    padding: 0 20px;
+    height: 70px;
+    bottom: 70px; /* Offset for mobile bottom nav */
+  }
+
+  .ai-prompt-left {
+    display: none; /* Hide brand label on small screens */
+  }
+
+  .ai-prompt-center {
+    margin: 0;
+  }
+
+  .ai-chat-drawer {
+    width: 100vw;
+  }
+}
+

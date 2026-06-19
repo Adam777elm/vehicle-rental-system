@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import { getAiResponse } from "../utils/aiResponses";
 
 import aaLogo from "../assets/HOME_IMG/Logo-2.png";
 
@@ -39,9 +40,23 @@ function Navbar() {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
-    const [isLightMode, setIsLightMode] = useState(false);
+    
+    // AI Agent States
+    const [isAiActive, setIsAiActive] = useState(false);
+    const [aiQuery, setAiQuery] = useState("");
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [chatMessages, setChatMessages] = useState([
+        {
+            sender: "bot",
+            text: "Bonjour ! Je suis l'assistant IA de **AA Motors**. Posez-moi vos questions sur nos motos, locations, marketplace ou trips organisés !",
+            time: new Date().toLocaleTimeString("fr-FR", { hour: '2-digit', minute: '2-digit' })
+        }
+    ]);
+    const [isTyping, setIsTyping] = useState(false);
+
     const navigate = useNavigate();
     const searchRef = useRef(null);
+    const chatEndRef = useRef(null);
 
     const normalize = (str) => str.toLowerCase().replace(/[-\s]/g, "");
 
@@ -105,14 +120,50 @@ function Navbar() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    // Apply global light mode class
+    // Auto scroll chat to bottom
     useEffect(() => {
-        if (isLightMode) {
-            document.body.classList.add("light-mode");
-        } else {
-            document.body.classList.remove("light-mode");
+        if (chatEndRef.current) {
+            chatEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
-    }, [isLightMode]);
+    }, [chatMessages, isTyping]);
+
+    const handleSendAiQuery = (textToSend) => {
+        const queryText = textToSend || aiQuery;
+        if (!queryText.trim()) return;
+
+        const timestamp = new Date().toLocaleTimeString("fr-FR", { hour: '2-digit', minute: '2-digit' });
+        const userMsg = { sender: "user", text: queryText, time: timestamp };
+
+        setChatMessages(prev => [...prev, userMsg]);
+        setAiQuery("");
+        setIsDrawerOpen(true);
+        setIsTyping(true);
+
+        setTimeout(() => {
+            const responseText = getAiResponse(queryText);
+            const botMsg = {
+                sender: "bot",
+                text: responseText,
+                time: new Date().toLocaleTimeString("fr-FR", { hour: '2-digit', minute: '2-digit' })
+            };
+            setChatMessages(prev => [...prev, botMsg]);
+            setIsTyping(false);
+        }, 800);
+    };
+
+    const formatMessageText = (text) => {
+        if (!text) return "";
+        let formatted = text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+            
+        formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+        formatted = formatted.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="ai-chat-link">$1</a>');
+        formatted = formatted.replace(/\n/g, "<br />");
+        
+        return formatted;
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -152,19 +203,21 @@ function Navbar() {
                     <Link to="/about">POLITIQUES DE QUALITÉ</Link>
                 </div>
 
-                {/* LIGHT/DARK MODE SWITCH */}
+                {/* AI AGENT TOGGLE */}
                 <div className="ai-agent">
-                    <span className="ai-text">{isLightMode ? "Mode Clair" : "Mode Sombre"}</span>
-                    <label className="switch">
-                        <input 
-                          type="checkbox" 
-                          checked={isLightMode}
-                          onChange={() => setIsLightMode(!isLightMode)} 
-                        />
-                        <span className="slider">
-                            <span className="on-label">ON</span>
-                        </span>
-                    </label>
+                    <span className="ai-agent-text">Ai <span>Agent</span></span>
+                    <div className="ai-switch-wrapper">
+                        <label className="ai-switch">
+                            <input 
+                              type="checkbox" 
+                              checked={isAiActive}
+                              onChange={() => setIsAiActive(!isAiActive)} 
+                            />
+                            <span className="ai-slider">
+                                <span className="ai-on-label">ON</span>
+                            </span>
+                        </label>
+                    </div>
                 </div>
             </div>
 
@@ -257,19 +310,24 @@ function Navbar() {
                 <Link to="/marketplace" onClick={() => setMenuOpen(false)}>MARKETPLACE</Link>
                 <Link to="/about" onClick={() => setMenuOpen(false)}>POLITIQUES DE QUALITÉ</Link>
                 
-                {/* LIGHT/DARK MODE SWITCH MOBILE */}
+                {/* AI AGENT TOGGLE MOBILE */}
                 <div className="ai-agent-mobile">
-                    <span>Thème Visuel</span>
-                    <label className="switch">
-                        <input 
-                          type="checkbox" 
-                          checked={isLightMode}
-                          onChange={() => setIsLightMode(!isLightMode)}
-                        />
-                        <span className="slider">
-                            <span className="on-label">{isLightMode ? 'CLAIR' : 'SOMBRE'}</span>
-                        </span>
-                    </label>
+                    <span>Assistant Ai Agent</span>
+                    <div className="ai-switch-wrapper">
+                        <label className="ai-switch">
+                            <input 
+                              type="checkbox" 
+                              checked={isAiActive}
+                              onChange={() => {
+                                  setIsAiActive(!isAiActive);
+                                  setMenuOpen(false);
+                              }}
+                            />
+                            <span className="ai-slider">
+                                <span className="ai-on-label">ON</span>
+                            </span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -292,6 +350,103 @@ function Navbar() {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 <span>Profil</span>
             </Link>
+        </div>
+
+        {/* BOTTOM AI PROMPT BAR */}
+        {isAiActive && (
+            <div className="ai-prompt-bar">
+                <div className="ai-prompt-left">
+                    <span className="yamaha-ai-logo">YAMAHA</span>
+                    <span className="yamaha-ai-separator">|</span>
+                    <span className="yamaha-ai-text">Ai Agent</span>
+                </div>
+                <div className="ai-prompt-center">
+                    <div className="ai-input-container">
+                        <input
+                            type="text"
+                            placeholder="Ask Yamaha AI Agent anything..."
+                            className="ai-prompt-input"
+                            value={aiQuery}
+                            onChange={(e) => setAiQuery(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") handleSendAiQuery();
+                            }}
+                        />
+                        <button className="ai-send-btn" onClick={() => handleSendAiQuery()} aria-label="Envoyer à l'IA">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <button className="ai-prompt-close-btn" onClick={() => setIsAiActive(false)} aria-label="Fermer la barre d'IA">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="18 15 12 9 6 15"></polyline>
+                    </svg>
+                </button>
+            </div>
+        )}
+
+        {/* SLIDE-OUT AI CHAT DRAWER */}
+        <div className={`ai-chat-drawer ${isDrawerOpen ? "open" : ""}`}>
+            <div className="ai-drawer-header">
+                <div className="ai-drawer-title-group">
+                    <span className="yamaha-drawer-logo">YAMAHA</span>
+                    <span className="yamaha-drawer-sep">|</span>
+                    <span className="yamaha-drawer-text">Ai Agent</span>
+                </div>
+                <button className="ai-drawer-close-btn" onClick={() => setIsDrawerOpen(false)} aria-label="Fermer le chat">
+                    ✕
+                </button>
+            </div>
+            
+            <div className="ai-drawer-messages">
+                {chatMessages.map((msg, index) => (
+                    <div key={index} className={`ai-message-wrapper ${msg.sender}`}>
+                        <div className="ai-message-bubble">
+                            <p dangerouslySetInnerHTML={{ __html: formatMessageText(msg.text) }}></p>
+                        </div>
+                        <span className="ai-message-time">{msg.time}</span>
+                    </div>
+                ))}
+                {isTyping && (
+                    <div className="ai-message-wrapper bot typing">
+                        <div className="ai-message-bubble">
+                            <div className="typing-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                <div ref={chatEndRef} />
+            </div>
+
+            {/* Quick replies */}
+            <div className="ai-drawer-quick-replies">
+                <button onClick={() => handleSendAiQuery("Quels sont les tarifs de location ?")}>🏍️ Tarifs Location</button>
+                <button onClick={() => handleSendAiQuery("Quels trips organisés proposez-vous ?")}>🏜️ Circuits Sahara & Atlas</button>
+                <button onClick={() => handleSendAiQuery("Comment acheter ou vendre une moto d'occasion ?")}>🛒 Marketplace Occasion</button>
+                <button onClick={() => handleSendAiQuery("Comment vous contacter par WhatsApp ?")}>💬 Contact WhatsApp</button>
+            </div>
+
+            <div className="ai-drawer-footer">
+                <input
+                    type="text"
+                    placeholder="Posez une autre question..."
+                    className="ai-drawer-input"
+                    value={aiQuery}
+                    onChange={(e) => setAiQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") handleSendAiQuery();
+                    }}
+                />
+                <button className="ai-drawer-send-btn" onClick={() => handleSendAiQuery()} aria-label="Envoyer">
+                    ➔
+                </button>
+            </div>
         </div>
         </>
     );
