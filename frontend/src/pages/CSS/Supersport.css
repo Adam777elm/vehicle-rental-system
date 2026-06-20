@@ -95,31 +95,32 @@
 }
 
 .ss-bike-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.02);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: var(--transition-wow);
   position: relative;
 }
 
 .ss-bike-card:hover {
   transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
   border-color: rgba(234, 63, 51, 0.3);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(234, 63, 51, 0.15), 0 0 0 1px rgba(234, 63, 51, 0.2);
 }
 
 .ss-card-image-box {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: #ffffff;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 40px;
+  padding: 30px;
+  border-bottom: 2px solid var(--yamaha-red);
 }
 
 .ss-bike-image {
@@ -139,7 +140,7 @@
   position: absolute;
   top: 20px;
   left: 20px;
-  background: #ea3f33;
+  background: var(--yamaha-red);
   color: white;
   padding: 8px 16px;
   font-weight: 800;
@@ -151,7 +152,7 @@
 .ss-hover-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(5, 9, 20, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -171,9 +172,9 @@
   padding: 15px 30px;
   font-weight: 800;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
   transform: translateY(20px);
-  transition: all 0.4s ease;
+  transition: var(--transition-wow);
 }
 
 .ss-bike-card:hover .ss-action-btn {
@@ -189,7 +190,7 @@
 }
 
 .ss-bike-brand {
-  color: #ea3f33;
+  color: var(--yamaha-red);
   font-weight: 800;
   font-size: 14px;
   letter-spacing: 1px;
@@ -230,18 +231,21 @@
 }
 
 .ss-buy-btn {
-  background: #ea3f33;
+  background: linear-gradient(135deg, var(--yamaha-red), #b3140e);
   color: white;
   border: none;
   padding: 12px 30px;
   font-weight: 800;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: var(--transition-wow);
+  box-shadow: 0 4px 15px rgba(234, 63, 51, 0.25);
 }
 
 .ss-buy-btn:hover {
-  background: #ff4136;
+  background: linear-gradient(135deg, #ff2d20, var(--yamaha-red));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 63, 51, 0.4);
 }
 
 /* ─── CATEGORY DIVIDERS ─── */

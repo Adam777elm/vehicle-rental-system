@@ -114,6 +114,23 @@ function Login() {
               <p className="profile-value">{user.email}</p>
             </div>
             
+            {user && (['admin@aamotors.ma', 'eelmadam2004@gmail.com'].includes(user.email) || user.email.toLowerCase().includes('admin')) && (
+              <Link 
+                to="/admin" 
+                className="auth-button admin-btn" 
+                style={{ 
+                  display: 'block', 
+                  textAlign: 'center', 
+                  marginBottom: '15px', 
+                  textDecoration: 'none', 
+                  background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+                  boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)'
+                }}
+              >
+                ESPACE ADMINISTRATION
+              </Link>
+            )}
+
             <button onClick={handleLogout} className="auth-button logout-btn">
               Se déconnecter
             </button>
@@ -197,7 +214,7 @@ function Login() {
         </div>
 
         {!isRegister && (
-          <a href="/forgot" className="forgot-link">Forgot password?</a>
+          <Link to="/forgot" className="forgot-link">Forgot password?</Link>
         )}
 
         <button type="submit" className="auth-button">

@@ -9,7 +9,8 @@ const {
   confirmReservation,
   getMyReservations,
   getStats,
-  cancelReservation
+  cancelReservation,
+  updateReservationStatus
 } = require("../controllers/reservationController");
 
 router.post("/", protect, createReservation);
@@ -17,6 +18,8 @@ router.post("/", protect, createReservation);
 router.put("/:id/confirm", protect, confirmReservation);
 
 router.put("/:id/cancel", protect, cancelReservation);
+
+router.put("/:id/status", protect, updateReservationStatus);
 
 router.get("/", protect, getReservations);
 

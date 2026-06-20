@@ -1,160 +1,247 @@
+:root {
+  --yamaha-red: #ea3f33;
+  --yamaha-blue: #0066cc;
+  --dark-bg: #050914;
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --border-color: rgba(255, 255, 255, 0.08);
+}
+
 .home-container {
   width: 100%;
-  background-color: #000;
+  background-color: var(--dark-bg);
   color: white;
+  overflow-x: hidden;
 }
 
-/* HERO SECTION */
-.hero {
+/* 1. HERO IMAGE SECTION */
+.hero-image-section {
   position: relative;
   width: 100%;
-  height: calc(100vh - 80px); /* Agrandissement pour occuper tout l'écran visible */
-  overflow: hidden;
-  background-color: #000;
-  border-top: 6px solid #ff0000;
+  height: 85vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid var(--border-color);
 }
 
-.hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 1;
-  /* More clear as in the image */
-}
-
-.video-overlay {
+.hero-image-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2);
-  /* Very light overlay for contrast */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  /* Align left as in image */
-  padding-left: 10%;
-}
-
-.hero-content {
-  text-align: left;
-}
-
-.hero-top-text {
-  font-size: 2.5rem;
-  left: 3.5rem;
-  /* Larger text as requested */
-  font-weight: 800;
-  margin: 0;
-  text-transform: uppercase;
-  color: #fff;
-  letter-spacing: 2px;
-  line-height: 1.1;
-}
-
-/* SOUND TOGGLE */
-.sound-toggle {
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 10px 15px;
-  border-radius: 30px;
-  cursor: pointer;
+  background: linear-gradient(90deg, rgba(5, 9, 20, 0.9) 0%, rgba(5, 9, 20, 0.4) 50%, rgba(5, 9, 20, 0.2) 100%);
   display: flex;
   align-items: center;
-  gap: 8px;
+  padding: 0 8%;
+  box-sizing: border-box;
+}
+
+.hero-image-content {
+  max-width: 650px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-badge {
+  align-self: flex-start;
+  background: rgba(234, 63, 51, 0.15);
+  border: 1px solid rgba(234, 63, 51, 0.4);
+  color: var(--yamaha-red);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero-main-title {
+  font-size: 3.8rem;
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.highlight-text {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.9);
+  background: linear-gradient(45deg, #fff, #888);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-cta-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.btn-primary {
+  background: var(--yamaha-red);
+  color: white;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 700;
   font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   transition: all 0.3s ease;
-  z-index: 10;
+  box-shadow: 0 4px 15px rgba(234, 63, 51, 0.4);
 }
 
-.sound-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(234, 63, 51, 0.6);
+  background: #ff5247;
 }
 
-/* CATEGORIES SECTION */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px);
+}
+
+/* HEADERS */
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-subtitle {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--yamaha-red);
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* 2. CATEGORIES SECTION */
 .categories-section {
-  padding: 4rem 2rem;
+  padding: 6rem 2rem;
   width: 100%;
   box-sizing: border-box;
-  background-color: #ffffff; /* S'étend de bout en bout sur l'écran */
+  background-color: var(--dark-bg);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(234, 63, 51, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(0, 102, 204, 0.04) 0%, transparent 40%);
+  position: relative;
 }
 
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 items per row */
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
   max-width: 1400px;
-  margin: 0 auto; /* Permet de centrer les boxes dans l'immensité de l'écran */
+  margin: 0 auto;
 }
 
 .category-box {
   position: relative;
-  height: 500px; /* Enlarge height */
-  border-radius: 12px;
+  height: 520px;
+  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.4s ease;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
   text-decoration: none;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
 }
 
-/* Make the 4th box (Equipement) take the full width of the row */
 .category-box:nth-child(4) {
   grid-column: 1 / -1;
+  height: 380px;
 }
 
 .category-box:hover {
-  transform: translateY(-10px);
+  transform: translateY(-12px);
+  border-color: rgba(234, 63, 51, 0.3);
+  box-shadow: 0 20px 40px rgba(234, 63, 51, 0.15), 0 0 0 1px rgba(234, 63, 51, 0.2);
 }
 
 .category-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  filter: brightness(0.85) contrast(1.05);
 }
 
-
-
 .category-box:hover .category-image {
-  transform: scale(1.1);
+  transform: scale(1.06);
+  filter: brightness(0.95) contrast(1.1);
 }
 
 .category-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 30px;
+  padding: 35px;
+  z-index: 3;
 }
 
-/* Dégradé noir par défaut pour rendre le texte lisible */
 .category-overlay::before {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 50%);
-  transition: opacity 0.4s ease;
+  background: linear-gradient(0deg, rgba(5, 9, 20, 0.95) 0%, rgba(5, 9, 20, 0) 65%);
+  transition: opacity 0.5s ease;
   z-index: 1;
 }
 
-/* Dégradé animé (Rouge Yamaha -> Bleu Nuit) au survol */
 .category-overlay::after {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(45deg, rgba(215, 26, 23, 0.9) 0%, rgba(11, 26, 43, 0.8) 100%);
+  background: linear-gradient(45deg, rgba(234, 63, 51, 0.6) 0%, rgba(11, 26, 43, 0.5) 100%);
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
   z-index: 2;
 }
 
@@ -163,39 +250,407 @@
 }
 
 .category-title {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 900;
   margin: 0;
   color: white;
   text-transform: uppercase;
   position: relative;
   z-index: 3;
+  letter-spacing: -0.5px;
+  font-family: 'Outfit', sans-serif;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .category-subtitle {
-  font-size: 14px;
-  color: #ff0000;
-  /* Red as on Yamaha site */
-  font-weight: 600;
-  margin-top: 5px;
-  letter-spacing: 1px;
+  font-size: 11px;
+  color: var(--yamaha-red);
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: 3px;
   position: relative;
   z-index: 3;
+  text-transform: uppercase;
 }
 
-/* RESPONSIVE */
+/* 3. VIDEO SECTION */
+.video-section {
+  padding: 4rem 2rem;
+  background: #02040a;
+}
+
+.video-wrapper {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 60vh;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.home-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.4) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.video-text-content {
+  max-width: 500px;
+}
+
+.video-badge {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.video-text-content h2 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.5px;
+}
+
+.video-text-content p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* SOUND TOGGLE */
+.sound-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.sound-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* 4. STATISTICS & GRAPHS SECTION */
+.stats-section {
+  padding: 7rem 2rem;
+  background: var(--dark-bg);
+  position: relative;
+}
+
+.stats-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(234, 63, 51, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-icon-wrapper {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(234, 63, 51, 0.08);
+  border: 1px solid rgba(234, 63, 51, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--yamaha-red);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover .stat-icon-wrapper {
+  background: var(--yamaha-red);
+  color: white;
+  box-shadow: 0 0 15px rgba(234, 63, 51, 0.4);
+}
+
+.stat-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -1px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+}
+
+/* STAT GRAPHS STYLING */
+.stat-graph-container {
+  height: 60px;
+  display: flex;
+  align-items: flex-end;
+  margin-top: 10px;
+  position: relative;
+}
+
+/* 1. Bar Chart */
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.chart-bar {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  transition: all 1.5s cubic-bezier(0.17, 0.85, 0.43, 1);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-bar::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(180deg, var(--yamaha-red), rgba(234, 63, 51, 0.2));
+}
+
+.stats-section.animated .chart-bar {
+  transform: scaleY(1);
+}
+
+/* 2. Radial/Circular Graph */
+.stat-graph-container.radial {
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+
+.radial-svg {
+  width: 70px;
+  height: 70px;
+  transform: rotate(-90deg);
+}
+
+.circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 3.5;
+}
+
+.circle-progress {
+  fill: none;
+  stroke: var(--yamaha-red);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  transition: stroke-dasharray 1.8s ease-in-out;
+  stroke-dasharray: 0, 100;
+}
+
+.stats-section.animated .circle-progress {
+  stroke-dasharray: 98, 100;
+}
+
+/* 3. Line Chart */
+.line-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.line-bg {
+  fill: url(#lineGrad);
+  opacity: 0.15;
+  transition: all 1.8s ease;
+  clip-path: polygon(0 100%, 0 100%, 100% 100%);
+}
+
+.line-stroke {
+  fill: none;
+  stroke: var(--yamaha-blue);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 1.8s ease-in-out;
+}
+
+.stats-section.animated .line-stroke {
+  stroke-dashoffset: 0;
+}
+
+/* 4. Target Rings */
+.stat-graph-container.target {
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+
+.target-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: scale(0);
+}
+
+.ring-1 {
+  width: 20px;
+  height: 20px;
+  border-color: var(--yamaha-red);
+  background: rgba(234, 63, 51, 0.05);
+  transition-delay: 0.2s;
+}
+
+.ring-2 {
+  width: 44px;
+  height: 44px;
+  border-color: rgba(234, 63, 51, 0.3);
+  transition-delay: 0.4s;
+}
+
+.ring-3 {
+  width: 68px;
+  height: 68px;
+  border-color: rgba(255, 255, 255, 0.1);
+  transition-delay: 0.6s;
+}
+
+.stats-section.animated .target-ring {
+  transform: scale(1);
+}
+
+/* RESPONSIVE STYLING */
+@media (max-width: 1200px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hero-main-title {
+    font-size: 3rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .categories-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+@media (max-width: 768px) {
+  .hero-image-section {
+    height: 70vh;
+  }
+  
+  .hero-image-overlay {
+    padding: 0 4%;
+  }
+  
+  .hero-main-title {
+    font-size: 2.4rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .video-wrapper {
+    height: 40vh;
+  }
+  
+  .video-content-overlay {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+  }
+}
+
 @media (max-width: 600px) {
   .categories-grid {
     grid-template-columns: 1fr;
-  }
-
-  .hero-title {
-    font-size: 3rem;
   }
 }

@@ -1,17 +1,22 @@
 .auth-container {
   max-width: 500px;
-  margin: 80px auto;
-  padding: 20px;
-  background-color: #fff;
+  margin: 120px auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
   font-family: 'Inter', sans-serif;
-  color: #333;
+  color: #ffffff;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
 /* TABS */
 .auth-tabs {
   display: flex;
   justify-content: center;
-  border-bottom: 2px solid #f0f0f0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.05);
   margin-bottom: 30px;
 }
 
@@ -20,8 +25,8 @@
   text-align: center;
   padding: 15px 0;
   font-size: 18px;
-  font-weight: 700;
-  color: #aaa;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.4);
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -30,7 +35,7 @@
 }
 
 .auth-tab.active {
-  color: #000;
+  color: #ffffff;
 }
 
 .auth-tab.active::after {
@@ -40,23 +45,23 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background-color: #ff0000;
-  /* Red underline as in screenshot */
+  background-color: var(--yamaha-red);
+  box-shadow: 0 0 10px var(--yamaha-red-glow);
 }
 
 /* CONTENT */
 .auth-description {
   font-size: 14px;
-  color: #666;
-  line-height: 1.5;
-  margin-bottom: 25px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin-bottom: 30px;
   text-align: left;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 /* INPUTS */
@@ -69,28 +74,33 @@
   position: absolute;
   top: -8px;
   left: 12px;
-  background-color: #fff;
-  padding: 0 5px;
+  background-color: var(--bg-dark);
+  padding: 0 8px;
   font-size: 10px;
-  font-weight: 700;
-  color: #333;
+  font-weight: 800;
+  color: var(--yamaha-red);
   text-transform: uppercase;
   z-index: 10;
+  letter-spacing: 1px;
 }
 
 .auth-input {
   width: 100%;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   font-size: 14px;
+  color: #ffffff;
   outline: none;
-  transition: border-color 0.3s;
+  transition: all 0.3s ease;
   box-sizing: border-box;
 }
 
 .auth-input:focus {
-  border-color: #000;
+  border-color: var(--yamaha-red);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 12px var(--yamaha-red-glow);
 }
 
 .password-toggle {
@@ -99,39 +109,45 @@
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  color: #999;
+  color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
 }
 
 .forgot-link {
   display: block;
   text-align: left;
-  color: #0066cc;
+  color: #3b82f6;
   font-size: 14px;
   text-decoration: none;
   margin-top: 5px;
+  transition: color 0.3s;
 }
 
 .forgot-link:hover {
+  color: #60a5fa;
   text-decoration: underline;
 }
 
 /* BUTTON */
 .auth-button {
-  margin-top: 25px;
-  background-color: #6c757d;
-  /* Grayish-blue as in screenshot */
+  margin-top: 20px;
+  background: linear-gradient(135deg, var(--yamaha-red), #b3140e);
   color: #fff;
   padding: 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: var(--transition-wow);
+  box-shadow: 0 4px 15px rgba(234, 63, 51, 0.25);
 }
 
 .auth-button:hover {
-  background-color: #5a6268;
+  background: linear-gradient(135deg, #ff2d20, var(--yamaha-red));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 63, 51, 0.4);
 }
 
 /* TOAST NOTIFICATION MODAL */
@@ -173,10 +189,10 @@
 }
 
 .profile-card {
-  background: #f9f9f9;
-  border-radius: 8px;
-  padding: 25px;
-  border: 1px solid #ebebeb;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .profile-info-group {
@@ -186,34 +202,39 @@
 .profile-label {
   font-size: 11px;
   text-transform: uppercase;
-  color: #888;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  color: var(--yamaha-red);
+  font-weight: 800;
+  letter-spacing: 1px;
   margin-bottom: 5px;
   display: block;
 }
 
 .profile-value {
   font-size: 16px;
-  color: #000;
+  color: #ffffff;
   font-weight: 600;
   margin: 0;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .logout-btn {
-  background-color: #0b1a2b; /* dark blue */
+  background: linear-gradient(135deg, #333 0%, #111 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
   width: 100%;
 }
 
 .logout-btn:hover {
-  background-color: #d71a17; /* racing red */
+  background: var(--yamaha-red);
+  border-color: var(--yamaha-red);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px var(--yamaha-red-glow);
 }
 
 @media (max-width: 600px) {
   .auth-container {
-    padding: 10px;
+    padding: 20px;
     margin: 40px auto;
   }
 }
