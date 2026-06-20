@@ -7,6 +7,7 @@ const connectDB = require("./config/db");
 
 const vehicleRoutes = require("./routes/vehicleRoutes");
 const userRoutes = require("./routes/userRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/vehicles", vehicleRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/reservations", reservationRoutes);
+app.use("/api/orders", orderRoutes);
 
 
 app.get("/", (req, res) => {

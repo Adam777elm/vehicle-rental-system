@@ -1,0 +1,331 @@
+/* =========================================================
+   Equipement.css — AA Motors — Premium Dark Design
+   ========================================================= */
+
+.eq-page {
+  width: 100%;
+  background-color: #050914;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(234, 63, 51, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 70%, rgba(0, 102, 204, 0.05) 0%, transparent 40%);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+.eq-red-bar {
+  width: 100%;
+  height: 5px;
+  background: var(--yamaha-red);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ─── HERO SECTION ─── */
+.eq-hero {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  background-image: url('../../assets/HOME_IMG/Equip-1.avif');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.eq-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 9, 20, 0.4) 0%, rgba(5, 9, 20, 0.9) 100%);
+  z-index: 1;
+}
+
+.eq-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.eq-hero-eyebrow {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--yamaha-red);
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+}
+
+.eq-hero-title {
+  font-size: 4.5rem;
+  font-weight: 900;
+  margin: 0 0 20px 0;
+  letter-spacing: 1px;
+  font-family: 'Outfit', sans-serif;
+  text-transform: uppercase;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.eq-hero-desc {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ─── CATALOG SECTION ─── */
+.eq-catalog-section {
+  padding: 80px 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ─── FILTER BAR ─── */
+.eq-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 60px;
+}
+
+.eq-filter-btn {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 12px 28px;
+  font-size: 13px;
+  font-weight: 800;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transition-wow);
+  letter-spacing: 1px;
+}
+
+.eq-filter-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.eq-filter-btn.active {
+  background: var(--yamaha-red);
+  border-color: var(--yamaha-red);
+  color: #ffffff;
+  box-shadow: 0 4px 15px var(--yamaha-red-glow);
+}
+
+/* ─── PRODUCTS GRID ─── */
+.eq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+}
+
+/* ─── PRODUCT CARD ─── */
+.eq-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: var(--transition-wow);
+  display: flex;
+  flex-direction: column;
+}
+
+.eq-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(234, 63, 51, 0.3);
+  box-shadow: 0 20px 40px rgba(234, 63, 51, 0.15), 0 0 0 1px rgba(234, 63, 51, 0.2);
+}
+
+.eq-image-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 30px;
+  border-bottom: 2px solid var(--yamaha-red);
+}
+
+.eq-item-tag {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--yamaha-red);
+  color: #ffffff;
+  padding: 6px 12px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  z-index: 5;
+}
+
+.eq-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.1));
+}
+
+.eq-card:hover .eq-item-img {
+  transform: scale(1.15) rotate(-2deg);
+  filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.2));
+}
+
+.eq-card-content {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.eq-item-name {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.5px;
+}
+
+.eq-item-desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin: 0 0 30px 0;
+  height: 48px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── TECH SPECS ─── */
+.eq-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px 0;
+}
+
+.eq-spec-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.eq-spec-label {
+  font-size: 9px;
+  color: var(--yamaha-red);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.eq-spec-val {
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eq-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.eq-item-price {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.eq-buy-btn {
+  background: linear-gradient(135deg, var(--yamaha-red), #b3140e);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-weight: 800;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-wow);
+  box-shadow: 0 4px 15px rgba(234, 63, 51, 0.25);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.eq-buy-btn:hover {
+  background: linear-gradient(135deg, #ff2d20, var(--yamaha-red));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 63, 51, 0.4);
+}
+
+/* ─── TOAST NOTIFICATION ─── */
+.toast-notification {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  z-index: 9999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  background-color: #0b1a2b; /* Yamaha Dark Blue */
+  border-left: 4px solid var(--yamaha-red);
+  animation: slideDownFade 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes slideDownFade {
+  0% { transform: translate(-50%, -30px); opacity: 0; }
+  100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+@keyframes slideUpFade {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 992px) {
+  .eq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .eq-hero-title {
+    font-size: 2.8rem;
+  }
+  .eq-hero-desc {
+    font-size: 1rem;
+  }
+}

@@ -193,3 +193,27 @@ exports.cancelReservation = async (req, res) => {
 
   }
 };
+
+exports.updateReservationStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+
+    if (!["pending", "confirmed", "cancelled"].includes(status)) {
+      return res.status(400).json({ message: "Statut invalide" });
+    }
+
+    const reservation = await Reservation.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    ).populate("user").populate("vehicle");
+
+    if (!reservation) {
+      return res.status(404).json({ message: "Réservation non trouvée" });
+    }
+
+    res.json(reservation);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

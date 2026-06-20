@@ -1,0 +1,270 @@
+.marine-cat-page {
+  width: 100%;
+  background-color: #050914;
+  background-image: 
+    radial-gradient(circle at 50% 10%, rgba(0, 102, 204, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(234, 63, 51, 0.05) 0%, transparent 40%);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  color: #ffffff;
+  padding-bottom: 80px;
+}
+
+.marine-cat-red-bar {
+  width: 100%;
+  height: 5px;
+  background-color: #ea3f33;
+}
+
+.marine-cat-hero-banner {
+  width: 100%;
+  height: 450px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.marine-cat-banner-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: brightness(0.4) contrast(1.1);
+}
+
+.marine-cat-hero-banner::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, rgba(5, 9, 20, 0.1) 0%, rgba(5, 9, 20, 0.9) 100%);
+  z-index: 2;
+}
+
+.marine-cat-banner-overlay {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+}
+
+.marine-cat-banner-title {
+  color: #ffffff;
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Outfit', sans-serif;
+}
+
+.marine-cat-banner-subtitle {
+  font-size: 1.2rem;
+  color: #ea3f33;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  font-family: 'Outfit', sans-serif;
+  text-shadow: 0 2px 10px rgba(234, 63, 51, 0.4);
+}
+
+.marine-cat-content-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.marine-cat-section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.marine-cat-separator {
+  width: 120px;
+  height: 4px;
+  background-color: #ea3f33;
+  margin: 0 auto 50px auto;
+  box-shadow: 0 0 15px rgba(234, 63, 51, 0.8);
+}
+
+.marine-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.marine-cat-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.marine-cat-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 102, 204, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 102, 204, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.marine-cat-card-image-box {
+  position: relative;
+  height: 250px;
+  width: 100%;
+  overflow: hidden;
+  background-color: #0b111e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.marine-cat-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: linear-gradient(135deg, #0066cc, #0033aa);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0, 102, 204, 0.4);
+}
+
+.marine-cat-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+  transition: transform 0.8s ease;
+}
+
+.marine-cat-card:hover .marine-cat-image {
+  transform: scale(1.08);
+}
+
+.marine-cat-hover-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(5, 9, 20, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+
+.marine-cat-card-image-box:hover .marine-cat-hover-overlay {
+  opacity: 1;
+}
+
+.marine-cat-action-btn {
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.marine-cat-action-btn:hover {
+  background-color: #ea3f33;
+  border-color: #ea3f33;
+  box-shadow: 0 10px 20px rgba(234, 63, 51, 0.4);
+}
+
+.marine-cat-card-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.marine-cat-brand {
+  font-size: 11px;
+  color: #ea3f33;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.marine-cat-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  margin: 0 0 12px 0;
+  color: #ffffff;
+}
+
+.marine-cat-desc {
+  font-size: 0.95rem;
+  color: #9ea3b0;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.marine-cat-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.marine-cat-price {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #00ffcc;
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+}
+
+.marine-cat-buy-btn {
+  background: linear-gradient(135deg, #ea3f33, #b3140e);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(234, 63, 51, 0.3);
+}
+
+.marine-cat-buy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 63, 51, 0.5);
+}
+
+@media (max-width: 768px) {
+  .marine-cat-banner-title {
+    font-size: 2.5rem;
+  }
+  .marine-cat-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}

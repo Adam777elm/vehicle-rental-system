@@ -19,7 +19,7 @@ function OffRoad() {
 
   const adventureBikes = [
     {
-      id: 201,
+      id: 2001,
       name: "Ténéré 700 World Raid",
       category: "Adventure",
       description: "Le trail extrême de Yamaha. Réservoirs de carburant de 23 litres, suspension KYB haut de gamme et tableau de bord TFT de 5 pouces.",
@@ -36,7 +36,7 @@ function OffRoad() {
       features: ["Deux réservoirs de 23 litres", "Fourche KYB de 43 mm (débattement 230 mm)", "Amortisseur de direction Öhlins", "ABS à 3 modes réglables"]
     },
     {
-      id: 202,
+      id: 2002,
       name: "Ténéré Rally",
       category: "Adventure",
       description: "Dotée d'une technologie de rallye comprenant une fourche avant KYB à grand débattement entièrement réglable, un garde-boue haut, et le coloris Speed block emblématique.",
@@ -53,7 +53,7 @@ function OffRoad() {
       features: ["Coloris Speed block légendaire", "Fourche KYB entièrement réglable", "Écran TFT de 6,3 pouces avec mode Raid", "Garde-boue avant haut de course"]
     },
     {
-      id: 210,
+      id: 2010,
       name: "Ténéré 700",
       category: "Adventure",
       description: "Le trail mythique par excellence. Agile, polyvalent et équipé du moteur CP2 réputé pour son caractère joueur et fiable.",
@@ -73,7 +73,7 @@ function OffRoad() {
 
   const motocrossBikes = [
     {
-      id: 211,
+      id: 2011,
       name: "WR450F",
       category: "Enduro",
       description: "Dérivée de la machine de motocross YZ450F, la WR450F est l'arme enduro ultime de Yamaha, offrant puissance et agilité hors norme.",
@@ -90,7 +90,7 @@ function OffRoad() {
       features: ["Moteur YZ450F optimisé enduro", "Phare et feu arrière LED", "Réservoir de grande capacité", "Sabot moteur robuste"]
     },
     {
-      id: 203,
+      id: 2003,
       name: "YZ450F",
       category: "Motocross",
       description: "Puissance, agilité et contrôle. La YZ450F est l'arme ultime pour dominer la piste.",
@@ -107,7 +107,7 @@ function OffRoad() {
       features: ["Application Power Tuner", "Culasse inversée", "Cadre en aluminium bilateral", "Suspension KYB leader"]
     },
     {
-      id: 204,
+      id: 2004,
       name: "YZ250F",
       category: "Motocross",
       description: "Légère et rapide, la YZ250F redéfinit les normes de la catégorie 250 cm³ 4 temps.",
@@ -124,7 +124,7 @@ function OffRoad() {
       features: ["Moteur à culasse inversée", "Application Power Tuner", "Cadre léger en aluminium", "Suspension KYB"]
     },
     {
-      id: 205,
+      id: 2005,
       name: "YZ125",
       category: "Motocross",
       description: "La légende des 2 temps. Agilité extrême, puissance explosive et pur plaisir de pilotage.",
@@ -141,7 +141,7 @@ function OffRoad() {
       features: ["Moteur 2 temps léger", "Carburateur Keihin Powerjet", "Cadre en aluminium", "Look dynamique"]
     },
     {
-      id: 206,
+      id: 2006,
       name: "YZ85",
       category: "Motocross",
       description: "Pour les futurs champions. La YZ85 offre la technologie des grandes aux jeunes pilotes.",
@@ -158,7 +158,7 @@ function OffRoad() {
       features: ["Moteur YPVS", "Suspension réglable", "Freins à disque puissants", "Cadre rigide"]
     },
     {
-      id: 207,
+      id: 2007,
       name: "YZ65",
       category: "Motocross",
       description: "La première étape vers le podium. La YZ65 est la moto idéale pour les jeunes compétiteurs.",
@@ -178,7 +178,7 @@ function OffRoad() {
 
   const quadBikes = [
     {
-      id: 215,
+      id: 2015,
       name: "Raptor 700",
       category: "Quad",
       description: "Le roi incontesté des dunes. Une puissance phénoménale et un châssis affûté pour les sensations fortes.",
@@ -195,7 +195,7 @@ function OffRoad() {
       features: ["Moteur coupleux de 686 cm³", "Suspensions KYB réglables", "Châssis hybride léger", "Marche arrière pratique"]
     },
     {
-      id: 216,
+      id: 2016,
       name: "Raptor 450",
       category: "Quad",
       description: "La machine de course par excellence. Conçue pour la compétition avec une réactivité instantanée.",
@@ -212,7 +212,7 @@ function OffRoad() {
       features: ["Moteur à injection électronique", "Embrayage anti-dribble", "Suspensions de compétition", "Large voies pour plus de stabilité"]
     },
     {
-      id: 217,
+      id: 2017,
       name: "Raptor 110",
       category: "Quad",
       description: "Le quad idéal pour les jeunes pilotes voulant s'initier aux joies du tout-terrain en toute sécurité.",
@@ -232,7 +232,7 @@ function OffRoad() {
 
   const utilityQuads = [
     {
-      id: 220,
+      id: 2020,
       name: "Grizzly 700 EPS XT-R",
       category: "Quad",
       description: "Le baroudeur ultime par excellence. Équipé d'un treuil Warn, de jantes en aluminium exclusives et d'un moteur MK II puissant.",
@@ -249,7 +249,7 @@ function OffRoad() {
       features: ["Moteur MK II coupleux", "Treuil WARN VRX 25 installé", "Pneus Maxxis Zilla 27 pouces", "Transmission Ultramatic"]
     },
     {
-      id: 221,
+      id: 2021,
       name: "Kodiak 450",
       category: "Quad",
       description: "Robuste, polyvalent et compact. Le compagnon idéal pour le travail quotidien et les randonnées de loisir.",

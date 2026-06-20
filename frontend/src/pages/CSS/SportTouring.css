@@ -134,32 +134,33 @@
 
 /* ─── BIKE CARD ─── */
 .st-bike-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: var(--transition-wow);
   display: flex;
   flex-direction: column;
 }
 
 .st-bike-card:hover {
   transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(234, 63, 51, 0.3);
+  box-shadow: 0 20px 40px rgba(234, 63, 51, 0.15), 0 0 0 1px rgba(234, 63, 51, 0.2);
 }
 
 .st-card-image-box {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: #ffffff; /* Passé en blanc pour uniformité avec Roadster/Supersport */
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   padding: 30px;
+  border-bottom: 2px solid var(--yamaha-red);
 }
 
 .st-badge {
@@ -169,15 +170,15 @@
   padding: 6px 12px;
   border-radius: 6px;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 1px;
   z-index: 2;
 }
 
 .badge-sale {
-  background: rgba(215, 26, 23, 0.2);
+  background: rgba(234, 63, 51, 0.2);
   color: #ff4136;
-  border: 1px solid rgba(215, 26, 23, 0.3);
+  border: 1px solid rgba(234, 63, 51, 0.3);
 }
 
 .badge-rent {
@@ -191,20 +192,20 @@
   height: 100%;
   object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
-  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
   will-change: transform;
   z-index: 1;
 }
 
 .st-bike-card:hover .st-bike-image {
-  transform: scale(1.08) translateX(10px);
+  transform: scale(1.15) rotate(-2deg);
 }
 
 /* Hover Overlay */
 .st-hover-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(5, 9, 20, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -223,11 +224,11 @@
   border: none;
   padding: 12px 24px;
   font-size: 13px;
-  font-weight: 600;
-  border-radius: 30px;
+  font-weight: 700;
+  border-radius: 8px;
   cursor: pointer;
   transform: translateY(20px);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: var(--transition-wow);
 }
 
 .st-bike-card:hover .st-action-btn {
@@ -235,7 +236,7 @@
 }
 
 .st-action-btn:hover {
-  background: #d71a17;
+  background: var(--yamaha-red);
   color: white;
 }
 
@@ -292,12 +293,13 @@
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition-wow);
 }
 
 .st-reserve-btn:hover {
-  background: #d71a17;
+  background: var(--yamaha-red);
   color: white;
+  box-shadow: 0 4px 15px var(--yamaha-red-glow);
 }
 
 /* ─── RESPONSIVE ─── */

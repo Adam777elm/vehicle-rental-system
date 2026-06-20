@@ -1,0 +1,349 @@
+/* ══════════════════════════════════════════════════════════
+   PROMO MODAL - 3% DISCOUNT EMAIL POPUP
+   ══════════════════════════════════════════════════════════ */
+
+.promo-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: promoOverlayIn 0.4s ease forwards;
+}
+
+@keyframes promoOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.promo-overlay.closing {
+  animation: promoOverlayOut 0.35s ease forwards;
+}
+
+@keyframes promoOverlayOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ─── MODAL CARD ─── */
+.promo-modal {
+  position: relative;
+  width: 95%;
+  max-width: 460px;
+  background: rgba(11, 26, 43, 0.96);
+  border: 1px solid rgba(234, 63, 51, 0.25);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(234, 63, 51, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: promoCardIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes promoCardIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.promo-overlay.closing .promo-modal {
+  animation: promoCardOut 0.3s ease forwards;
+}
+
+@keyframes promoCardOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+}
+
+/* ─── RED ACCENT BAR ─── */
+.promo-accent-bar {
+  height: 4px;
+  background: linear-gradient(90deg, var(--yamaha-red), #ff6b5a, var(--yamaha-red));
+  background-size: 200% 100%;
+  animation: accentShimmer 2s ease infinite;
+}
+
+@keyframes accentShimmer {
+  0%, 100% { background-position: 0% 0%; }
+  50%      { background-position: 100% 0%; }
+}
+
+/* ─── CLOSE BUTTON ─── */
+.promo-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.promo-close:hover {
+  background: rgba(234, 63, 51, 0.2);
+  border-color: var(--yamaha-red);
+  color: var(--yamaha-red);
+  transform: rotate(90deg);
+}
+
+/* ─── CONTENT ─── */
+.promo-content {
+  padding: 40px 35px 35px;
+  text-align: center;
+}
+
+.promo-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(234, 63, 51, 0.15), rgba(234, 63, 51, 0.05));
+  border: 1px solid rgba(234, 63, 51, 0.3);
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--yamaha-red);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.promo-emoji {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+  animation: promoEmojiBounce 2s ease infinite;
+}
+
+@keyframes promoEmojiBounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+.promo-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.5px;
+}
+
+.promo-discount-highlight {
+  color: var(--yamaha-red);
+  text-shadow: 0 0 20px var(--yamaha-red-glow);
+}
+
+.promo-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.6;
+  margin: 0 0 28px 0;
+}
+
+/* ─── FORM ─── */
+.promo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.promo-input-wrapper {
+  position: relative;
+}
+
+.promo-input {
+  width: 100%;
+  padding: 16px 20px 16px 46px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-size: 14px;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  font-family: var(--font-wow);
+}
+
+.promo-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.promo-input:focus {
+  border-color: var(--yamaha-red);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 15px var(--yamaha-red-glow);
+}
+
+.promo-input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+.promo-input:focus ~ .promo-input-icon {
+  color: var(--yamaha-red);
+}
+
+.promo-submit {
+  padding: 16px;
+  background: linear-gradient(135deg, var(--yamaha-red), #b3140e);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: var(--transition-wow);
+  box-shadow: 0 4px 20px rgba(234, 63, 51, 0.3);
+  letter-spacing: 1px;
+  font-family: var(--font-wow);
+}
+
+.promo-submit:hover {
+  background: linear-gradient(135deg, #ff2d20, var(--yamaha-red));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(234, 63, 51, 0.45);
+}
+
+.promo-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.promo-terms {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 6px;
+}
+
+/* ─── SUCCESS VIEW ─── */
+.promo-success {
+  text-align: center;
+  animation: promoSuccessIn 0.5s ease forwards;
+}
+
+@keyframes promoSuccessIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.promo-check-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+  border: 2px solid rgba(16, 185, 129, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  animation: promoCheckPulse 2s ease infinite;
+}
+
+@keyframes promoCheckPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.3); }
+  50%      { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+}
+
+.promo-check-circle svg {
+  animation: promoCheckDraw 0.6s ease 0.2s forwards;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+}
+
+@keyframes promoCheckDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+.promo-success-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.promo-success-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 24px 0;
+  line-height: 1.5;
+}
+
+.promo-code-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px dashed rgba(234, 63, 51, 0.4);
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin-bottom: 12px;
+}
+
+.promo-code-label {
+  display: block;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.promo-code-value {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--yamaha-red);
+  letter-spacing: 4px;
+  font-family: 'Outfit', monospace;
+  text-shadow: 0 0 20px var(--yamaha-red-glow);
+}
+
+.promo-code-hint {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 8px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 500px) {
+  .promo-content {
+    padding: 30px 22px 28px;
+  }
+  .promo-title {
+    font-size: 1.4rem;
+  }
+  .promo-code-value {
+    font-size: 1.4rem;
+  }
+}

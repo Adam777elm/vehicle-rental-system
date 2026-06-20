@@ -120,35 +120,65 @@ function Motos() {
       title: "L'Univers Supersport",
       desc: "Développées sur les circuits les plus prestigieux du monde, nos Supersport YZF-R offrent des performances aérodynamiques sans compromis et une précision chirurgicale en virage.",
       bg: bgSupersport,
-      side: "left"
+      side: "left",
+      specs: [
+        "Moteur crossplane CP4/CP3 haute performance",
+        "Ailerons aérodynamiques en carbone",
+        "IMU électronique à 6 axes avancée",
+        "Suspensions électroniques Öhlins de course"
+      ]
     },
     {
       id: "rd",
       title: "Le Côté Sombre : Roadster",
       desc: "Brutes, agressives et dépouillées du superflu. La gamme MT combine un couple foudroyant à un style urbain radical pour dompter la jungle de béton.",
       bg: bgRoadster,
-      side: "right"
+      side: "right",
+      specs: [
+        "Style Hyper Naked agressif et minimaliste",
+        "Moteur CP2 / CP3 au couple dévastateur",
+        "Shifter rapide (QSS) de série",
+        "Position de conduite active réglable"
+      ]
     },
     {
       id: "st",
       title: "L'Horizon Sport Touring",
       desc: "Parce que le voyage compte autant que la destination. Alliez le confort d'un voyage luxueux à la sportivité légendaire de nos moteurs pour des aventures sans fin.",
       bg: bgSportTouring,
-      side: "left"
+      side: "left",
+      specs: [
+        "Régulateur de vitesse adaptatif (Radar ACC)",
+        "Valises latérales rigides de série",
+        "Suspensions semi-actives KYB intelligentes",
+        "Écran TFT connecté 7 pouces"
+      ]
     },
     {
       id: "or",
       title: "Dominez l'Inconnu : Off Road",
       desc: "Du sable saharien aux sentiers de l'Atlas. Nos motos Ténéré sont forgées pour l'aventure pure, offrant une endurance et une fiabilité à toute épreuve.",
       bg: bgOffroad,
-      side: "right"
+      side: "right",
+      specs: [
+        "Moteur CP2 coupleux et ultra-robuste",
+        "Réservoirs de carburant grande autonomie",
+        "ABS réglable à 3 modes (déconnectable)",
+        "Suspensions à grand débattement"
+      ]
     },
     {
       id: "sc",
       title: "La Ville en Mouvement : Scooters",
       desc: "Réinventez vos trajets quotidiens urbains et périurbains. Avec les séries MAX, vous bénéficiez de performances de pointe, d'une grande agilité et d'un confort premium.",
       bg: bgScooter,
-      side: "left"
+      side: "left",
+      specs: [
+        "Moteur de pointe EURO5 efficace",
+        "Système de clé intelligente Smart Key",
+        "Contrôle de traction (TCS) & ABS",
+        "Grand coffre de rangement sous la selle"
+      ]
     }
   ];
 
@@ -239,7 +269,13 @@ function Motos() {
               <h3 className="featured-title">{item.title}</h3>
               <div className="divider-red"></div>
               <p className="featured-desc">{item.desc}</p>
-              <button className="featured-explore-btn">EN SAVOIR PLUS</button>
+              <div className="featured-specs">
+                {item.specs.map((spec, sIdx) => (
+                  <div key={sIdx} className="spec-item">
+                    <span className="spec-dot"></span> {spec}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ))}
