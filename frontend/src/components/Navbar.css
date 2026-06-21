@@ -348,7 +348,8 @@ input:checked+.slider .on-label {
     height: 70px;
     background-color: #0b1a2b;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 1000;
+    z-index: 10010;
+    pointer-events: auto;
     padding-bottom: env(safe-area-inset-bottom);
   }
 
@@ -365,6 +366,7 @@ input:checked+.slider .on-label {
     width: 25%;
     height: 100%;
     transition: all 0.2s ease;
+    pointer-events: auto;
   }
 
   .bottom-nav-item svg {
