@@ -7,7 +7,7 @@ const connectDB = async () => {
     console.log("MongoDB connecté");
   } catch (error) {
     console.error("Erreur MongoDB:", error.message);
-    process.exit(1);
+    console.log("Le serveur continue de tourner pour permettre les tests de l'IA...");
   }
 };
 
