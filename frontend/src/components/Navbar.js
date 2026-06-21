@@ -134,21 +134,33 @@ function Navbar() {
         const timestamp = new Date().toLocaleTimeString("fr-FR", { hour: '2-digit', minute: '2-digit' });
         const userMsg = { sender: "user", text: queryText, time: timestamp };
 
+        const updatedHistory = [...chatMessages, userMsg];
+
         setChatMessages(prev => [...prev, userMsg]);
         setAiQuery("");
         setIsDrawerOpen(true);
         setIsTyping(true);
 
-        setTimeout(() => {
-            const responseText = getAiResponse(queryText);
-            const botMsg = {
-                sender: "bot",
-                text: responseText,
-                time: new Date().toLocaleTimeString("fr-FR", { hour: '2-digit', minute: '2-digit' })
-            };
-            setChatMessages(prev => [...prev, botMsg]);
-            setIsTyping(false);
-        }, 800);
+        getAiResponse(queryText, updatedHistory)
+            .then((responseText) => {
+                const botMsg = {
+                    sender: "bot",
+                    text: responseText,
+                    time: new Date().toLocaleTimeString("fr-FR", { hour: '2-digit', minute: '2-digit' })
+                };
+                setChatMessages(prev => [...prev, botMsg]);
+                setIsTyping(false);
+            })
+            .catch((error) => {
+                console.error("Erreur d'appel chatbot:", error);
+                const botMsg = {
+                    sender: "bot",
+                    text: "Désolé, une erreur de communication est survenue. Veuillez réessayer plus tard.",
+                    time: new Date().toLocaleTimeString("fr-FR", { hour: '2-digit', minute: '2-digit' })
+                };
+                setChatMessages(prev => [...prev, botMsg]);
+                setIsTyping(false);
+            });
     };
 
     const formatMessageText = (text) => {
