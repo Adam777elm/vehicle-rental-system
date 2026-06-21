@@ -800,6 +800,18 @@
     display: none;
   }
 
+  .loc-hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .loc-hero-actions a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
   .loc-secondary-text {
     padding: 32px 24px;
   }

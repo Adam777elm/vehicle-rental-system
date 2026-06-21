@@ -235,6 +235,12 @@ body.light-mode .continue-link {
   .cart-content {
     grid-template-columns: 1fr;
   }
+  .cart-promo-form {
+    flex-direction: column;
+  }
+  .cart-promo-btn {
+    width: 100%;
+  }
 }
 
 /* ===== PROMO CODE STYLING ===== */

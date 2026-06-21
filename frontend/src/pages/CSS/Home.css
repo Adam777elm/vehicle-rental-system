@@ -626,11 +626,35 @@
   }
   
   .hero-image-overlay {
-    padding: 0 4%;
+    padding: 0 5%;
+    justify-content: center;
+  }
+
+  .hero-image-content {
+    width: 100%;
+    max-width: none;
+    text-align: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .hero-badge {
+    align-self: center;
   }
   
   .hero-main-title {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
+  }
+
+  .hero-cta-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-cta-buttons a {
+    width: 100%;
+    text-align: center;
   }
   
   .stats-grid {

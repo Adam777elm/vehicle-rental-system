@@ -426,7 +426,11 @@ body.light-mode .moto-specs-sheet {
     gap: 30px;
   }
   .moto-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+  }
+  .main-image-container {
+    aspect-ratio: 4/3;
+    max-height: 350px;
   }
 }
 
@@ -435,9 +439,17 @@ body.light-mode .moto-specs-sheet {
     padding-top: 90px;
     padding-bottom: 80px;
   }
+  .moto-title {
+    font-size: 1.8rem;
+  }
+  .main-image-container {
+    aspect-ratio: 4/3;
+    max-height: 280px;
+  }
   .purchase-actions {
     flex-direction: column;
     align-items: stretch;
+    gap: 15px;
   }
   .quantity-selector {
     width: 100%;
