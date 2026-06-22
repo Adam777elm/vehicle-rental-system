@@ -268,3 +268,78 @@
     gap: 30px;
   }
 }
+
+/* ── NOUVEAUTÉS JET SKI — section séparée ── */
+.wrc-new-section {
+  background: rgba(0, 102, 204, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Badge couleur distincte pour les nouveautés */
+.wrc-badge-new {
+  background: linear-gradient(135deg, #ea3f33, #b3140e) !important;
+  box-shadow: 0 4px 10px rgba(234, 63, 51, 0.4) !important;
+}
+
+/* Image agrandie + fond neutre sombre pour les nouveautés */
+.wrc-new-img {
+  object-fit: contain;
+  padding: 16px !important;
+  background: #070d1a;
+  transition: transform 0.6s ease, filter 0.4s ease;
+}
+.wrc-new-card:hover .wrc-new-img {
+  transform: scale(1.06);
+  filter: brightness(1.05);
+}
+
+/* ── Sélecteur de couleur ── */
+.wrc-color-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+}
+
+.wrc-color-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.3px;
+}
+
+.wrc-color-label strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.wrc-swatches {
+  display: flex;
+  gap: 8px;
+}
+
+.wrc-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+  outline: none;
+}
+
+.wrc-swatch:hover {
+  transform: scale(1.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.wrc-swatch--active {
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25), 0 0 10px rgba(255, 255, 255, 0.1);
+  transform: scale(1.15);
+}

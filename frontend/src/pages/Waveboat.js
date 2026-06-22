@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./CSS/MarineCategories.css";
 import heroImg from "../assets/MARINE_IMG/marine-waveboat.jpg";
+import VehicleCard from "../components/VehicleCard";
 
 function Waveboat() {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ function Waveboat() {
     {
       id: 321,
       name: "Wave Boat 575",
+      brand: "SEALVER",
       category: "Marine",
       description: "Le mélange parfait entre le bateau de plaisance et la sportivité du jet-ski. Propulsé par la poussée de votre WaveRunner pour des sensations inédites partagées jusqu'à 8 personnes.",
       price: "350 000 DH",
@@ -27,6 +29,7 @@ function Waveboat() {
     {
       id: 322,
       name: "Wave Boat 656",
+      brand: "SEALVER",
       category: "Marine",
       description: "Le summum du luxe et de l'espace sur l'eau. Un salon flottant ultra-confortable propulsé par la force de votre jet-ski pour un confort de navigation royal.",
       price: "480 000 DH",
@@ -65,26 +68,7 @@ function Waveboat() {
 
         <div className="marine-cat-grid">
           {waveboats.map((bike) => (
-            <div key={bike.id} className="marine-cat-card" onClick={() => handleNav(bike)}>
-              <div className="marine-cat-card-image-box">
-                <div className="marine-cat-badge">WAVE BOAT</div>
-                <img src={bike.image} alt={bike.name} className="marine-cat-image" />
-                <div className="marine-cat-hover-overlay">
-                  <button className="marine-cat-action-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>PARAMÈTRES</button>
-                </div>
-              </div>
-
-              <div className="marine-cat-card-content">
-                <p className="marine-cat-brand">SEALVER</p>
-                <h3 className="marine-cat-name">{bike.name}</h3>
-                <p className="marine-cat-desc">{bike.description}</p>
-                
-                <div className="marine-cat-card-footer">
-                  <span className="marine-cat-price">{bike.price}</span>
-                  <button className="marine-cat-buy-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>ACHETER</button>
-                </div>
-              </div>
-            </div>
+            <VehicleCard key={bike.id} bike={bike} badge="WAVE BOAT" onNav={handleNav} />
           ))}
         </div>
       </section>

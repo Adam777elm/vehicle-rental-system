@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./CSS/SportTouring.css";
+import VehicleCard from "../components/VehicleCard";
 
 // Assets
 import heroImg from "../assets/MOTO_IMG/sporttouring-hero.jpg";
@@ -100,39 +101,8 @@ function SportTouring() {
     }
   ];
 
-  // Helper function to render a bike card
-  const renderBike = (bike) => {
-    const handleNav = (e) => {
-      e.stopPropagation();
-      navigate(`/moto/${bike.id}`, { state: { bike } });
-    };
-
-    return (
-      <div key={bike.id} className="st-bike-card" onClick={handleNav} style={{ cursor: "pointer" }}>
-        <div className="st-card-image-box">
-          <div className={`st-badge ${bike.type === 'vente' ? 'badge-sale' : 'badge-rent'}`}>
-            {bike.type === 'vente' ? 'À VENDRE' : 'LOCATION'}
-          </div>
-          <img src={bike.image} alt={bike.name} className="st-bike-image" />
-          <div className="st-hover-overlay">
-            <button className="st-action-btn" onClick={handleNav}>Voir les détails</button>
-          </div>
-        </div>
-
-        <div className="st-card-content">
-          <p className="st-bike-category">{bike.category}</p>
-          <h3 className="st-bike-name">{bike.name}</h3>
-          <p className="st-bike-desc">{bike.description}</p>
-
-          <div className="st-card-footer">
-            <span className="st-bike-price">{bike.price}</span>
-            <button className="st-reserve-btn" onClick={handleNav}>
-              {bike.type === 'vente' ? 'Acheter' : 'Réserver'}
-            </button>
-          </div>
-        </div>
-      </div>
-    );
+  const handleNav = (bike) => {
+    navigate(`/moto/${bike.id}`, { state: { bike } });
   };
 
   return (
@@ -155,7 +125,9 @@ function SportTouring() {
           <div className="st-separator"></div>
         </div>
         <div className="st-bikes-grid">
-          {tracer9Bikes.map(renderBike)}
+          {tracer9Bikes.map((bike) => (
+            <VehicleCard key={bike.id} bike={bike} badge="TRACER 9" onNav={handleNav} />
+          ))}
         </div>
 
         {/* TRACER 7 SECTION (Separation) */}
@@ -164,7 +136,9 @@ function SportTouring() {
           <div className="st-separator"></div>
         </div>
         <div className="st-bikes-grid">
-          {tracer7Bikes.map(renderBike)}
+          {tracer7Bikes.map((bike) => (
+            <VehicleCard key={bike.id} bike={bike} badge="TRACER 7" onNav={handleNav} />
+          ))}
         </div>
       </section>
     </div>

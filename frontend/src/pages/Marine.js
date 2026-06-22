@@ -6,6 +6,7 @@ import marineVideo from "../assets/MARINE_IMG/hero-video.mp4";
 import jetskiImg from "../assets/MARINE_IMG/marine-jetski.png";
 import superjetImg from "../assets/MARINE_IMG/marine-superjet.png";
 import waveboatImg from "../assets/MARINE_IMG/marine-waveboat.png";
+import Superjet3DSection from "../components/Superjet3DSection";
 
 function Marine() {
   const [isMuted, setIsMuted] = useState(true);
@@ -137,6 +138,23 @@ function Marine() {
         </div>
       </section>
 
+      {/* FUTURISTIC SEPARATOR */}
+      <div className="futuristic-separator">
+        <div className="separator-line"></div>
+        <div className="separator-diamond"></div>
+        <div className="separator-line"></div>
+      </div>
+
+      {/* Interactive 3D Model Section */}
+      <Superjet3DSection />
+
+      {/* FUTURISTIC SEPARATOR */}
+      <div className="futuristic-separator">
+        <div className="separator-line"></div>
+        <div className="separator-diamond"></div>
+        <div className="separator-line"></div>
+      </div>
+
       {/* SECONDARY VIDEO SECTION */}
       <section className="marine-video-section">
         <video 
@@ -164,6 +182,13 @@ function Marine() {
           )}
         </button>
       </section>
+
+      {/* FUTURISTIC SEPARATOR */}
+      <div className="futuristic-separator">
+        <div className="separator-line"></div>
+        <div className="separator-diamond"></div>
+        <div className="separator-line"></div>
+      </div>
 
       {/* DETAILED FEATURES SECTIONS */}
       <section className="marine-detailed-descriptions">

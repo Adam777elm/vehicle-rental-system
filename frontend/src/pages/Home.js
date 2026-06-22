@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./CSS/Home.css";
+import Sketchfab3DSection from "../components/Sketchfab3DSection";
 import motoVideo from "../assets/HOME_IMG/MotoVid.mp4";
 import heroBanner from "../assets/HOME_IMG/hero_banner.png";
 
@@ -82,13 +83,6 @@ function Home() {
       subtitle: "FEEL THE WATER",
       image: marineImg,
       link: "/marine"
-    },
-    {
-      id: 4,
-      title: "Marketplace",
-      subtitle: "BUY & SELL BIKES",
-      image: equipImg,
-      link: "/marketplace"
     }
   ];
 
@@ -130,6 +124,26 @@ function Home() {
               </div>
             </a>
           ))}
+        </div>
+      </section>
+
+      {/* 1.5  SKETCHFAB 3D VIEWER */}
+      <Sketchfab3DSection />
+
+      {/* 2.5 DEDICATED MARKETPLACE SECTION */}
+      <section className="home-marketplace-section">
+        <div className="marketplace-banner-container">
+          <img src={equipImg} alt="Yamaha Marketplace" className="marketplace-banner-bg" />
+          <div className="marketplace-banner-overlay">
+            <div className="marketplace-banner-content">
+              <span className="marketplace-badge">COMMUNAUTÉ YAMAHA</span>
+              <h2 className="marketplace-title">Marketplace</h2>
+              <p className="marketplace-desc">
+                Achetez et vendez des motos d'occasion vérifiées en toute confiance. Rejoignez notre communauté passionnée de pilotes Yamaha au Maroc.
+              </p>
+              <a href="/marketplace" className="marketplace-cta-btn">Accéder au Marketplace</a>
+            </div>
+          </div>
         </div>
       </section>
 

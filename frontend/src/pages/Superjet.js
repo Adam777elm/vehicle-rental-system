@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./CSS/MarineCategories.css";
 import heroImg from "../assets/MARINE_IMG/marine-superjet.jpg";
+import VehicleCard from "../components/VehicleCard";
 
 function Superjet() {
   const navigate = useNavigate();
@@ -48,26 +49,7 @@ function Superjet() {
 
         <div className="marine-cat-grid">
           {superjets.map((bike) => (
-            <div key={bike.id} className="marine-cat-card" onClick={() => handleNav(bike)}>
-              <div className="marine-cat-card-image-box">
-                <div className="marine-cat-badge">JET À BRAS</div>
-                <img src={bike.image} alt={bike.name} className="marine-cat-image" />
-                <div className="marine-cat-hover-overlay">
-                  <button className="marine-cat-action-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>PARAMÈTRES</button>
-                </div>
-              </div>
-
-              <div className="marine-cat-card-content">
-                <p className="marine-cat-brand">YAMAHA</p>
-                <h3 className="marine-cat-name">{bike.name}</h3>
-                <p className="marine-cat-desc">{bike.description}</p>
-                
-                <div className="marine-cat-card-footer">
-                  <span className="marine-cat-price">{bike.price}</span>
-                  <button className="marine-cat-buy-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>ACHETER</button>
-                </div>
-              </div>
-            </div>
+            <VehicleCard key={bike.id} bike={bike} badge="JET À BRAS" onNav={handleNav} />
           ))}
         </div>
       </section>

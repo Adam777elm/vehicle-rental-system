@@ -1,0 +1,310 @@
+/* ============================================================
+   SKETCHFAB 3D SECTION
+   Premium dark design — matches Home.css design system
+   ============================================================ */
+
+.sketchfab-section {
+  position: relative;
+  width: 100%;
+  padding: 6rem 2rem;
+  background-color: #02040a;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(234, 63, 51, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 85% 50%, rgba(0, 102, 204, 0.06) 0%, transparent 45%);
+}
+
+/* Decorative ambient orbs */
+.sfb-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+.sfb-orb--red {
+  width: 400px;
+  height: 400px;
+  background: rgba(234, 63, 51, 0.08);
+  top: -80px;
+  left: -100px;
+  animation: sfb-orb-pulse 8s ease-in-out infinite alternate;
+}
+.sfb-orb--blue {
+  width: 350px;
+  height: 350px;
+  background: rgba(0, 102, 204, 0.07);
+  bottom: -60px;
+  right: -80px;
+  animation: sfb-orb-pulse 10s ease-in-out infinite alternate-reverse;
+}
+@keyframes sfb-orb-pulse {
+  from { opacity: 0.6; transform: scale(1); }
+  to   { opacity: 1;   transform: scale(1.15); }
+}
+
+/* Inner wrapper — centers everything */
+.sfb-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+/* ── Header ── */
+.sfb-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.sfb-eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #ea3f33;
+  text-transform: uppercase;
+}
+
+.sfb-title {
+  font-size: 2.6rem;
+  font-weight: 900;
+  font-family: 'Outfit', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.sfb-subtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+/* ── 3D Viewer wrapper ── */
+.sfb-viewer-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  /* Keep a 16:9 aspect so no height is hard-coded */
+  aspect-ratio: 16 / 9;
+}
+
+/* Loading skeleton */
+.sfb-skeleton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 2;
+}
+.sfb-skeleton-pulse {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.02) 0%,
+    rgba(255,255,255,0.05) 50%,
+    rgba(255,255,255,0.02) 100%
+  );
+  background-size: 200% 200%;
+  animation: sfb-shimmer 2s linear infinite;
+}
+@keyframes sfb-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.sfb-skeleton-label {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.3);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.sfb-skeleton-icon {
+  color: rgba(234, 63, 51, 0.5);
+}
+
+/* The embed wrapper occupies the full viewer box */
+.sfb-embed {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.6s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sketchfab iframe — fills the container */
+.sfb-iframe {
+  width: 100%;
+  flex: 1;
+  border: none;
+  display: block;
+}
+
+/* Attribution line */
+.sfb-attribution {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  flex-shrink: 0;
+}
+.sfb-attr-link {
+  color: #1CAAD9;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.sfb-attr-link:hover {
+  color: #4fc3f7;
+}
+
+/* Interaction hint pills */
+.sfb-hints {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+  pointer-events: none;
+  animation: sfb-hints-fade 1.5s ease 2s forwards;
+  opacity: 1;
+}
+@keyframes sfb-hints-fade {
+  to { opacity: 0; }
+}
+.sfb-hint-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.7);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  text-transform: uppercase;
+}
+
+/* ── CTA Button ── */
+.sfb-cta-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.sfb-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ea3f33;
+  color: #fff;
+  text-decoration: none;
+  padding: 15px 36px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 6px 24px rgba(234, 63, 51, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+.sfb-cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.sfb-cta-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(234, 63, 51, 0.55);
+  background: #ff5247;
+}
+.sfb-cta-btn:hover::before {
+  opacity: 1;
+}
+.sfb-cta-btn svg {
+  transition: transform 0.3s ease;
+}
+.sfb-cta-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .sfb-title {
+    font-size: 2.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sketchfab-section {
+    padding: 4rem 1.2rem;
+  }
+  .sfb-title {
+    font-size: 1.7rem;
+  }
+  .sfb-subtitle {
+    font-size: 0.95rem;
+  }
+  .sfb-hints {
+    bottom: 44px;
+    gap: 6px;
+  }
+  .sfb-hint-pill {
+    font-size: 10px;
+    padding: 4px 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sfb-title {
+    font-size: 1.45rem;
+  }
+  .sfb-viewer-wrap {
+    /* On very small screens use a taller ratio */
+    aspect-ratio: 4 / 3;
+  }
+  .sfb-cta-btn {
+    padding: 13px 26px;
+    font-size: 13px;
+  }
+}

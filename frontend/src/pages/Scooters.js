@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./CSS/Scooters.css";
 import heroImg from "../assets/MOTO_IMG/bg-scooter.png";
+import VehicleCard from "../components/VehicleCard";
 
 function Scooters() {
   const navigate = useNavigate();
@@ -137,29 +138,7 @@ function Scooters() {
         </div>
         <div className="scooters-grid">
           {scooterBikes.filter(b => b.name.includes("TMAX")).map((bike) => (
-            <div key={bike.id} className="sc-bike-card" onClick={() => handleNav(bike)}>
-              <div className="sc-card-image-box">
-                <div className="sc-badge">NEW 2026</div>
-                <img src={bike.image} alt={bike.name} className="sc-bike-image" />
-                <div className="sc-hover-overlay">
-                  <button className="sc-action-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>VOIR DÉTAILS</button>
-                </div>
-              </div>
-
-              <div className="sc-card-content">
-                <p className="sc-bike-category">{bike.category}</p>
-                <div className="sc-brand-container">
-                    <p className="sc-bike-brand">YAMAHA</p>
-                    <h3 className="sc-bike-name">{bike.name}</h3>
-                </div>
-                <p className="sc-bike-desc">{bike.description}</p>
-                
-                <div className="sc-card-footer">
-                  <span className="sc-bike-price">{bike.price}</span>
-                  <button className="sc-buy-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>ACHETER</button>
-                </div>
-              </div>
-            </div>
+            <VehicleCard key={bike.id} bike={bike} badge="NEW 2026" onNav={handleNav} />
           ))}
         </div>
 
@@ -170,29 +149,7 @@ function Scooters() {
         </div>
         <div className="scooters-grid">
           {scooterBikes.filter(b => !b.name.includes("TMAX")).map((bike) => (
-            <div key={bike.id} className="sc-bike-card" onClick={() => handleNav(bike)}>
-              <div className="sc-card-image-box">
-                <div className="sc-badge">NEW 2026</div>
-                <img src={bike.image} alt={bike.name} className="sc-bike-image" />
-                <div className="sc-hover-overlay">
-                  <button className="sc-action-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>VOIR DÉTAILS</button>
-                </div>
-              </div>
-
-              <div className="sc-card-content">
-                <p className="sc-bike-category">{bike.category}</p>
-                <div className="sc-brand-container">
-                    <p className="sc-bike-brand">YAMAHA</p>
-                    <h3 className="sc-bike-name">{bike.name}</h3>
-                </div>
-                <p className="sc-bike-desc">{bike.description}</p>
-                
-                <div className="sc-card-footer">
-                  <span className="sc-bike-price">{bike.price}</span>
-                  <button className="sc-buy-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>ACHETER</button>
-                </div>
-              </div>
-            </div>
+            <VehicleCard key={bike.id} bike={bike} badge="NEW 2026" onNav={handleNav} />
           ))}
         </div>
       </section>

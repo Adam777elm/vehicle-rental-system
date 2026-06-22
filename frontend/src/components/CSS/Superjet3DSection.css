@@ -1,0 +1,309 @@
+/* ============================================================
+   SUPERJET 3D SECTION
+   Premium dark design matching Waverunner/Marine CSS style system
+   ============================================================ */
+
+.superjet-3d-section {
+  position: relative;
+  width: 100%;
+  padding: 6rem 2rem;
+  background-color: #050914;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(0, 102, 204, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 50%, rgba(234, 63, 51, 0.05) 0%, transparent 45%);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Decorative ambient orbs */
+.sjs-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+.sjs-orb--blue {
+  width: 400px;
+  height: 400px;
+  background: rgba(0, 102, 204, 0.07);
+  top: -80px;
+  left: -100px;
+  animation: sjs-orb-pulse 8s ease-in-out infinite alternate;
+}
+.sjs-orb--red {
+  width: 350px;
+  height: 350px;
+  background: rgba(234, 63, 51, 0.05);
+  bottom: -60px;
+  right: -80px;
+  animation: sjs-orb-pulse 10s ease-in-out infinite alternate-reverse;
+}
+@keyframes sjs-orb-pulse {
+  from { opacity: 0.6; transform: scale(1); }
+  to   { opacity: 1;   transform: scale(1.15); }
+}
+
+/* Inner wrapper — centers everything */
+.sjs-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+/* ── Header ── */
+.sjs-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.sjs-eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #ea3f33;
+  text-transform: uppercase;
+}
+
+.sjs-title {
+  font-size: 2.6rem;
+  font-weight: 900;
+  font-family: 'Outfit', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.sjs-subtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+  line-height: 1.6;
+  max-width: 580px;
+}
+
+/* ── 3D Viewer wrapper ── */
+.sjs-viewer-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  aspect-ratio: 16 / 9;
+}
+
+/* Loading skeleton */
+.sjs-skeleton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 2;
+}
+.sjs-skeleton-pulse {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.02) 0%,
+    rgba(255,255,255,0.05) 50%,
+    rgba(255,255,255,0.02) 100%
+  );
+  background-size: 200% 200%;
+  animation: sjs-shimmer 2s linear infinite;
+}
+@keyframes sjs-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.sjs-skeleton-label {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.3);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.sjs-skeleton-icon {
+  color: rgba(0, 102, 204, 0.6);
+}
+
+/* The embed wrapper occupies the full viewer box */
+.sjs-embed {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.6s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sketchfab iframe — fills the container */
+.sjs-iframe {
+  width: 100%;
+  flex: 1;
+  border: none;
+  display: block;
+}
+
+/* Attribution line */
+.sjs-attribution {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  flex-shrink: 0;
+}
+.sjs-attr-link {
+  color: #1CAAD9;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.sjs-attr-link:hover {
+  color: #4fc3f7;
+}
+
+/* Interaction hint pills */
+.sjs-hints {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+  pointer-events: none;
+  animation: sjs-hints-fade 1.5s ease 2s forwards;
+  opacity: 1;
+}
+@keyframes sjs-hints-fade {
+  to { opacity: 0; }
+}
+.sjs-hint-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.7);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  text-transform: uppercase;
+}
+
+/* ── CTA Button ── */
+.sjs-cta-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.sjs-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ea3f33;
+  color: #fff;
+  text-decoration: none;
+  padding: 15px 36px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 6px 24px rgba(234, 63, 51, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+.sjs-cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.sjs-cta-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(234, 63, 51, 0.55);
+  background: #ff5247;
+}
+.sjs-cta-btn:hover::before {
+  opacity: 1;
+}
+.sjs-cta-btn svg {
+  transition: transform 0.3s ease;
+}
+.sjs-cta-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .sjs-title {
+    font-size: 2.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .superjet-3d-section {
+    padding: 4rem 1.2rem;
+  }
+  .sjs-title {
+    font-size: 1.7rem;
+  }
+  .sjs-subtitle {
+    font-size: 0.95rem;
+  }
+  .sjs-hints {
+    bottom: 44px;
+    gap: 6px;
+  }
+  .sjs-hint-pill {
+    font-size: 10px;
+    padding: 4px 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sjs-title {
+    font-size: 1.45rem;
+  }
+  .sjs-viewer-wrap {
+    aspect-ratio: 4 / 3;
+  }
+  .sjs-cta-btn {
+    padding: 13px 26px;
+    font-size: 13px;
+  }
+}
