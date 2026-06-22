@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./CSS/Home.css";
+import Sketchfab3DSection from "../components/Sketchfab3DSection";
 import motoVideo from "../assets/HOME_IMG/MotoVid.mp4";
 import heroBanner from "../assets/HOME_IMG/hero_banner.png";
 
@@ -113,6 +114,9 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* 1.5  SKETCHFAB 3D VIEWER */}
+      <Sketchfab3DSection />
 
       {/* 2. CATEGORIES GRID */}
       <section className="categories-section">
