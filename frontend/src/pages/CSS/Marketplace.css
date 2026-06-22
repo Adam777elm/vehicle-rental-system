@@ -929,6 +929,7 @@
   padding-top: 25px;
 }
 
+
 /* Delete button on Card */
 .market-delete-badge {
   position: absolute;
@@ -956,3 +957,124 @@
   transform: scale(1.1);
 }
 
+/* ── COMPREHENSIVE MOBILE RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .market-listings-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .market-controls-wrapper {
+    margin: -20px auto 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .market-page {
+    padding-bottom: 100px; /* Bottom nav spacing */
+  }
+
+  .market-hero {
+    height: 45vh;
+    min-height: 280px;
+  }
+
+  .market-hero-title {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+  }
+
+  .market-controls-wrapper {
+    margin: 0 auto 24px;
+    padding: 0 16px;
+  }
+
+  .market-controls-panel {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .market-search-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .market-sort-select {
+    min-width: 100%;
+    padding: 14px 16px;
+    height: 50px;
+  }
+
+  .market-listings-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .market-listings-container {
+    padding: 0 16px;
+  }
+
+  .market-section-title-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 0 16px;
+  }
+
+  .market-section-title {
+    font-size: 1.6rem;
+  }
+
+  /* Filters horizontal scroll on mobile */
+  .market-filters-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .market-listings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .market-filters-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .market-modal-content {
+    border-radius: 16px;
+    max-height: 95vh;
+  }
+
+  .market-modal-info {
+    padding: 24px 20px;
+  }
+
+  .market-modal-title {
+    font-size: 1.6rem;
+  }
+
+  .market-modal-specs-list {
+    grid-template-columns: 1fr;
+  }
+
+  .market-modal-actions {
+    flex-direction: column;
+  }
+
+  .market-action-btn-wa,
+  .market-action-btn-call {
+    min-width: 100%;
+  }
+
+  .market-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .market-card-btn,
+  .market-card-btn-primary {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}

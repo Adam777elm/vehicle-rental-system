@@ -447,19 +447,20 @@
 
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 3rem;
-    letter-spacing: 4px;
+    font-size: 2.8rem;
+    letter-spacing: 3px;
     line-height: 1.2;
   }
 
   .hero-subtitle {
-    font-size: 1rem;
-    padding: 8px 10px;
+    font-size: 0.95rem;
+    padding: 6px 10px;
     white-space: normal;
+    letter-spacing: 2px;
   }
 
   .motos-categories-section {
-    padding: 40px 20px;
+    padding: 40px 16px 80px;
   }
 
   .featured-image-box {
@@ -467,7 +468,7 @@
   }
 
   .featured-text-box {
-    padding: 40px 20px;
+    padding: 30px 16px;
   }
 
   .featured-title {
@@ -475,7 +476,7 @@
   }
 
   .motos-detailed-descriptions {
-    padding: 50px 0;
+    padding: 40px 0 80px;
   }
 
   .featured-row {
@@ -488,6 +489,31 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+
+  /* Bottom nav space for last visible section */
+  .motos-page > div:last-child,
+  .motos-page > section:last-child {
+    padding-bottom: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
+
+  .motos-hero {
+    height: 70vh;
+  }
+
+  .category-image-wrapper {
+    height: 200px;
+  }
+
+  .category-content {
+    padding: 16px;
   }
 }
 

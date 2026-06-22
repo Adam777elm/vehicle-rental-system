@@ -527,9 +527,15 @@
   }
 }
 
+@media (max-width: 768px) {
+  .myres-page {
+    padding-bottom: 100px; /* Bottom nav space */
+  }
+}
+
 @media (max-width: 600px) {
   .myres-page {
-    padding: 80px 4% 60px;
+    padding: 80px 4% 100px; /* Bottom nav space */
   }
 
   .myres-header {
@@ -559,3 +565,4 @@
     text-align: center;
   }
 }
+

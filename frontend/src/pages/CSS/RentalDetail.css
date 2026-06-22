@@ -660,9 +660,30 @@
   }
 }
 
+@media (max-width: 768px) {
+  .rd-page {
+    padding: 80px 4% 100px; /* 100px bottom for bottom nav */
+  }
+
+  .rd-title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  .rd-price-block {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .rd-price-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 @media (max-width: 600px) {
   .rd-page {
-    padding: 80px 4% 60px;
+    padding: 80px 4% 100px;
   }
 
   .rd-dates-grid {
@@ -677,5 +698,9 @@
 
   .rd-specs-grid {
     grid-template-columns: 1fr;
+  }
+
+  .rd-price-info-item {
+    padding: 0 12px;
   }
 }

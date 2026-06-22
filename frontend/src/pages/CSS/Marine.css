@@ -494,3 +494,69 @@
     gap: 12px;
   }
 }
+
+/* ── COMPREHENSIVE MOBILE RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .marine-hero-banner {
+    height: 500px;
+  }
+
+  .marine-banner-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .marine-hero-banner {
+    height: 380px;
+  }
+
+  .marine-banner-title {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+  }
+
+  .marine-page > section:last-child,
+  .marine-page > div:last-child {
+    padding-bottom: 90px;
+  }
+
+  /* Reuse motos featured row patterns if they exist */
+  .featured-row {
+    flex-direction: column !important;
+    margin-bottom: 50px;
+  }
+
+  .featured-image-box {
+    width: 100% !important;
+    height: 260px !important;
+  }
+
+  .featured-text-box {
+    padding: 30px 16px !important;
+  }
+
+  .featured-title {
+    font-size: 1.6rem !important;
+  }
+
+  .motos-categories-section,
+  .marine-categories-section {
+    padding: 30px 16px 80px;
+  }
+
+  .motos-detailed-descriptions,
+  .marine-detailed-descriptions {
+    padding: 30px 0 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .marine-hero-banner {
+    height: 300px;
+  }
+
+  .marine-banner-title {
+    font-size: 1.8rem;
+  }
+}
