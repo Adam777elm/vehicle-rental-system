@@ -1,22 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./CSS/Sketchfab3DSection.css";
+import "./CSS/Superjet3DSection.css";
 
 /**
- * Sketchfab3DSection
+ * Superjet3DSection
  * ──────────────────
  * Lazy-loads the Sketchfab iframe only once the section scrolls into view
  * (IntersectionObserver) so the initial page load stays fast.
  *
  * Accessibility
  * - Section has role="region" + aria-label for screen readers
- * - iframe has a meaningful <title> attribute (set via HTML attribute)
+ * - iframe has a meaningful <title> attribute
  * - CTA button is a native <a> with descriptive aria-label
  *
  * SEO
  * - Uses semantic HTML: <section>, <h2>, <p>
- * - Structured so a single <h2> is the primary heading of this section
+ * - Structured with heading hierarchy
  */
-function Sketchfab3DSection() {
+function Superjet3DSection() {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState(false);
@@ -44,34 +44,33 @@ function Sketchfab3DSection() {
   return (
     <section
       ref={sectionRef}
-      className="sketchfab-section"
-      aria-label="Interactive 3D motorcycle viewer"
-      role="region"
+      className="superjet-3d-section"
+      aria-label="Interactive 3D jetski viewer"
     >
       {/* Decorative background orbs */}
-      <div className="sfb-orb sfb-orb--red" aria-hidden="true" />
-      <div className="sfb-orb sfb-orb--blue" aria-hidden="true" />
+      <div className="sjs-orb sjs-orb--blue" aria-hidden="true" />
+      <div className="sjs-orb sjs-orb--red" aria-hidden="true" />
 
-      <div className="sfb-inner">
+      <div className="sjs-inner">
         {/* ── Text header ── */}
-        <header className="sfb-header">
-          <span className="sfb-eyebrow" aria-hidden="true">
-            MOTEUR LÉGENDAIRE
+        <header className="sjs-header">
+          <span className="sjs-eyebrow" aria-hidden="true">
+            MODÈLE INTERACTIF 3D
           </span>
-          <h2 className="sfb-title">Le plus puissant moteur de chez Yamaha</h2>
-          <p className="sfb-subtitle">
-            Explorez la Yamaha YZF-R1 en 3D interactif. Pivotez, zoomez et observez chaque détail mécanique.
+          <h2 className="sjs-title">Notre premier Super Jet</h2>
+          <p className="sjs-subtitle">
+            Explorez le mythique jetski à bras Yamaha Superjet 700 en 3D interactif. Pivotez, zoomez et découvrez chaque détail de sa coque légendaire.
           </p>
         </header>
 
         {/* ── 3D viewer container ── */}
-        <div className="sfb-viewer-wrap">
+        <div className="sjs-viewer-wrap">
           {/* Loading skeleton shown until iframe fires onLoad */}
           {!iframeLoaded && (
-            <div className="sfb-skeleton" aria-hidden="true">
-              <div className="sfb-skeleton-pulse" />
-              <div className="sfb-skeleton-label">
-                <span className="sfb-skeleton-icon">
+            <div className="sjs-skeleton" aria-hidden="true">
+              <div className="sjs-skeleton-pulse" />
+              <div className="sjs-skeleton-label">
+                <span className="sjs-skeleton-icon">
                   {/* Cube icon */}
                   <svg
                     width="32"
@@ -97,11 +96,11 @@ function Sketchfab3DSection() {
           {/* Sketchfab iframe — rendered only when section is visible */}
           {isVisible && (
             <div
-              className="sketchfab-embed-wrapper sfb-embed"
+              className="sketchfab-embed-wrapper sjs-embed"
               style={{ opacity: iframeLoaded ? 1 : 0 }}
             >
               <iframe
-                title="Yamaha R1 2017"
+                title="jetski Yamaha Superjet 700"
                 frameBorder="0"
                 allowFullScreen
                 mozallowfullscreen="true"
@@ -111,38 +110,38 @@ function Sketchfab3DSection() {
                 execution-while-out-of-viewport=""
                 execution-while-not-rendered=""
                 web-share=""
-                src="https://sketchfab.com/models/db9b22c5b6c2462b902835275131f4af/embed"
+                src="https://sketchfab.com/models/299480aa65cd49d397471c28fade6bb8/embed"
                 onLoad={() => setIframeLoaded(true)}
-                className="sfb-iframe"
+                className="sjs-iframe"
                 loading="lazy"
-                aria-label="Interactive 3D model of Yamaha R1 2017 – use mouse or touch to rotate and zoom"
+                aria-label="Interactive 3D model of jetski Yamaha Superjet 700 – use mouse or touch to rotate and zoom"
               />
 
               {/* Attribution – kept per Sketchfab embed requirements */}
-              <p className="sfb-attribution">
+              <p className="sjs-attribution">
                 <a
-                  href="https://sketchfab.com/3d-models/yamaha-r1-2017-db9b22c5b6c2462b902835275131f4af?utm_medium=embed&utm_campaign=share-popup&utm_content=db9b22c5b6c2462b902835275131f4af"
+                  href="https://sketchfab.com/3d-models/jetski-yamaha-superjet-700-299480aa65cd49d397471c28fade6bb8?utm_medium=embed&utm_campaign=share-popup&utm_content=299480aa65cd49d397471c28fade6bb8"
                   target="_blank"
                   rel="nofollow noreferrer"
-                  className="sfb-attr-link"
+                  className="sjs-attr-link"
                 >
-                  Yamaha R1 2017
+                  jetski Yamaha Superjet 700
                 </a>{" "}
                 by{" "}
                 <a
-                  href="https://sketchfab.com/Rievera?utm_medium=embed&utm_campaign=share-popup&utm_content=db9b22c5b6c2462b902835275131f4af"
+                  href="https://sketchfab.com/martinflash?utm_medium=embed&utm_campaign=share-popup&utm_content=299480aa65cd49d397471c28fade6bb8"
                   target="_blank"
                   rel="nofollow noreferrer"
-                  className="sfb-attr-link"
+                  className="sjs-attr-link"
                 >
-                  RieveraDesign
+                  martinflash
                 </a>{" "}
                 on{" "}
                 <a
-                  href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=db9b22c5b6c2462b902835275131f4af"
+                  href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=299480aa65cd49d397471c28fade6bb8"
                   target="_blank"
                   rel="nofollow noreferrer"
-                  className="sfb-attr-link"
+                  className="sjs-attr-link"
                 >
                   Sketchfab
                 </a>
@@ -151,16 +150,16 @@ function Sketchfab3DSection() {
           )}
 
           {/* Interaction hint badges */}
-          <div className="sfb-hints" aria-hidden="true">
-            <span className="sfb-hint-pill">
+          <div className="sjs-hints" aria-hidden="true">
+            <span className="sjs-hint-pill">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect x="3" y="11" width="18" height="11" rx="2"/></svg>
               Pivoter
             </span>
-            <span className="sfb-hint-pill">
+            <span className="sjs-hint-pill">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
               Zoomer
             </span>
-            <span className="sfb-hint-pill">
+            <span className="sjs-hint-pill">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
               Plein écran
             </span>
@@ -168,13 +167,13 @@ function Sketchfab3DSection() {
         </div>
 
         {/* ── CTA button ── */}
-        <div className="sfb-cta-wrap">
+        <div className="sjs-cta-wrap">
           <a
-            href="/moto/101"
-            className="sfb-cta-btn"
-            aria-label="Découvrir la Yamaha R1M"
+            href="/moto/311"
+            className="sjs-cta-btn"
+            aria-label="Découvrir le SuperJet dans l'inventaire"
           >
-            <span>Découvrir la R1M</span>
+            <span>Découvrir le SuperJet</span>
             <svg
               width="18"
               height="18"
@@ -196,4 +195,4 @@ function Sketchfab3DSection() {
   );
 }
 
-export default Sketchfab3DSection;
+export default Superjet3DSection;

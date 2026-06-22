@@ -4,6 +4,7 @@ import "./CSS/Roadster.css";
 import heroImg from "../assets/MOTO_IMG/roadster-hero.jpg";
 import imgMT07 from "../assets/ROADSTER-IMG/2025-Yamaha-MT07AS-EU-Tech_Black-360-Degrees-001-03.jpg";
 import imgMT09 from "../assets/ROADSTER-IMG/2025-Yamaha-MT09A-35-EU-Tech_Black-Studio-001-03-1.jpg";
+import VehicleCard from "../components/VehicleCard";
 
 function Roadster() {
   const navigate = useNavigate();
@@ -139,29 +140,7 @@ function Roadster() {
         </div>
         <div className="roadster-grid">
           {roadsterBikes.filter(b => b.name.includes("MT-10")).map((bike) => (
-            <div key={bike.id} className="rd-bike-card" onClick={() => handleNav(bike)}>
-              <div className="rd-card-image-box">
-                <div className="rd-badge">NEW 2026</div>
-                <img src={bike.image} alt={bike.name} className="rd-bike-image" />
-                <div className="rd-hover-overlay">
-                  <button className="rd-action-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>PARAMÈTRES</button>
-                </div>
-              </div>
-
-              <div className="rd-card-content">
-                <p className="rd-bike-category">{bike.category}</p>
-                <div className="rd-brand-container">
-                    <p className="rd-bike-brand">YAMAHA</p>
-                    <h3 className="rd-bike-name">{bike.name}</h3>
-                </div>
-                <p className="rd-bike-desc">{bike.description}</p>
-                
-                <div className="rd-card-footer">
-                  <span className="rd-bike-price">{bike.price}</span>
-                  <button className="rd-buy-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>ACHETER</button>
-                </div>
-              </div>
-            </div>
+            <VehicleCard key={bike.id} bike={bike} badge="NEW 2026" onNav={handleNav} />
           ))}
         </div>
 
@@ -172,29 +151,7 @@ function Roadster() {
         </div>
         <div className="roadster-grid">
           {roadsterBikes.filter(b => b.name.includes("MT-09")).map((bike) => (
-            <div key={bike.id} className="rd-bike-card" onClick={() => handleNav(bike)}>
-              <div className="rd-card-image-box">
-                <div className="rd-badge">NEW 2026</div>
-                <img src={bike.image} alt={bike.name} className="rd-bike-image" />
-                <div className="rd-hover-overlay">
-                  <button className="rd-action-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>PARAMÈTRES</button>
-                </div>
-              </div>
-
-              <div className="rd-card-content">
-                <p className="rd-bike-category">{bike.category}</p>
-                <div className="rd-brand-container">
-                    <p className="rd-bike-brand">YAMAHA</p>
-                    <h3 className="rd-bike-name">{bike.name}</h3>
-                </div>
-                <p className="rd-bike-desc">{bike.description}</p>
-                
-                <div className="rd-card-footer">
-                  <span className="rd-bike-price">{bike.price}</span>
-                  <button className="rd-buy-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>ACHETER</button>
-                </div>
-              </div>
-            </div>
+            <VehicleCard key={bike.id} bike={bike} badge="NEW 2026" onNav={handleNav} />
           ))}
         </div>
 
@@ -205,29 +162,7 @@ function Roadster() {
         </div>
         <div className="roadster-grid">
           {roadsterBikes.filter(b => !b.name.includes("MT-10") && !b.name.includes("MT-09")).map((bike) => (
-            <div key={bike.id} className="rd-bike-card" onClick={() => handleNav(bike)}>
-              <div className="rd-card-image-box">
-                <div className="rd-badge">NEW 2026</div>
-                <img src={bike.image} alt={bike.name} className="rd-bike-image" />
-                <div className="rd-hover-overlay">
-                  <button className="rd-action-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>PARAMÈTRES</button>
-                </div>
-              </div>
-
-              <div className="rd-card-content">
-                <p className="rd-bike-category">{bike.category}</p>
-                <div className="rd-brand-container">
-                    <p className="rd-bike-brand">YAMAHA</p>
-                    <h3 className="rd-bike-name">{bike.name}</h3>
-                </div>
-                <p className="rd-bike-desc">{bike.description}</p>
-                
-                <div className="rd-card-footer">
-                  <span className="rd-bike-price">{bike.price}</span>
-                  <button className="rd-buy-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>ACHETER</button>
-                </div>
-              </div>
-            </div>
+            <VehicleCard key={bike.id} bike={bike} badge="NEW 2026" onNav={handleNav} />
           ))}
         </div>
       </section>

@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./CSS/MarineCategories.css";
 import heroImg from "../assets/MARINE_IMG/marine-hero.jpg";
+import VehicleCard from "../components/VehicleCard";
 
 function Waverunner() {
   const navigate = useNavigate();
@@ -43,37 +44,37 @@ function Waverunner() {
     },
     {
       id: 303,
-      name: "VX Cruiser",
+      name: "VX Cruiser HO",
       category: "Marine",
-      description: "Le WaveRunner le plus polyvalent de sa génération. Le confort d'un grand Cruiser combiné à la vivacité d'un jet sportif pour de longues heures d'exploration.",
-      price: "195 000 DH",
+      description: "Le WaveRunner High Output par excellence. Moteur TR-1 HO pour une puissance supérieure, confort trois places et technologie RiDE pour une maîtrise totale sur l'eau — disponible en Ocean Blue exclusif.",
+      price: "215 000 DH",
       type: "vente",
       availability: true,
-      image: "https://www.yamaha-motor.com.au/-/media/products/marine/waverunner/recreation/2024/vx-cruiser/2024_vx_cruiser_blue_stu_001.ashx",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/VXCRUISERHO/2025-Yamaha-VXCRUISERHO-EU-Dusty_Blue-Studio-001-03-1.jpg",
       specs: {
         engine: "3 cylindres TR-1 High Output, 1 049 cm³",
-        power: "115 ch",
-        weight: "316 kg",
+        power: "130 ch",
+        weight: "320 kg",
         tank: "70 litres"
       },
       features: ["Moteur TR-1 High Output", "Système RiDE intuitif", "Écran couleur de 4,3 pouces", "Système audio Bluetooth intégré"]
     },
     {
       id: 304,
-      name: "EX Deluxe",
+      name: "VX DeLuxe",
       category: "Marine",
-      description: "Idéal pour débuter l'aventure marine en famille. Agile, économique, extrêmement amusant et conçu avec la légendaire fiabilité de Yamaha.",
-      price: "135 000 DH",
+      description: "L'élégance et le raffinement au service de la performance. Le VX DeLuxe allie une finition haut de gamme à la fiabilité légendaire Yamaha, disponible en 2 coloris exclusifs.",
+      price: "175 000 DH",
       type: "vente",
       availability: true,
-      image: "https://www.yamaha-motor.com.au/-/media/products/marine/waverunner/rec-lite/2024/ex-deluxe/2024_ex_deluxe_blue_stu_001.ashx",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/VXDELUXE/2026-Yamaha-VXDELUXE-EU-Black___Torch_Red-Studio-001-03.jpg",
       specs: {
         engine: "3 cylindres TR-1, 1 049 cm³",
         power: "100 ch",
-        weight: "272 kg",
-        tank: "50 litres"
+        weight: "298 kg",
+        tank: "70 litres"
       },
-      features: ["Moteur TR-1 Yamaha", "Coque robuste en SMC", "Système RiDE de marche arrière", "Indicateurs LED multifonctions"]
+      features: ["Finition DeLuxe premium", "Système RiDE", "Selle biplace confort", "Écran couleur 4,3\""]
     }
   ];
 
@@ -99,26 +100,7 @@ function Waverunner() {
 
         <div className="marine-cat-grid">
           {waverunners.map((bike) => (
-            <div key={bike.id} className="marine-cat-card" onClick={() => handleNav(bike)}>
-              <div className="marine-cat-card-image-box">
-                <div className="marine-cat-badge">JET SKI</div>
-                <img src={bike.image} alt={bike.name} className="marine-cat-image" />
-                <div className="marine-cat-hover-overlay">
-                  <button className="marine-cat-action-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>PARAMÈTRES</button>
-                </div>
-              </div>
-
-              <div className="marine-cat-card-content">
-                <p className="marine-cat-brand">YAMAHA</p>
-                <h3 className="marine-cat-name">{bike.name}</h3>
-                <p className="marine-cat-desc">{bike.description}</p>
-                
-                <div className="marine-cat-card-footer">
-                  <span className="marine-cat-price">{bike.price}</span>
-                  <button className="marine-cat-buy-btn" onClick={(e) => { e.stopPropagation(); handleNav(bike); }}>ACHETER</button>
-                </div>
-              </div>
-            </div>
+            <VehicleCard key={bike.id} bike={bike} badge="JET SKI" onNav={handleNav} />
           ))}
         </div>
       </section>
