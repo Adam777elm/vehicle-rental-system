@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import API from "../services/api";
 import { ALL_VEHICLES } from "../components/Navbar";
 import "./CSS/AdminDashboard.css";
@@ -33,6 +33,8 @@ function AdminDashboard() {
   const [marketplaceList, setMarketplaceList] = useState(INITIAL_MARKETPLACE);
   const [ordersList, setOrdersList] = useState([]);
   const [rentalsList, setRentalsList] = useState([]);
+  const [lastUpdated, setLastUpdated] = useState(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -46,51 +48,61 @@ function AdminDashboard() {
   const ADMIN_EMAILS = ['admin@aamotors.ma', 'eelmadam2004@gmail.com'];
   const isAdmin = user && (ADMIN_EMAILS.includes(user.email) || user.email.toLowerCase().includes('admin'));
 
-  useEffect(() => {
+  const fetchData = useCallback(async (showSpinner = false) => {
     const token = localStorage.getItem("token");
     if (!token || !isAdmin) return;
 
-    // Fetch Orders
-    API.get("/orders", { headers: { Authorization: `Bearer ${token}` } })
-      .then(res => {
-        const mappedOrders = res.data.map(order => ({
-          id: order._id,
-          client: order.fullName || (order.user ? order.user.name : "Client inconnu"),
-          vehicle: order.items.map(item => `${item.name} (${item.quantity}x) ${item.color && item.color !== 'Standard' ? `[${item.color}]` : ""}`).join(", "),
-          price: `${order.totalPrice.toLocaleString()} DH`,
-          date: new Date(order.createdAt).toISOString().split("T")[0],
-          status: order.status
-        }));
-        setOrdersList(mappedOrders);
-      })
-      .catch(err => console.error("Error fetching orders:", err));
+    if (showSpinner) setIsRefreshing(true);
 
-    // Fetch Rentals (Reservations)
-    API.get("/reservations", { headers: { Authorization: `Bearer ${token}` } })
-      .then(res => {
-        const mappedRentals = res.data.map(reser => {
-          const start = new Date(reser.startDate);
-          const end = new Date(reser.endDate);
-          const diffDays = Math.ceil(Math.abs(end - start) / (1000 * 60 * 60 * 24));
-          
-          let adminStatus = "réservé"; // pending
-          if (reser.status === "confirmed") adminStatus = "en cours";
-          if (reser.status === "cancelled") adminStatus = "annulé";
-          
-          return {
-            id: reser._id,
-            client: reser.user ? reser.user.name : "Client inconnu",
-            vehicle: reser.vehicle ? reser.vehicle.name : "Véhicule supprimé",
-            dateStart: start.toISOString().split("T")[0],
-            dateEnd: end.toISOString().split("T")[0],
-            duration: `${diffDays} Jour${diffDays > 1 ? "s" : ""}`,
-            status: adminStatus
-          };
-        });
-        setRentalsList(mappedRentals);
-      })
-      .catch(err => console.error("Error fetching rentals:", err));
+    try {
+      // Fetch Orders & Rentals in parallel
+      const [ordersRes, rentalsRes] = await Promise.all([
+        API.get("/orders", { headers: { Authorization: `Bearer ${token}` } }),
+        API.get("/reservations", { headers: { Authorization: `Bearer ${token}` } })
+      ]);
+
+      const mappedOrders = ordersRes.data.map(order => ({
+        id: order._id,
+        client: order.fullName || (order.user ? order.user.name : "Client inconnu"),
+        vehicle: order.items.map(item => `${item.name} (${item.quantity}x) ${item.color && item.color !== 'Standard' ? `[${item.color}]` : ""}`).join(", "),
+        price: `${order.totalPrice.toLocaleString()} DH`,
+        date: new Date(order.createdAt).toISOString().split("T")[0],
+        status: order.status
+      }));
+      setOrdersList(mappedOrders);
+
+      const mappedRentals = rentalsRes.data.map(reser => {
+        const start = new Date(reser.startDate);
+        const end = new Date(reser.endDate);
+        const diffDays = Math.ceil(Math.abs(end - start) / (1000 * 60 * 60 * 24));
+        let adminStatus = "réservé";
+        if (reser.status === "confirmed") adminStatus = "en cours";
+        if (reser.status === "cancelled") adminStatus = "annulé";
+        return {
+          id: reser._id,
+          client: reser.user ? reser.user.name : "Client inconnu",
+          vehicle: reser.vehicle ? reser.vehicle.name : "Véhicule supprimé",
+          dateStart: start.toISOString().split("T")[0],
+          dateEnd: end.toISOString().split("T")[0],
+          duration: `${diffDays} Jour${diffDays > 1 ? "s" : ""}`,
+          status: adminStatus
+        };
+      });
+      setRentalsList(mappedRentals);
+      setLastUpdated(new Date());
+    } catch (err) {
+      console.error("Error fetching admin data:", err);
+    } finally {
+      if (showSpinner) setIsRefreshing(false);
+    }
   }, [isAdmin]);
+
+  // Initial load + auto-refresh every 30 seconds
+  useEffect(() => {
+    fetchData();
+    const interval = setInterval(() => fetchData(), 30000);
+    return () => clearInterval(interval);
+  }, [fetchData]);
 
   if (!isAdmin) {
     return (
@@ -227,8 +239,35 @@ function AdminDashboard() {
             <h1 className="admin-title">TABLEAU DE BORD ADMIN</h1>
             <p className="admin-subtitle">Gérez le marketplace, les commandes d'achat et les locations de véhicules.</p>
           </div>
-          <span className="admin-badge">ADMINISTRATION AREA</span>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
+            <span className="admin-badge">ADMINISTRATION AREA</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              {lastUpdated && (
+                <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', fontFamily: 'Outfit' }}>
+                  🕐 Mis à jour : {lastUpdated.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+                </span>
+              )}
+              <button
+                onClick={() => fetchData(true)}
+                disabled={isRefreshing}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '6px',
+                  background: isRefreshing ? 'rgba(255,255,255,0.05)' : 'rgba(234,63,51,0.15)',
+                  border: '1px solid rgba(234,63,51,0.4)',
+                  color: isRefreshing ? 'rgba(255,255,255,0.4)' : '#ea3f33',
+                  borderRadius: '8px', padding: '7px 14px',
+                  fontFamily: 'Outfit', fontWeight: 700, fontSize: '13px',
+                  cursor: isRefreshing ? 'not-allowed' : 'pointer',
+                  transition: 'all 0.2s'
+                }}
+              >
+                <span style={{ display: 'inline-block', animation: isRefreshing ? 'spin 1s linear infinite' : 'none' }}>🔄</span>
+                {isRefreshing ? 'Actualisation…' : 'Actualiser'}
+              </button>
+            </div>
+          </div>
         </div>
+        <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
 
         {/* STATS OVERVIEW CARDS */}
         <div className="admin-stats-grid">
