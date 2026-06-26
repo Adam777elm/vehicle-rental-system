@@ -156,31 +156,39 @@ function Marine() {
       </div>
 
       {/* SECONDARY VIDEO SECTION */}
-      <section className="marine-video-section">
-        <video 
-          ref={videoRef}
-          autoPlay 
-          loop 
-          muted={isMuted} 
-          playsInline 
-          className="marine-secondary-video"
-        >
-          <source src={marineVideo} type="video/mp4" />
-        </video>
-        <div className="marine-video-overlay"></div>
-        <button className="sound-toggle" onClick={toggleMute}>
-          {isMuted ? (
-            <>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z" /><path d="M23 9l-6 6" /><path d="M17 9l6 6" /></svg>
-              <span>SOUND OFF</span>
-            </>
-          ) : (
-            <>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /></svg>
-              <span>SOUND ON</span>
-            </>
-          )}
-        </button>
+      <section className="video-section">
+        <div className="video-wrapper">
+          <video 
+            ref={videoRef}
+            autoPlay 
+            loop 
+            muted={isMuted} 
+            playsInline 
+            className="marine-secondary-video"
+          >
+            <source src={marineVideo} type="video/mp4" />
+          </video>
+          <div className="video-content-overlay">
+            <div className="video-text-content">
+              <span className="video-badge">PURE ADRENALINE</span>
+              <h2>DOMINEZ LES VAGUES</h2>
+              <p>Propulsion hydrojet, performances nautiques et sensations extrêmes.</p>
+            </div>
+            <button className="sound-toggle-global" onClick={toggleMute}>
+              {isMuted ? (
+                <>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z" /><path d="M23 9l-6 6" /><path d="M17 9l6 6" /></svg>
+                  <span>SOUND OFF</span>
+                </>
+              ) : (
+                <>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /></svg>
+                  <span>SOUND ON</span>
+                </>
+              )}
+            </button>
+          </div>
+        </div>
       </section>
 
       {/* FUTURISTIC SEPARATOR */}
