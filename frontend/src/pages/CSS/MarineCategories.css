@@ -8,6 +8,10 @@
   min-height: 100vh;
   color: #ffffff;
   padding-bottom: 80px;
+  --card-accent: #00ffcc;
+  --card-accent-glow: rgba(0, 255, 204, 0.2);
+  --card-accent-border: rgba(0, 255, 204, 0.35);
+  --card-btn-bg: linear-gradient(135deg, #0066cc, #0033aa);
 }
 
 .marine-cat-red-bar {

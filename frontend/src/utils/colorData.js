@@ -91,11 +91,29 @@ export function getAvailableColors(bike) {
   ];
 
   // ── Off Road / Adventure ────────────────────────────────────────────────────
+  if (name.includes("world raid")) return [
+    { name: "Icon Blue (Bleu Icône)", value: "#004b87",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2024/XTZ700D/2024-Yamaha-XTZ700D-EU-Icon_Blue-360-Degrees-001-03_Mobile.jpg" }
+  ];
+  if (name.includes("rally")) return [
+    { name: "Classic Sahara (Sable Rallye)", value: "#c2b280",
+      image: "https://mifa-motors.ma/wp-content/uploads/2026/05/6052_1.jpg" }
+  ];
   if (name === "ténéré 700") return [
     { name: "Icon Blue (Bleu Racing)", value: "#004b87",
       image: "https://mifa-motors.ma/wp-content/uploads/2026/05/6052_2.jpg" },
     { name: "Classic Sahara (Sable Rallye)", value: "#c2b280",
       image: "https://mifa-motors.ma/wp-content/uploads/2026/05/6052_1.jpg" }
+  ];
+  if (name.includes("yxz1000r") || name.includes("yxz 1000")) return [
+    { name: "Icon Blue (Bleu Icône)", value: "#004b87",
+      image: "https://mifa-motors.ma/wp-content/uploads/2026/05/6161_1.jpg" },
+    { name: "Fluo Pistache (Pistache Fluo)", value: "#8fff00",
+      image: "https://mifa-motors.ma/wp-content/uploads/2026/05/6161_2.jpg" }
+  ];
+  if (name.includes("wolverine")) return [
+    { name: "Blue Limited (Bleu Limited)", value: "#0b5fa5",
+      image: "https://mifa-motors.ma/wp-content/uploads/2026/05/6169_1.jpg" }
   ];
   if (name.includes("grizzly")) return [
     { name: "Tactical Grey (Gris Tactique)", value: "#525a66" }

@@ -180,6 +180,22 @@ const getDetailedSpecs = (bike) => {
     ];
   }
 
+  if (category.includes("ssv") || name.includes("yxz") || name.includes("wolverine")) {
+    return [
+      "Type de moteur : Bicylindre ou tricylindre, 4 temps, refroidissement liquide, double ACT, 4 soupapes",
+      "Cylindrée : 998 cm³ à 999 cm³",
+      "Alimentation : Injection électronique de carburant (EFI)",
+      "Transmission : Boîte séquentielle Sport Shift 5 rapports ou CVT Ultramatic",
+      "Système de transmission : On-Command 2x4, 4x4, 4x4 avec blocage de différentiel",
+      "Suspension avant : Double triangle indépendant, amortisseurs Fox réglables",
+      "Suspension arrière : Double triangle indépendant avec barre stabilisatrice, amortisseurs Fox",
+      "Frein avant : Double disque hydraulique",
+      "Frein arrière : Double disque hydraulique",
+      "Poids tous pleins faits : 721 kg à 928 kg",
+      "Capacité du réservoir : 34 à 35 litres"
+    ];
+  }
+
   if (category.includes("adventure") || name.includes("ténéré") || name.includes("off road") || name.includes("yz") || name.includes("enduro")) {
     return [
       "Type de moteur : Bicylindre CP2 ou monocylindre, 4 temps, refroidissement liquide, double ACT",
