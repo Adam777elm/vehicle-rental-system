@@ -58,8 +58,32 @@ export function getAvailableColors(bike) {
     { name: "Tech Black (Noir Satiné)", value: "#111111" },
     { name: "Midnight Cyan (Turquoise Fluo)", value: "#00a3a6" }
   ];
-
   // ── Sport Touring / Tracer ──────────────────────────────────────────────────
+  if (name.includes("tracer 9 gt+") || name.includes("tracer 9 gt plus")) return [
+    { name: "Bleu Royale (Royal Blue)", value: "#002F6C",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT09ATRDXCS/2025-Yamaha-MT09ATRDXCS-EU-Cobalt_Blue-360-Degrees-001-03.jpg" }
+  ];
+  if (name.includes("tracer 9 gt")) return [
+    { name: "Gris Métallisé (Metallic Gray)", value: "#8A9597",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT09ATRDXS/2025-Yamaha-MT09ATRDXS-EU-Ceramic_Ice-360-Degrees-001-03_Mobile.jpg" }
+  ];
+  if (name.includes("tracer 9")) return [
+    { name: "Noir (Black)", value: "#111111",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT09ATR/2025-Yamaha-MT09ATR-EU-Midnight_Black-360-Degrees-001-03.jpg" },
+    { name: "Rouge (Red)", value: "#d62229",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT09ATR/2025-Yamaha-MT09ATR-EU-Redline-360-Degrees-001-03_Mobile.jpg" }
+  ];
+  if (name.includes("tracer 7 gt")) return [
+    { name: "Bleu Icône (Icon Blue)", value: "#004b87",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/MT07TRGTS/2026-Yamaha-MT07TRGTS-EU-Icon_Performance-360-Degrees-001-03_Mobile.jpg" }
+  ];
+  if (name.includes("tracer 7")) return [
+    { name: "Noir (Black)", value: "#111111",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/MT07TRS/2026-Yamaha-MT07TRS-EU-Midnight_Black-360-Degrees-001-03.jpg" },
+    { name: "Rouge (Red)", value: "#d62229",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/MT07TRS/2026-Yamaha-MT07TRS-EU-Redline-360-Degrees-001-03_Mobile.jpg" }
+  ];
+
   if (name.includes("tracer") || category.includes("sport touring") || category.includes("touring")) return [
     { name: "Redline (Rouge Racing)", value: "#d62229" },
     { name: "Tech Black (Noir Métallisé)", value: "#111111" },

@@ -40,11 +40,12 @@ function Motos() {
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach(el => observer.observe(el));
 
-    // Sound scroll logic (like Home.js)
+    // Sound scroll logic - mute when video is out of view
     const handleScroll = () => {
       if (videoRef.current) {
-        const videoHeight = videoRef.current.offsetHeight;
-        if (window.scrollY > videoHeight * 0.9 && !videoRef.current.muted) {
+        const rect = videoRef.current.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        if (!isVisible && !videoRef.current.muted) {
           videoRef.current.muted = true;
           setMuted(true);
         }
@@ -204,7 +205,31 @@ function Motos() {
         <div className="separator-line"></div>
       </div>
 
-      {/* VIDEO BECOMES SECONDARY BANNER */}
+      <section className="motos-categories-section">
+        <div className="categories-grid-container">
+          {categories.map((cat, index) => (
+            <div 
+              key={cat.id} 
+              className={`category-card reveal ${cat.id === 5 ? 'category-card-scooters' : ''}`} 
+              style={{ transitionDelay: `${index * 0.1}s` }}
+            >
+              <div className="category-image-wrapper">
+                <img src={cat.image} alt={cat.title} className="category-img" />
+              </div>
+              <div className="category-content">
+                <span className="category-tag">YAMAHA RANGE</span>
+                <h2 className="category-title">{cat.title}</h2>
+                <p className="category-desc">{cat.subtitle}</p>
+                <Link to={cat.link}>
+                  <button className="category-btn">DÉCOUVRIR</button>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* VIDEO BECOMES SECONDARY BANNER - PLACED AT THE BOTTOM OF CATEGORIES */}
       <section className="motos-hero secondary-video">
         <video 
           ref={videoRef}
@@ -231,30 +256,6 @@ function Motos() {
             </>
           )}
         </button>
-      </section>
-
-      <section className="motos-categories-section">
-        <div className="categories-grid-container">
-          {categories.map((cat, index) => (
-            <div 
-              key={cat.id} 
-              className={`category-card reveal ${cat.id === 5 ? 'category-card-scooters' : ''}`} 
-              style={{ transitionDelay: `${index * 0.1}s` }}
-            >
-              <div className="category-image-wrapper">
-                <img src={cat.image} alt={cat.title} className="category-img" />
-              </div>
-              <div className="category-content">
-                <span className="category-tag">YAMAHA RANGE</span>
-                <h2 className="category-title">{cat.title}</h2>
-                <p className="category-desc">{cat.subtitle}</p>
-                <Link to={cat.link}>
-                  <button className="category-btn">DÉCOUVRIR</button>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* FULL WIDTH DESCRIPTIONS SECTION */}
