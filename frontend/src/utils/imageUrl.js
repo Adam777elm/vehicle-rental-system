@@ -1,5 +1,12 @@
 export function getApiBase() {
-  const isProduction = window.location.hostname.includes("vercel.app");
+  const isLocal = 
+    window.location.hostname === "localhost" || 
+    window.location.hostname === "127.0.0.1" || 
+    window.location.hostname.startsWith("192.168.") || 
+    window.location.hostname.startsWith("10.") ||
+    window.location.hostname.startsWith("172.");
+  
+  const isProduction = !isLocal;
   return isProduction
     ? "https://vehicle-rental-system-y8jx.onrender.com"
     : `http://${window.location.hostname}:5000`;
