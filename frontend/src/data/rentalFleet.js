@@ -1,17 +1,5 @@
-/** Catalogue location AA Motors — 12 modèles Yamaha */
+/** Catalogue location AA Motors — Modèles Yamaha autorisés */
 export const RENTAL_FLEET = [
-  {
-    id: "rent-mt-09",
-    name: "MT-09",
-    category: "Roadster",
-    description:
-      "L'Hyper Naked par excellence. Moteur CP3 890 cm³ et châssis ultra-léger pour un fun absolu sur route.",
-    pricePerDay: 1000,
-    image:
-      "https://cdn2.yamaha-motor.eu/prod/product-assets/2024/MT900A/2024-Yamaha-MT900A-EU-Storm_Fluo-360-Degrees-001-03_Mobile.jpg",
-    features: ["890 cm³ CP3", "IMU 6 axes", "ABS cornering", "TFT 5\""],
-    badge: "POPULAIRE",
-  },
   {
     id: "rent-mt-07",
     name: "MT-07",
@@ -34,18 +22,6 @@ export const RENTAL_FLEET = [
       "https://cdn2.yamaha-motor.eu/prod/product-assets/2024/YZF700R7/2024-Yamaha-YZF700R7-EU-Icon_Blue-Studio-001-03.jpg",
     features: ["689 cm³ CP2", "Embrayage A&S", "ABS double canal", "Position piste"],
     badge: "SPORT",
-  },
-  {
-    id: "rent-r9",
-    name: "YZF-R9",
-    category: "Supersport",
-    description:
-      "La nouvelle ère de performance. Moteur CP3 et ailerons aérodynamiques pour des sensations extrêmes.",
-    pricePerDay: 1300,
-    image:
-      "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/YZF900R9/2026-Yamaha-YZF900R9-EU-Icon_Blue-360-Degrees-001-03_Mobile.jpg",
-    features: ["890 cm³ CP3", "Ailerons aéro", "Quickshifter", "Modes conduite"],
-    badge: "NOUVEAU",
   },
   {
     id: "rent-tracer-9-gt",
@@ -82,18 +58,6 @@ export const RENTAL_FLEET = [
     features: ["689 cm³ CP2", "Valises latérales", "Bulle touring", "Selle confort"],
   },
   {
-    id: "rent-tenere-700-wr",
-    name: "Ténéré 700 World Raid",
-    category: "Adventure",
-    description:
-      "La reine des aventures. Double réservoir, suspension long débattement et protection tout-terrain maximale.",
-    pricePerDay: 1250,
-    image:
-      "https://cdn2.yamaha-motor.eu/prod/product-assets/2024/XTZ700DPB/2024-Yamaha-XTZ700DPB-EU-Icon_White-360-Degrees-001-03_Mobile.jpg",
-    features: ["689 cm³", "23L de carburant", "Suspension Kayaba", "Protection maximale"],
-    badge: "AVENTURE",
-  },
-  {
     id: "rent-tenere-700",
     name: "Ténéré 700",
     category: "Adventure",
@@ -115,17 +79,6 @@ export const RENTAL_FLEET = [
       "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/XP500A/2026-Yamaha-XP500A-EU-Icon_Blue-360-Degrees-001-03_Mobile.jpg",
     features: ["561 cm³", "Transmission auto", "ABS", "Top case dispo"],
     badge: "PREMIUM",
-  },
-  {
-    id: "rent-xmax-300",
-    name: "XMAX 300",
-    category: "Scooter",
-    description:
-      "Polyvalent et agile, parfait pour la location urbaine ou les escapades week-end en toute décontraction.",
-    pricePerDay: 750,
-    image:
-      "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/XMAX300A/2025-Yamaha-XMAX300A-EU-Icon_Black_-360-Degrees-001-03_Mobile.jpg",
-    features: ["292 cm³", "Selle confort", "Y-Connect", "Casque inclus"],
   },
   {
     id: "rent-nmax-125",
