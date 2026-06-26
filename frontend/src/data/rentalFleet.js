@@ -1,3 +1,5 @@
+import imgMT07 from "../assets/ROADSTER-IMG/2025-Yamaha-MT07AS-EU-Tech_Black-360-Degrees-001-03.jpg";
+
 /** Catalogue location AA Motors — Modèles Yamaha autorisés */
 export const RENTAL_FLEET = [
   {
@@ -7,8 +9,7 @@ export const RENTAL_FLEET = [
     description:
       "Roadster léger au couple généreux. La référence pour une location moto fun et accessible à tous.",
     pricePerDay: 900,
-    image:
-      "https://cdn2.yamaha-motor.eu/prod/product-assets/2024/MT700A/2024-Yamaha-MT700A-EU-Storm_Fluo-360-Degrees-001-03.jpg",
+    image: imgMT07,
     features: ["689 cm³ CP2", "ABS", "Assurance incluse", "200 km/jour"],
   },
   {
@@ -22,18 +23,6 @@ export const RENTAL_FLEET = [
       "https://cdn2.yamaha-motor.eu/prod/product-assets/2024/YZF700R7/2024-Yamaha-YZF700R7-EU-Icon_Blue-Studio-001-03.jpg",
     features: ["689 cm³ CP2", "Embrayage A&S", "ABS double canal", "Position piste"],
     badge: "SPORT",
-  },
-  {
-    id: "rent-tracer-9-gt",
-    name: "TRACER 9 GT",
-    category: "Sport Touring",
-    description:
-      "L'aventurière des grands voyages. Suspension semi-active KYB, valises rigides et écran TFT pour explorer sans limite.",
-    pricePerDay: 1200,
-    image:
-      "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT09ATRDXS/2025-Yamaha-MT09ATRDXS-EU-Ceramic_Ice-360-Degrees-001-03_Mobile.jpg",
-    features: ["890 cm³ CP3", "Suspension KYB", "Valises rigides", "Poignées chauffantes"],
-    badge: "COUP DE CŒUR",
   },
   {
     id: "rent-tracer-9",
@@ -113,7 +102,7 @@ export function mergeWithDbVehicles(staticFleet, dbVehicles) {
       ...item,
       mongoId: match._id,
       pricePerDay: match.price ?? item.pricePerDay,
-      image: match.image ? match.image : item.image,
+      image: (match.image && !match.image.includes("yamaha-motor.eu")) ? match.image : item.image,
       description: match.description || item.description,
       availability: match.availability !== false,
     };
