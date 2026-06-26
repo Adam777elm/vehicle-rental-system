@@ -21,7 +21,7 @@
   right: -200px;
   width: 600px;
   height: 600px;
-  background: radial-gradient(ellipse, rgba(239,68,68,0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(249, 115, 22,0.06) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -41,7 +41,7 @@
   width: 40px;
   height: 40px;
   border: 3px solid rgba(255,255,255,0.1);
-  border-top-color: #ef4444;
+  border-top-color: #f97316;
   border-radius: 50%;
   animation: rd-spin 0.8s linear infinite;
 }
@@ -95,7 +95,7 @@
 }
 
 .rd-breadcrumb a:hover {
-  color: #ef4444;
+  color: #f97316;
 }
 
 .rd-crumb-sep {
@@ -143,7 +143,7 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 70% 50%, rgba(239,68,68,0.06) 0%, transparent 60%),
+    radial-gradient(circle at 70% 50%, rgba(249, 115, 22,0.06) 0%, transparent 60%),
     radial-gradient(circle at 30% 20%, rgba(59,130,246,0.04) 0%, transparent 50%);
 }
 
@@ -170,9 +170,9 @@
   position: absolute;
   top: 16px;
   left: 16px;
-  background: rgba(239,68,68,0.15);
-  color: #ef4444;
-  border: 1px solid rgba(239,68,68,0.35);
+  background: rgba(249, 115, 22,0.15);
+  color: #f97316;
+  border: 1px solid rgba(249, 115, 22,0.35);
   padding: 5px 14px;
   border-radius: 100px;
   font-size: 10px;
@@ -239,7 +239,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #ef4444;
+  background: #f97316;
   flex-shrink: 0;
 }
 
@@ -280,9 +280,9 @@
 }
 
 .rd-badge-loc {
-  background: rgba(239,68,68,0.15);
-  color: #ef4444;
-  border: 1px solid rgba(239,68,68,0.35);
+  background: rgba(249, 115, 22,0.15);
+  color: #f97316;
+  border: 1px solid rgba(249, 115, 22,0.35);
   padding: 5px 14px;
   border-radius: 100px;
   font-size: 10px;
@@ -319,8 +319,8 @@
 
 /* Price block */
 .rd-price-block {
-  background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(249,115,22,0.05));
-  border: 1px solid rgba(239,68,68,0.15);
+  background: linear-gradient(135deg, rgba(249, 115, 22,0.08), rgba(249,115,22,0.05));
+  border: 1px solid rgba(249, 115, 22,0.15);
   border-radius: 16px;
   padding: 24px;
   display: flex;
@@ -345,7 +345,7 @@
 .rd-price-value {
   font-size: 1.8rem;
   font-weight: 900;
-  color: #ef4444;
+  color: #f97316;
   line-height: 1;
 }
 
@@ -441,7 +441,7 @@
 
 .rd-date-field input:focus {
   outline: none;
-  border-color: rgba(239,68,68,0.5);
+  border-color: rgba(249, 115, 22,0.5);
 }
 
 /* Summary */
@@ -490,14 +490,14 @@
 .rd-total-price {
   font-size: 1.4rem;
   font-weight: 900;
-  color: #ef4444;
+  color: #f97316;
 }
 
 /* Submit button */
 .rd-submit-btn {
   width: 100%;
   padding: 16px;
-  background: linear-gradient(135deg, #dc2626, #ef4444);
+  background: linear-gradient(135deg, #ea580c, #f97316);
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -507,7 +507,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: "Inter", sans-serif;
-  box-shadow: 0 4px 20px rgba(239,68,68,0.3);
+  box-shadow: 0 4px 20px rgba(249, 115, 22,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -515,9 +515,9 @@
 }
 
 .rd-submit-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #ef4444, #f97316);
+  background: linear-gradient(135deg, #f97316, #f97316);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(239,68,68,0.4);
+  box-shadow: 0 8px 30px rgba(249, 115, 22,0.4);
 }
 
 .rd-submit-btn:disabled {
@@ -558,9 +558,9 @@
 }
 
 .rd-message.error {
-  background: rgba(239, 68, 68, 0.1);
+  background: rgba(249, 115, 22, 0.1);
   color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.25);
+  border: 1px solid rgba(249, 115, 22, 0.25);
 }
 
 .rd-login-hint {
@@ -571,7 +571,7 @@
 }
 
 .rd-login-hint a {
-  color: #ef4444;
+  color: #f97316;
   font-weight: 600;
   text-decoration: none;
 }
@@ -629,7 +629,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, #dc2626, #ef4444);
+  background: linear-gradient(135deg, #ea580c, #f97316);
   color: #fff;
   border: none;
   padding: 14px 28px;
@@ -640,11 +640,11 @@
   text-decoration: none;
   transition: all 0.3s ease;
   font-family: "Inter", sans-serif;
-  box-shadow: 0 4px 20px rgba(239,68,68,0.3);
+  box-shadow: 0 4px 20px rgba(249, 115, 22,0.3);
 }
 
 .rd-btn-primary:hover {
-  background: linear-gradient(135deg, #ef4444, #f97316);
+  background: linear-gradient(135deg, #f97316, #f97316);
   transform: translateY(-2px);
 }
 
