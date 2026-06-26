@@ -86,7 +86,7 @@ function Marine() {
     },
     {
       id: 3,
-      title: "WAVE BOAT",
+      title: "YAMAHA BOATS",
       subtitle: "The Jet Boat Revolution",
       image: waveboatImg,
       link: "/marine/waveboat"
@@ -234,23 +234,23 @@ function Marine() {
           </div>
         </div>
 
-        {/* ROW 3: Wave Boat - Image Left */}
+        {/* ROW 3: Yamaha Boats - Image Left */}
         <div className="marine-featured-row featured-row left reveal">
           <div className="marine-featured-image-box featured-image-box">
             <img src={waveboatImg} alt="Yamaha Jet Boat" />
             <div className="marine-image-overlay-gradient image-overlay-gradient"></div>
           </div>
           <div className="marine-featured-text-box featured-text-box">
-            <h2 className="marine-featured-title featured-title">Wave Boat</h2>
+            <h2 className="marine-featured-title featured-title">Yamaha Boats</h2>
             <div className="marine-divider-red divider-red"></div>
             <p className="marine-featured-desc featured-desc">
-              Le mélange parfait entre luxe, convivialité et adrénaline sportive. Profitez d'un cockpit spacieux et de l'iconique technologie de propulsion Yamaha Jet Drive pour partager la mer autrement.
+              Le mélange parfait entre luxe, convivialité et adrénaline sportive. Profitez d'un cockpit spacieux, de motorisations double hydrojet puissantes et de l'iconique technologie de propulsion Yamaha Jet Drive pour partager la mer autrement.
             </p>
             <div className="featured-specs">
-              <div className="spec-item"><span className="spec-dot"></span> Capacité d'accueil jusqu'à 10 personnes</div>
-              <div className="spec-item"><span className="spec-dot"></span> Connexion instantanée en 15 secondes</div>
-              <div className="spec-item"><span className="spec-dot"></span> Salon de pont convertible en bain de soleil</div>
-              <div className="spec-item"><span className="spec-dot"></span> Option arceau de wakeboard & audio premium</div>
+              <div className="spec-item"><span className="spec-dot"></span> Capacité d'accueil jusqu'à 12 personnes</div>
+              <div className="spec-item"><span className="spec-dot"></span> Double motorisation performante et maniable</div>
+              <div className="spec-item"><span className="spec-dot"></span> Console tactile Connext & palettes de commande DRiVE</div>
+              <div className="spec-item"><span className="spec-dot"></span> Finitions de luxe, arceau de wakeboard & audio premium</div>
             </div>
           </div>
         </div>
