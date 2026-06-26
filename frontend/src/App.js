@@ -31,6 +31,9 @@ import Marketplace from "./pages/Marketplace";
 import Equipement from "./pages/Equipement";
 import ForgotPassword from "./pages/ForgotPassword";
 import AdminDashboard from "./pages/AdminDashboard";
+import ConditionsDeVente from "./pages/ConditionsDeVente";
+import ConditionsDeGarantie from "./pages/ConditionsDeGarantie";
+import ServiceApresVente from "./pages/ServiceApresVente";
 import Footer from "./components/Footer";
 import PromoModal from "./components/PromoModal";
 import ScrollToTop from "./components/ScrollToTop";
@@ -158,6 +161,21 @@ function App() {
         <Route
           path="/admin"
           element={<AdminDashboard />}
+        />
+
+        <Route
+          path="/conditions-vente"
+          element={<ConditionsDeVente />}
+        />
+
+        <Route
+          path="/conditions-garantie"
+          element={<ConditionsDeGarantie />}
+        />
+
+        <Route
+          path="/service-apres-vente"
+          element={<ServiceApresVente />}
         />
 
       </Routes>

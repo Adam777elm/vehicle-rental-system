@@ -29,34 +29,6 @@ function Footer() {
                                 <span className="contact-numbers">05 22 04 06 50 / 06 56 25 25 25</span>
                             </div>
                         </div>
-                        <div className="contact-item">
-                            <span className="contact-icon">📍</span>
-                            <div>
-                                <span className="contact-label">Showroom Tanger</span>
-                                <span className="contact-numbers">06 64 46 24 11</span>
-                            </div>
-                        </div>
-                        <div className="contact-item">
-                            <span className="contact-icon">📍</span>
-                            <div>
-                                <span className="contact-label">Showroom Marrakech</span>
-                                <span className="contact-numbers">05 24 43 06 56</span>
-                            </div>
-                        </div>
-                        <div className="contact-item">
-                            <span className="contact-icon">🏪</span>
-                            <div>
-                                <span className="contact-label">Revendeurs: Agadir</span>
-                                <span className="contact-numbers">06 64 15 94 59</span>
-                            </div>
-                        </div>
-                        <div className="contact-item">
-                            <span className="contact-icon">🔧</span>
-                            <div>
-                                <span className="contact-label">Atelier Central SAV Casablanca</span>
-                                <span className="contact-numbers">06 63 58 63 70</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -98,36 +70,18 @@ function Footer() {
                         <ul className="footer-links">
                             <li><Link to="/marine">Waverunner</Link></li>
                             <li><Link to="/marine/waveboat">Yamaha Boats</Link></li>
-                            <li><a href="#">Golf Car</a></li>
                         </ul>
                     </div>
                 </div>
 
-                {/* COLUMN 4: CONDITIONS GÉNÉRALES & ISO CERTIFICATION */}
+                {/* COLUMN 4: CONDITIONS GÉNÉRALES */}
                 <div className="footer-col">
                     <h4 className="footer-heading">Conditions Générales</h4>
                     <ul className="footer-links" style={{ marginBottom: '25px' }}>
-                        <li><Link to="/about">Conditions de Vente</Link></li>
-                        <li><Link to="/about">Conditions de Garantie</Link></li>
-                        <li><Link to="/about">Service Après-Vente</Link></li>
-                        <li><Link to="/about">Entretien</Link></li>
+                        <li><Link to="/conditions-vente">Conditions de Vente</Link></li>
+                        <li><Link to="/conditions-garantie">Conditions de Garantie</Link></li>
+                        <li><Link to="/service-apres-vente">Service Après-Vente</Link></li>
                     </ul>
-
-                    {/* TÜV NORD ISO 9001 BADGE */}
-                    <div className="iso-certification-badge">
-                        <div className="iso-header">
-                            <span className="iso-tuv">TUVNORD</span>
-                            <span className="iso-sub">TÜV NORD CERT GmbH</span>
-                        </div>
-                        <div className="iso-divider"></div>
-                        <div className="iso-body">
-                            <span className="iso-title">ISO 9001</span>
-                        </div>
-                        <div className="iso-divider"></div>
-                        <div className="iso-footer">
-                            <span className="iso-link">tuev-nord.de</span>
-                        </div>
-                    </div>
                 </div>
             </div>
 
