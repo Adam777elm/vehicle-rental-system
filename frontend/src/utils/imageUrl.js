@@ -20,6 +20,6 @@ export function getUploadUrl(filename) {
 
 export function resolveVehicleImage(image) {
   if (!image) return "";
-  if (image.startsWith("http")) return image;
+  if (image.startsWith("http") || image.startsWith("/") || image.startsWith("data:")) return image;
   return getUploadUrl(image);
 }
