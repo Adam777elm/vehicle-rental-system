@@ -167,7 +167,7 @@ function Home() {
               <h2>REACTION TO MOTION</h2>
               <p>Unleash the performance and technology built into every vehicle we offer.</p>
             </div>
-            <button className="sound-toggle" onClick={toggleSound}>
+            <button className="sound-toggle-global" onClick={toggleSound}>
               {muted ? (
                 <>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z" /><path d="M23 9l-6 6" /><path d="M17 9l6 6" /></svg>
