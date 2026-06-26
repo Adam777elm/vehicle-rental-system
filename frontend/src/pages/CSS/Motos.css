@@ -162,7 +162,7 @@
   gap: 30px;
 }
 
-.category-card {
+.motos-page .category-card {
   background: rgba(18, 25, 40, 0.5); /* Glassmorphism sombre */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -177,7 +177,7 @@
 }
 
 /* Red Laser Border Hover Animation */
-.category-card::before {
+.motos-page .category-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -188,17 +188,17 @@
   pointer-events: none;
 }
 
-.category-card:hover {
+.motos-page .category-card:hover {
   transform: translateY(-15px) scale(1.02);
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 30px rgba(215, 26, 23, 0.15); /* Glowing red Yamaha aura shadow */
   background: rgba(22, 30, 48, 0.8);
 }
 
-.category-card:hover::before {
+.motos-page .category-card:hover::before {
   border-color: rgba(215, 26, 23, 0.6); /* Red glowing stroke */
 }
 
-.category-image-wrapper {
+.motos-page .category-image-wrapper {
   height: 250px;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
   display: flex;
@@ -209,7 +209,7 @@
 }
 
 /* Subtle glowing grid background behind the bikes */
-.category-image-wrapper::after {
+.motos-page .category-image-wrapper::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -220,7 +220,7 @@
   z-index: 0;
 }
 
-.category-img {
+.motos-page .category-img {
   width: 90%;
   height: auto;
   object-fit: contain;
@@ -230,18 +230,18 @@
   z-index: 5;
 }
 
-.category-card:hover .category-img {
+.motos-page .category-card:hover .category-img {
   transform: scale(1.15) translateY(-5px);
   filter: drop-shadow(0 25px 20px rgba(0,0,0,0.8));
 }
 
-.category-content {
+.motos-page .category-content {
   padding: 30px;
   text-align: left;
   border-top: 1px solid rgba(255, 255, 255, 0.05); /* Séparateur */
 }
 
-.category-tag {
+.motos-page .category-tag {
   color: #fff;
   background-color: #d71a17; /* Cyberpunk solid pill tag */
   padding: 4px 10px;
@@ -253,7 +253,7 @@
   display: inline-block;
 }
 
-.category-title {
+.motos-page .category-title {
   font-size: 1.7rem;
   font-weight: 850;
   color: #ffffff;
@@ -262,13 +262,13 @@
   text-transform: uppercase;
 }
 
-.category-desc {
+.motos-page .category-desc {
   font-size: 14px;
   color: #9ea3b0; /* Light blueish grey */
   margin-bottom: 30px;
 }
 
-.category-btn {
+.motos-page .category-btn {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
@@ -281,7 +281,7 @@
   letter-spacing: 1px;
 }
 
-.category-card:hover .category-btn {
+.motos-page .category-card:hover .category-btn {
   background: #d71a17; /* Button fills red upon hover intuitively */
   border-color: #d71a17;
   color: white;

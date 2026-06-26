@@ -119,6 +119,10 @@ body.light-mode .moto-detail-wrapper {
   transition: color 0.3s;
 }
 
+.breadcrumb a:hover {
+  color: #ea3f33;
+}
+
 .current-crumb {
   opacity: 0.8;
   text-transform: uppercase;

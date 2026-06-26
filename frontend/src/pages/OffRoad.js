@@ -260,6 +260,43 @@ function OffRoad() {
     }
   ];
 
+  const ssvVehicles = [
+    {
+      id: 2030,
+      name: "YXZ1000R Sport Shift",
+      category: "SSV",
+      description: "Le SSV de sport ultime de Yamaha. Moteur tricylindre de 998 cm³, palettes de changement de vitesse au volant et amortisseurs Fox 2.5 Podium RC2.",
+      price: "245 000 DH",
+      type: "vente",
+      availability: true,
+      image: "https://mifa-motors.ma/wp-content/uploads/2026/05/6161_1.jpg",
+      specs: {
+        engine: "998 cm³, 3 cylindres, 4 temps",
+        power: "N/A",
+        weight: "721 kg",
+        tank: "34 litres"
+      },
+      features: ["Palettes au volant Sport Shift", "Amortisseurs Fox 2.5 Podium", "Moteur 3 cylindres CP3", "Châssis rigide de compétition"]
+    },
+    {
+      id: 2031,
+      name: "Wolverine Limited",
+      category: "SSV",
+      description: "Polyvalence extrême pour 4 adultes. Moteur bicylindre de 999 cm³, transmission Ultramatic ultra-fiable et suspensions haut de gamme, en édition limitée.",
+      price: "265 000 DH",
+      type: "vente",
+      availability: true,
+      image: "https://mifa-motors.ma/wp-content/uploads/2026/05/6169_1.jpg",
+      specs: {
+        engine: "999 cm³, 2 cylindres, 4 temps",
+        power: "N/A",
+        weight: "928 kg",
+        tank: "35 litres"
+      },
+      features: ["Cabine 4 places modulable", "Pneus GBC Dirt Commander 30\"", "Moteur bicylindre robuste", "Mode D-Mode 3 positions", "Édition Limited exclusive"]
+    }
+  ];
+
   // Helper function to render a bike card
   const renderBike = (bike) => {
     const handleNav = (updatedBike) => {
@@ -352,6 +389,24 @@ function OffRoad() {
         </div>
         <div className="offroad-bikes-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
           {utilityQuads.map(renderBike)}
+        </div>
+
+        {/* DESIGNED SEPARATOR */}
+        <div className="offroad-designed-divider"></div>
+
+        {/* SSV BANNER */}
+        <div style={{ marginTop: '0px', marginBottom: '100px', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.5)' }}>
+            <img src="https://cdn2.yamaha-motor.eu/prod/product-assets/2025/YXZ1000E-25/2025-Yamaha-YXZ1000E-25-EU-Racing_Blue-Action-001-03.jpg" alt="Yamaha SSV YXZ1000R Action" style={{ width: '100%', display: 'block', maxHeight: '400px', objectFit: 'cover', objectPosition: 'center 35%' }} />
+        </div>
+
+        {/* SSV SECTION */}
+        <div className="offroad-section-header">
+          <h2 className="offroad-section-title">GAMME SSV</h2>
+          <span className="offroad-section-subtitle" style={{ display: 'block', color: '#ff4136', textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.9rem', fontWeight: 'bold', marginTop: '10px' }}>Véhicules Côte-à-Côte Sport & Loisir</span>
+          <div className="offroad-separator" style={{ marginTop: '15px' }}></div>
+        </div>
+        <div className="offroad-bikes-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+          {ssvVehicles.map(renderBike)}
         </div>
       </section>
     </div>
