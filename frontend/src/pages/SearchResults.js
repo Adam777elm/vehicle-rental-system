@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import API from "../services/api";
+import { resolveVehicleImage } from "../utils/imageUrl";
 import "./CSS/SearchResults.css";
 
 // --- CATALOGUE COMPLET & EXACT de tous les modèles AA Motors ---
@@ -126,7 +127,7 @@ function SearchResults() {
                                 <div className="search-card-img">
                                     <span className="cat-badge">{bike.category}</span>
                                     <img
-                                        src={bike.image?.startsWith("http") ? bike.image : `http://${window.location.hostname}:5000/uploads/${bike.image}`}
+                                        src={resolveVehicleImage(bike.image)}
                                         alt={bike.name}
                                     />
                                 </div>
