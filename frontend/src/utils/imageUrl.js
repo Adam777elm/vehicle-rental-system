@@ -8,7 +8,7 @@ export function getApiBase() {
   
   const isProduction = !isLocal;
   return isProduction
-    ? "https://vehicle-rental-system-y8jx.onrender.com"
+    ? "https://vehicle-rental-system-yeka.onrender.com"
     : `http://${window.location.hostname}:5000`;
 }
 

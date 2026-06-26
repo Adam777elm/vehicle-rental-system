@@ -11,7 +11,7 @@ const isProduction = !isLocal;
 
 const API = axios.create({
   baseURL: isProduction 
-    ? "https://vehicle-rental-system-y8jx.onrender.com/api" 
+    ? "https://vehicle-rental-system-yeka.onrender.com/api" 
     : `http://${window.location.hostname}:5000/api`,
 });
 
