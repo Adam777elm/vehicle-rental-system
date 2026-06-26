@@ -64,6 +64,8 @@ function AdminDashboard() {
       const mappedOrders = ordersRes.data.map(order => ({
         id: order._id,
         client: order.fullName || (order.user ? order.user.name : "Client inconnu"),
+        phone: order.phone || "—",
+        city: order.city || "—",
         vehicle: order.items.map(item => `${item.name} (${item.quantity}x) ${item.color && item.color !== 'Standard' ? `[${item.color}]` : ""}`).join(", "),
         price: `${order.totalPrice.toLocaleString()} DH`,
         date: new Date(order.createdAt).toISOString().split("T")[0],
@@ -81,6 +83,7 @@ function AdminDashboard() {
         return {
           id: reser._id,
           client: reser.user ? reser.user.name : "Client inconnu",
+          email: reser.user ? reser.user.email : "—",
           vehicle: reser.vehicle ? reser.vehicle.name : "Véhicule supprimé",
           dateStart: start.toISOString().split("T")[0],
           dateEnd: end.toISOString().split("T")[0],
@@ -421,6 +424,8 @@ function AdminDashboard() {
                 <tr>
                   <th>Réf Commande</th>
                   <th>Client</th>
+                  <th>Téléphone</th>
+                  <th>Ville</th>
                   <th>Moto commandée</th>
                   <th>Prix total</th>
                   <th>Date</th>
@@ -439,7 +444,19 @@ function AdminDashboard() {
                       <td>
                         <span className="table-bold-text text-neon-blue">{order.id}</span>
                       </td>
-                      <td>{order.client}</td>
+                      <td>
+                        <span className="table-bold-text">{order.client}</span>
+                      </td>
+                      <td>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#4ade80', fontWeight: 600, fontSize: '13px' }}>
+                          📞 {order.phone}
+                        </span>
+                      </td>
+                      <td>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: 'rgba(255,255,255,0.7)', fontSize: '13px' }}>
+                          📍 {order.city}
+                        </span>
+                      </td>
                       <td>{order.vehicle}</td>
                       <td>
                         <span className="table-price-text">{order.price}</span>
@@ -480,6 +497,7 @@ function AdminDashboard() {
                 <tr>
                   <th>Réf Contrat</th>
                   <th>Locataire</th>
+                  <th>Contact</th>
                   <th>Moto de location</th>
                   <th>Date début</th>
                   <th>Date fin</th>
@@ -499,7 +517,14 @@ function AdminDashboard() {
                       <td>
                         <span className="table-bold-text text-neon-blue">{rental.id}</span>
                       </td>
-                      <td>{rental.client}</td>
+                      <td>
+                        <span className="table-bold-text">{rental.client}</span>
+                      </td>
+                      <td>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#60a5fa', fontSize: '13px' }}>
+                          ✉️ {rental.email}
+                        </span>
+                      </td>
                       <td>{rental.vehicle}</td>
                       <td>{rental.dateStart}</td>
                       <td>{rental.dateEnd}</td>
