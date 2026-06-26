@@ -132,6 +132,24 @@ export function getAvailableColors(bike) {
     { name: "Bleu Fluo", value: "#0050FF",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYzdLSb6v281grqKOBs48wkgh-J7Km5TPhM3MHs0WPNA&s=10" }
   ];
+  if (name === "yamaha 195s") return [
+    { name: "Iconic Blue (Bleu Iconique)", value: "#004b87",
+      image: "https://www.yamahaboats.com/globalassets/media/my26/boats/19ft/boat-profile-images/195s_profile_hero.png" }
+  ];
+  if (name === "yamaha 222se") return [
+    { name: "Blue & Grey (Bleu et Gris)", value: "#385b75",
+      image: "https://www.yamahaboats.com/globalassets/media/my26/boats/22ft/boat-profile-images/222se_profile-b.png" }
+  ];
+  if (name === "yamaha 252s") return [
+    { name: "Grey (Gris)", value: "#8e939f",
+      image: "https://www.yamahaboats.com/globalassets/media/my26/boats/25ft/boat-profile-images/252s_profile.png" }
+  ];
+  if (name === "yamaha 257sd") return [
+    { name: "Noir (Black)", value: "#111111",
+      image: "https://www.yamahaboats.com/globalassets/media/my26/boats/27ft/boat-profile-images/275sdx_profile_hero.png" },
+    { name: "Blanc (White)", value: "#ffffff",
+      image: "https://www.yamahaboats.com/globalassets/media/my26/boats/27ft/boat-profile-images/275sdx_profile-a.png" }
+  ];
   if (category.includes("marine") || name.includes("cruiser") || name.includes("superjet") || name.includes("boat")) return [
     { name: "Cyan Metallic (Bleu Lagon)", value: "#00a8cc" },
     { name: "Competition White (Blanc Racing)", value: "#f3f4f6" },

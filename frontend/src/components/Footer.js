@@ -97,7 +97,7 @@ function Footer() {
                         <span className="subcategory-label">Marine</span>
                         <ul className="footer-links">
                             <li><Link to="/marine">Waverunner</Link></li>
-                            <li><a href="#">Waveboat</a></li>
+                            <li><Link to="/marine/waveboat">Yamaha Boats</Link></li>
                             <li><a href="#">Golf Car</a></li>
                         </ul>
                     </div>
