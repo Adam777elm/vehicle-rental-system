@@ -76,6 +76,154 @@
   transform: scale(1.05);
 }
 
+/* MEGA MENU HOVER EFFECT - INCREDIBLE 3D & NEON DESIGN */
+.nav-item-dropdown {
+  position: relative;
+  display: inline-block;
+  perspective: 1000px; /* Essential for 3D fold out effect */
+}
+
+/* Base Mega Menu State */
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: -200px; /* shift to center */
+  width: 900px;
+  background: linear-gradient(180deg, rgba(13, 19, 33, 0.98) 0%, rgba(7, 10, 18, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 25px rgba(217, 56, 56, 0.15);
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  /* 3D Transform Origin and Initial State */
+  transform-origin: top center;
+  transform: rotateX(-15deg) translateY(30px) scale(0.95);
+  transition: opacity 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              visibility 0.5s;
+  z-index: 1000;
+  border: 2px solid var(--yamaha-red);
+  border-radius: 8px;
+  padding: 10px 0;
+  overflow: hidden;
+}
+
+/* Scanning Neon Glow on Top Border */
+.mega-menu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff4d4d, #fff, transparent);
+  animation: neonScan 2s linear infinite;
+  box-shadow: 0 0 10px #ff4d4d;
+}
+
+@keyframes neonScan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* Hover State - Triggers the WOW entrance */
+.nav-item-dropdown:hover .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: rotateX(0deg) translateY(0) scale(1);
+}
+
+/* Ensure the white box extends smoothly without gap */
+.nav-item-dropdown::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  background: transparent;
+}
+
+.mega-menu-column {
+  flex: 1;
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-cats {
+  background-color: transparent;
+}
+
+.sub-cats, .extra-cats {
+  background-color: transparent;
+  border-left: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Link Base Styling */
+.mega-menu-column a {
+  position: relative;
+  color: rgba(255, 255, 255, 0.85) !important;
+  text-shadow: none !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  padding: 14px 30px !important;
+  text-transform: uppercase;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  border-bottom: 1px solid transparent;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  overflow: hidden;
+  z-index: 1;
+  transform: none !important;
+}
+
+/* Hover Slide Background Effect */
+.mega-menu-column a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(217, 56, 56, 0.2) 0%, transparent 100%);
+  border-left: 4px solid var(--yamaha-red);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: -1;
+}
+
+/* Text & Transform Shift on Hover */
+.mega-menu-column a:hover {
+  color: #fff !important;
+  transform: translateX(10px) !important; /* Slide the whole item right */
+  text-shadow: 0 0 10px rgba(217, 56, 56, 0.8) !important;
+  background-color: transparent !important;
+}
+
+.mega-menu-column a:hover::before {
+  left: 0;
+}
+
+.mega-menu-column a.highlight {
+  color: var(--yamaha-red) !important; 
+}
+
+/* Arrow Styling and Animation */
+.mega-menu-column .arrow {
+  font-weight: bold;
+  font-size: 16px;
+  color: rgba(255,255,255,0.15);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.mega-menu-column a:hover .arrow, .mega-menu-column a.highlight .arrow {
+  color: var(--yamaha-red);
+  transform: translateX(5px) scale(1.3);
+  text-shadow: 0 0 10px var(--yamaha-red);
+}
+
 /* AI AGENT */
 .ai-agent {
   display: flex;
@@ -415,8 +563,8 @@ input:checked+.slider .on-label {
 
 .suggestion-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 15px;
   padding: 12px 18px;
   cursor: pointer;
   transition: background 0.2s;
@@ -431,10 +579,25 @@ input:checked+.slider .on-label {
   background: rgba(255, 0, 0, 0.1);
 }
 
+.sug-thumb {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.05);
+}
+
+.sug-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .sug-name {
   font-size: 14px;
   font-weight: 700;
   color: white;
+  margin-bottom: 2px;
 }
 
 .sug-cat {

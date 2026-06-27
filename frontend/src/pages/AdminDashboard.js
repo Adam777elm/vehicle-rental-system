@@ -55,10 +55,10 @@ function AdminDashboard() {
     if (showSpinner) setIsRefreshing(true);
 
     try {
-      // Fetch Orders & Rentals in parallel
+      // Fetch Orders & Bookings in parallel
       const [ordersRes, rentalsRes] = await Promise.all([
         API.get("/orders", { headers: { Authorization: `Bearer ${token}` } }),
-        API.get("/reservations", { headers: { Authorization: `Bearer ${token}` } })
+        API.get("/bookings", { headers: { Authorization: `Bearer ${token}` } })
       ]);
 
       const mappedOrders = ordersRes.data.map(order => ({
@@ -74,21 +74,17 @@ function AdminDashboard() {
       setOrdersList(mappedOrders);
 
       const mappedRentals = rentalsRes.data.map(reser => {
-        const start = new Date(reser.startDate);
-        const end = new Date(reser.endDate);
-        const diffDays = Math.ceil(Math.abs(end - start) / (1000 * 60 * 60 * 24));
-        let adminStatus = "réservé";
-        if (reser.status === "confirmed") adminStatus = "en cours";
-        if (reser.status === "cancelled") adminStatus = "annulé";
         return {
           id: reser._id,
-          client: reser.user ? reser.user.name : "Client inconnu",
-          email: reser.user ? reser.user.email : "—",
-          vehicle: reser.vehicle ? reser.vehicle.name : "Véhicule supprimé",
-          dateStart: start.toISOString().split("T")[0],
-          dateEnd: end.toISOString().split("T")[0],
-          duration: `${diffDays} Jour${diffDays > 1 ? "s" : ""}`,
-          status: adminStatus
+          client: reser.nom,
+          email: reser.email,
+          phone: reser.telephone,
+          vehicle: `[${reser.type}] ${reser.destination}`,
+          dateStart: new Date(reser.createdAt).toISOString().split("T")[0],
+          dateEnd: "N/A", // Bookings form doesn't have start/end dates yet, it relies on negotiation
+          duration: reser.prixTotal ? reser.prixTotal : "Devis",
+          status: reser.status,
+          message: reser.message
         };
       });
       setRentalsList(mappedRentals);
@@ -196,20 +192,13 @@ function AdminDashboard() {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    let dbStatus = "pending";
-    if (newStatus === "en cours" || newStatus === "terminé") {
-      dbStatus = "confirmed";
-    } else if (newStatus === "annulé") {
-      dbStatus = "cancelled";
-    }
-
     try {
-      await API.put(`/reservations/${id}/status`, { status: dbStatus }, {
+      await API.put(`/bookings/${id}/status`, { status: newStatus }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setRentalsList(prev => prev.map(rental => rental.id === id ? { ...rental, status: newStatus } : rental));
     } catch (err) {
-      alert("Erreur lors de la mise à jour du statut du contrat : " + (err.response?.data?.message || err.message));
+      alert("Erreur lors de la mise à jour du statut de la location : " + (err.response?.data?.message || err.message));
     }
   };
 
@@ -495,13 +484,13 @@ function AdminDashboard() {
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>Réf Contrat</th>
-                  <th>Locataire</th>
-                  <th>Contact</th>
-                  <th>Moto de location</th>
-                  <th>Date début</th>
-                  <th>Date fin</th>
-                  <th>Durée</th>
+                  <th>Réf Résa</th>
+                  <th>Client</th>
+                  <th>Contacts</th>
+                  <th>Destination / Moto</th>
+                  <th>Date Demande</th>
+                  <th>Détails (Prix / Durée)</th>
+                  <th>Message</th>
                   <th>Statut</th>
                   <th style={{ textAlign: "right" }}>Changer Statut</th>
                 </tr>
@@ -521,14 +510,19 @@ function AdminDashboard() {
                         <span className="table-bold-text">{rental.client}</span>
                       </td>
                       <td>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#60a5fa', fontSize: '13px' }}>
-                          ✉️ {rental.email}
+                        <span style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                          <span style={{ color: '#4ade80', fontSize: '13px' }}>📞 {rental.phone}</span>
+                          <span style={{ color: '#60a5fa', fontSize: '13px' }}>✉️ {rental.email}</span>
                         </span>
                       </td>
                       <td>{rental.vehicle}</td>
                       <td>{rental.dateStart}</td>
-                      <td>{rental.dateEnd}</td>
                       <td>{rental.duration}</td>
+                      <td>
+                        <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.7)' }}>
+                          {rental.message ? (rental.message.length > 30 ? rental.message.substring(0, 30) + '...' : rental.message) : '—'}
+                        </span>
+                      </td>
                       <td>
                         <span className={`status-pill ${
                           rental.status === "terminé" ? "green" : 
@@ -544,8 +538,8 @@ function AdminDashboard() {
                           value={rental.status}
                           onChange={(e) => handleRentalStatusChange(rental.id, e.target.value)}
                         >
-                          <option value="réservé">Réservé</option>
-                          <option value="en cours">En cours</option>
+                          <option value="en attente">En attente</option>
+                          <option value="confirmé">Confirmé</option>
                           <option value="terminé">Terminé</option>
                           <option value="annulé">Annulé</option>
                         </select>

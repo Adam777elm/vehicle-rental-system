@@ -596,4 +596,173 @@ body.light-mode .success-checkout-section p {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+/* ─── PAYMENT MOCK UI ─── */
+.checkout-payment-info {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.payment-option.active {
+  border-color: #ea3f33;
+  background: rgba(234, 63, 51, 0.05);
+}
+
+.payment-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #555;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-option.active .payment-radio {
+  border-color: #ea3f33;
+}
+
+.payment-radio-dot {
+  width: 10px;
+  height: 10px;
+  background: #ea3f33;
+  border-radius: 50%;
+}
+
+.payment-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-title {
+  font-weight: 700;
+  color: #fff;
+  font-size: 15px;
+}
+
+.payment-desc {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.stripe-mock-container {
+  background: #1a1a1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 15px;
+  animation: slideUp 0.3s ease;
+}
+
+.stripe-mock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.card-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.card-icon {
+  height: 20px;
+  object-fit: contain;
+}
+
+.stripe-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stripe-input {
+  background: #232328;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 15px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  font-family: monospace;
+}
+
+.stripe-input:focus {
+  border-color: #ea3f33;
+}
+
+.stripe-row {
+  display: flex;
+  gap: 10px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  flex: 1;
+}
+
+.stripe-secure-msg {
+  font-size: 11px;
+  color: #888;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.processing-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  animation: rotate 2s linear infinite;
+}
+
+.spinner circle {
+  stroke: #fff;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes dash {
+  0% { stroke-dasharray: 1, 150; stroke-dashoffset: 0; }
+  50% { stroke-dasharray: 90, 150; stroke-dashoffset: -35; }
+  100% { stroke-dasharray: 90, 150; stroke-dashoffset: -124; }
 }

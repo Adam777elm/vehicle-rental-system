@@ -1,9 +1,9 @@
 :root {
-  --yamaha-red: #ea3f33;
-  --yamaha-blue: #0066cc;
-  --dark-bg: #050914;
-  --card-bg: rgba(255, 255, 255, 0.02);
-  --border-color: rgba(255, 255, 255, 0.08);
+  --yamaha-red: #d93838;
+  --yamaha-blue: #3b82f6;
+  --dark-bg: #0d1321;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --border-color: rgba(255, 255, 255, 0.1);
 }
 
 .home-container {
