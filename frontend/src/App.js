@@ -34,6 +34,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ConditionsDeVente from "./pages/ConditionsDeVente";
 import ConditionsDeGarantie from "./pages/ConditionsDeGarantie";
 import ServiceApresVente from "./pages/ServiceApresVente";
+import TripDetail from "./pages/TripDetail";
 import Footer from "./components/Footer";
 import PromoModal from "./components/PromoModal";
 import ScrollToTop from "./components/ScrollToTop";
@@ -141,6 +142,11 @@ function App() {
         <Route
           path="/location/:id"
           element={<RentalDetail />}
+        />
+
+        <Route
+          path="/trips/:id"
+          element={<TripDetail />}
         />
 
         <Route

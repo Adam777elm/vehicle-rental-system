@@ -137,6 +137,41 @@ export function getAvailableColors(bike) {
   ];
 
   // ── Scooters ────────────────────────────────────────────────────────────────
+  if (name === "tmax 560 tech max") return [
+    { name: "Crystal Graphite", value: "#383b3e",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/XP500ADX/2026-Yamaha-XP500ADX-EU-Crystal_Graphite-360-Degrees-001-03.jpg" },
+    { name: "Ceramic Grey", value: "#8e939f",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/XP500ADX/2026-Yamaha-XP500ADX-EU-Ceramic_Grey-360-Degrees-001-03.jpg" }
+  ];
+  if (name === "tmax 560") return [
+    { name: "Icon Blue (Bleu Icône)", value: "#004b87",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/XP500A/2026-Yamaha-XP500A-EU-Icon_Blue-360-Degrees-001-03_Mobile.jpg" },
+    { name: "Tech Kamo (Kaki)", value: "#4c5344",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/XP500A/2026-Yamaha-XP500A-EU-Tech_Kamo-360-Degrees-001-03.jpg" }
+  ];
+  if (name === "tmax 560 anniversary") return [
+    { name: "Black Max (Noir Mat)", value: "#111111",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/XP500ASV/2026-Yamaha-XP500ASV-EU-Black_MAX_-360-Degrees-001-03_Mobile.jpg" }
+  ];
+  if (name === "nmax 155 tech") return [
+    { name: "Ceramic Grey (Gris Nardo)", value: "#8e939f",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/G125YMSV/2025-Yamaha-G125YMSV-EU-Ceramic_Grey-360-Degrees-001-03_Mobile.jpg" }
+  ];
+  if (name === "nmax 125") return [
+    { name: "Icon Blue (Bleu Icône)", value: "#004b87",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/G125YM/2026-Yamaha-G125YM-EU-Icon_Blue-360-Degrees-001-03_Mobile.jpg" },
+    { name: "Milky White (Blanc)", value: "#f8f9fa",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/G125YM/2025-Yamaha-G125YM-EU-Milky_White-360-Degrees-001-03.jpg" },
+    { name: "Icon Black (Noir Mat)", value: "#111111",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/G125YM/2025-Yamaha-G125YM-EU-Icon_Black_-360-Degrees-001-03.jpg" }
+  ];
+  if (name === "xmax 300") return [
+    { name: "Tech Black (Noir Mat)", value: "#111111",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/XMAX300A/2025-Yamaha-XMAX300A-EU-Icon_Black_-360-Degrees-001-03_Mobile.jpg" },
+    { name: "Icon Blue (Bleu Icône)", value: "#004b87",
+      image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/XMAX300A/2026-Yamaha-XMAX300A-EU-Icon_Blue-360-Degrees-002-03.jpg" }
+  ];
+
   if (name.includes("tmax") || name.includes("xmax") || name.includes("nmax") || category.includes("scooter")) return [
     { name: "Dark Petrol (Vert Pétrole)", value: "#1f2e2e" },
     { name: "Tech Black (Noir Mat)", value: "#111111" },

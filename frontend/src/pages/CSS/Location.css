@@ -16,7 +16,7 @@
 .loc-red-bar {
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, #c2410c, #f97316, #c2410c);
+  background: linear-gradient(90deg, #c2410c, var(--yamaha-red), #c2410c);
 }
 
 /* ── HERO ── */
@@ -53,7 +53,7 @@
   inset: 0;
   z-index: 2;
   background:
-    radial-gradient(ellipse at center top, rgba(249, 115, 22,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at center top, rgba(217, 56, 56,0.08) 0%, transparent 60%),
     linear-gradient(to bottom, transparent 30%, #080810 100%);
 }
 
@@ -87,7 +87,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #f97316;
+  background: var(--yamaha-red);
   animation: pulse-dot 2s infinite;
 }
 
@@ -105,7 +105,7 @@
 }
 
 .loc-title-accent {
-  background: linear-gradient(135deg, #f97316, #f97316);
+  background: linear-gradient(135deg, var(--yamaha-red), var(--yamaha-red));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -156,7 +156,7 @@
   display: block;
   font-size: 1.6rem;
   font-weight: 800;
-  color: #f97316;
+  color: var(--yamaha-red);
   line-height: 1;
   margin-bottom: 4px;
 }
@@ -180,7 +180,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, #ea580c, #f97316);
+  background: linear-gradient(135deg, #b3140e, var(--yamaha-red));
   color: #fff;
   border: none;
   padding: 14px 28px;
@@ -191,13 +191,13 @@
   cursor: pointer;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(249, 115, 22,0.3);
+  box-shadow: 0 4px 20px rgba(217, 56, 56,0.3);
 }
 
 .loc-btn-primary:hover {
-  background: linear-gradient(135deg, #f97316, #f97316);
+  background: linear-gradient(135deg, var(--yamaha-red), var(--yamaha-red));
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(249, 115, 22,0.4);
+  box-shadow: 0 8px 30px rgba(217, 56, 56,0.4);
 }
 
 .loc-btn-outline {
@@ -284,7 +284,7 @@
   display: inline-block;
   font-size: 11px;
   font-weight: 700;
-  color: #f97316;
+  color: var(--yamaha-red);
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 12px;
@@ -315,7 +315,7 @@
 .loc-separator-diamond {
   width: 8px;
   height: 8px;
-  background: #f97316;
+  background: var(--yamaha-red);
   transform: rotate(45deg);
 }
 
@@ -359,10 +359,10 @@
 }
 
 .loc-filter-btn.active {
-  background: linear-gradient(135deg, #ea580c, #f97316);
+  background: linear-gradient(135deg, #b3140e, var(--yamaha-red));
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 4px 16px rgba(249, 115, 22,0.3);
+  box-shadow: 0 4px 16px rgba(217, 56, 56,0.3);
 }
 
 .loc-filter-count {
@@ -399,10 +399,10 @@
 .loc-bike-card:hover,
 .loc-bike-card.hovered {
   transform: translateY(-10px);
-  border-color: rgba(249, 115, 22,0.25);
+  border-color: rgba(217, 56, 56,0.25);
   box-shadow:
     0 20px 50px rgba(0,0,0,0.5),
-    0 0 0 1px rgba(249, 115, 22,0.15),
+    0 0 0 1px rgba(217, 56, 56,0.15),
     inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
@@ -471,7 +471,7 @@
   position: absolute;
   bottom: 14px;
   right: 14px;
-  background: rgba(249, 115, 22,0.9);
+  background: rgba(217, 56, 56,0.9);
   color: #fff;
   font-size: 11px;
   font-weight: 700;
@@ -502,7 +502,7 @@
 
 .loc-bike-category {
   font-size: 11px;
-  color: #f97316;
+  color: var(--yamaha-red);
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 700;
@@ -567,11 +567,11 @@
 .loc-bike-price {
   font-size: 1rem;
   font-weight: 800;
-  color: #f97316;
+  color: var(--yamaha-red);
 }
 
 .loc-reserve-btn {
-  background: linear-gradient(135deg, #ea580c, #f97316);
+  background: linear-gradient(135deg, #b3140e, var(--yamaha-red));
   color: #fff;
   border: none;
   padding: 9px 18px;
@@ -582,12 +582,12 @@
   transition: all 0.25s ease;
   letter-spacing: 0.3px;
   font-family: "Inter", sans-serif;
-  box-shadow: 0 4px 12px rgba(249, 115, 22,0.25);
+  box-shadow: 0 4px 12px rgba(217, 56, 56,0.25);
 }
 
 .loc-reserve-btn:hover:not(.disabled) {
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(249, 115, 22,0.4);
+  box-shadow: 0 6px 20px rgba(217, 56, 56,0.4);
 }
 
 .loc-reserve-btn.disabled {
@@ -695,7 +695,7 @@
   display: inline-block;
   font-size: 10px;
   font-weight: 700;
-  color: #f97316;
+  color: var(--yamaha-red);
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 12px;
@@ -734,7 +734,7 @@
   position: absolute;
   top: 0; left: 0;
   width: 4px; height: 100%;
-  background: linear-gradient(to bottom, #f97316, #f97316);
+  background: linear-gradient(to bottom, var(--yamaha-red), var(--yamaha-red));
 }
 
 .loc-trips-icon {
@@ -824,7 +824,7 @@
 
   .loc-trips-teaser::before {
     width: 100%; height: 4px;
-    background: linear-gradient(to right, #f97316, #f97316);
+    background: linear-gradient(to right, var(--yamaha-red), var(--yamaha-red));
   }
 }
 
@@ -848,16 +848,16 @@
 .trips-separator .separator-line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.8), transparent);
+  background: linear-gradient(90deg, transparent, rgba(217, 56, 56, 0.8), transparent);
 }
 
 .trips-separator .separator-diamond {
   width: 12px;
   height: 12px;
-  background-color: #f97316;
+  background-color: var(--yamaha-red);
   transform: rotate(45deg);
   margin: 0 30px;
-  box-shadow: 0 0 15px 3px rgba(249, 115, 22, 0.8);
+  box-shadow: 0 0 15px 3px rgba(217, 56, 56, 0.8);
 }
 
 /* SECTION HEADER */
@@ -868,7 +868,7 @@
 
 .trips-section-tag {
   display: inline-block;
-  background: rgba(249, 115, 22, 0.15);
+  background: rgba(217, 56, 56, 0.15);
   color: #ff843a;
   padding: 6px 16px;
   border-radius: 20px;
@@ -917,8 +917,8 @@
 
 .trips-featured-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.55), 0 0 30px rgba(249, 115, 22, 0.12);
-  border-color: rgba(249, 115, 22, 0.3);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.55), 0 0 30px rgba(217, 56, 56, 0.12);
+  border-color: rgba(217, 56, 56, 0.3);
 }
 
 .trips-featured-card-content {
@@ -971,7 +971,7 @@
 .trips-price-value {
   font-size: 1.8rem;
   font-weight: 900;
-  color: #f97316;
+  color: var(--yamaha-red);
 }
 
 .trips-price-unit {
@@ -989,7 +989,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, #ea580c, #f97316);
+  background: linear-gradient(135deg, #b3140e, var(--yamaha-red));
   color: #fff;
   border: none;
   padding: 14px 28px;
@@ -1000,13 +1000,13 @@
   cursor: pointer;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.25);
+  box-shadow: 0 4px 15px rgba(217, 56, 56, 0.25);
 }
 
 .trips-btn-primary:hover {
-  background: linear-gradient(135deg, #f97316, #f97316);
+  background: linear-gradient(135deg, var(--yamaha-red), var(--yamaha-red));
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35);
+  box-shadow: 0 6px 20px rgba(217, 56, 56, 0.35);
 }
 
 .trips-btn-secondary {
@@ -1073,22 +1073,38 @@
 }
 
 .trip-package-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.4) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
   position: relative;
   display: flex;
   flex-direction: column;
+  backdrop-filter: blur(10px);
+}
+
+.trip-package-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--yamaha-red), transparent);
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+  z-index: 10;
 }
 
 .trip-package-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 20px rgba(249, 115, 22, 0.1);
-  border-color: rgba(249, 115, 22, 0.3);
-  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-15px);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 30px rgba(217, 56, 56, 0.15);
+  border-color: rgba(217, 56, 56, 0.4);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.trip-package-card:hover::before {
+  transform: scaleX(1);
 }
 
 .trip-package-image {
@@ -1147,7 +1163,7 @@
 
 .trip-package-tag {
   display: inline-block;
-  color: #f97316;
+  color: var(--yamaha-red);
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 1.5px;
@@ -1182,7 +1198,7 @@
 .trip-package-price {
   font-size: 1.2rem;
   font-weight: 900;
-  color: #f97316;
+  color: var(--yamaha-red);
 }
 
 .trip-package-price span {
@@ -1206,9 +1222,9 @@
 }
 
 .trip-package-card:hover .trip-package-btn {
-  background: #f97316;
-  border-color: #f97316;
-  box-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
+  background: var(--yamaha-red);
+  border-color: var(--yamaha-red);
+  box-shadow: 0 0 15px rgba(217, 56, 56, 0.4);
 }
 
 /* COMING SOON BANNER */
@@ -1236,11 +1252,11 @@
   position: absolute;
   top: 0; left: 0;
   width: 4px; height: 100%;
-  background: linear-gradient(to bottom, #f97316, #f97316);
+  background: linear-gradient(to bottom, var(--yamaha-red), var(--yamaha-red));
 }
 
 .trips-coming-soon-banner:hover {
-  border-color: rgba(249, 115, 22, 0.25);
+  border-color: rgba(217, 56, 56, 0.25);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
@@ -1265,14 +1281,14 @@
 
 .trips-coming-soon-tag {
   font-size: 0.65rem;
-  background: rgba(249, 115, 22, 0.15);
-  color: #f97316;
+  background: rgba(217, 56, 56, 0.15);
+  color: var(--yamaha-red);
   padding: 3px 10px;
   border-radius: 20px;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  border: 1px solid rgba(249, 115, 22, 0.3);
+  border: 1px solid rgba(217, 56, 56, 0.3);
 }
 
 .trips-coming-soon-desc {
@@ -1298,9 +1314,9 @@
 }
 
 .trips-coming-soon-btn:hover {
-  background: #f97316;
-  border-color: #f97316;
-  box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+  background: var(--yamaha-red);
+  border-color: var(--yamaha-red);
+  box-shadow: 0 0 20px rgba(217, 56, 56, 0.4);
   transform: translateY(-2px);
 }
 
@@ -1326,20 +1342,20 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #f97316, #f97316, #f97316);
+  background: linear-gradient(90deg, var(--yamaha-red), var(--yamaha-red), var(--yamaha-red));
 }
 
 .trips-contact-icon {
   width: 60px;
   height: 60px;
-  background: rgba(249, 115, 22, 0.08);
+  background: rgba(217, 56, 56, 0.08);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
   font-size: 26px;
-  border: 1px solid rgba(249, 115, 22, 0.2);
+  border: 1px solid rgba(217, 56, 56, 0.2);
 }
 
 .trips-contact-title {
@@ -1405,8 +1421,8 @@
 .trips-form-group input:focus,
 .trips-form-group select:focus,
 .trips-form-group textarea:focus {
-  border-color: rgba(249, 115, 22, 0.5);
-  box-shadow: 0 0 15px rgba(249, 115, 22, 0.1);
+  border-color: rgba(217, 56, 56, 0.5);
+  box-shadow: 0 0 15px rgba(217, 56, 56, 0.1);
   background: rgba(255, 255, 255, 0.05);
 }
 

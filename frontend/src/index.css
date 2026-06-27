@@ -1,18 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;800;900&display=swap");
 
 :root {
-  --bg-dark: #050914;
-  --bg-dark-deep: #02040a;
-  --bg-card: rgba(255, 255, 255, 0.02);
-  --border-card: rgba(255, 255, 255, 0.06);
-  --yamaha-red: #ea3f33;
-  --yamaha-red-glow: rgba(234, 63, 51, 0.4);
-  --neon-blue: #0066cc;
-  --neon-blue-glow: rgba(0, 102, 204, 0.4);
+  --bg-dark: #0d1321; /* Slightly lighter, richer deep navy/slate to reduce harsh darkness */
+  --bg-dark-deep: #070a12;
+  --bg-card: rgba(255, 255, 255, 0.04); /* More visible cards to break the dark monotony */
+  --border-card: rgba(255, 255, 255, 0.08);
+  --yamaha-red: #d93838; /* A softer, more premium red that doesn't hurt the eyes */
+  --yamaha-red-glow: rgba(217, 56, 56, 0.25); /* Softer glow */
+  --neon-blue: #3b82f6; /* Inviting, softer blue */
+  --neon-blue-glow: rgba(59, 130, 246, 0.25);
   --font-wow: 'Inter', 'Outfit', sans-serif;
   --transition-wow: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   --glow-shadow-red: 0 10px 30px var(--yamaha-red-glow);
-  --glass-bg: rgba(11, 26, 43, 0.65);
+  --glass-bg: rgba(13, 19, 33, 0.75); /* Richer glass effect */
 }
 
 * {

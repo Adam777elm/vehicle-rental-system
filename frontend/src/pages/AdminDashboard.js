@@ -33,6 +33,7 @@ function AdminDashboard() {
   const [marketplaceList, setMarketplaceList] = useState(INITIAL_MARKETPLACE);
   const [ordersList, setOrdersList] = useState([]);
   const [rentalsList, setRentalsList] = useState([]);
+  const [tripsList, setTripsList] = useState([]);
   const [lastUpdated, setLastUpdated] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -55,10 +56,11 @@ function AdminDashboard() {
     if (showSpinner) setIsRefreshing(true);
 
     try {
-      // Fetch Orders & Rentals in parallel
-      const [ordersRes, rentalsRes] = await Promise.all([
+      // Fetch Orders, Rentals & Bookings (Trips) in parallel
+      const [ordersRes, rentalsRes, tripsRes] = await Promise.all([
         API.get("/orders", { headers: { Authorization: `Bearer ${token}` } }),
-        API.get("/reservations", { headers: { Authorization: `Bearer ${token}` } })
+        API.get("/reservations", { headers: { Authorization: `Bearer ${token}` } }),
+        API.get("/bookings", { headers: { Authorization: `Bearer ${token}` } })
       ]);
 
       const mappedOrders = ordersRes.data.map(order => ({
@@ -92,6 +94,22 @@ function AdminDashboard() {
         };
       });
       setRentalsList(mappedRentals);
+
+      const mappedTrips = tripsRes.data.map(reser => {
+        return {
+          id: reser._id,
+          client: reser.nom,
+          email: reser.email,
+          phone: reser.telephone,
+          vehicle: `[${reser.type}] ${reser.destination}`,
+          dateStart: new Date(reser.createdAt).toISOString().split("T")[0],
+          dateEnd: "N/A", // Bookings form doesn't have start/end dates yet
+          duration: reser.prixTotal ? reser.prixTotal : "Devis",
+          status: reser.status,
+          message: reser.message
+        };
+      });
+      setTripsList(mappedTrips);
       setLastUpdated(new Date());
     } catch (err) {
       console.error("Error fetching admin data:", err);
@@ -209,7 +227,21 @@ function AdminDashboard() {
       });
       setRentalsList(prev => prev.map(rental => rental.id === id ? { ...rental, status: newStatus } : rental));
     } catch (err) {
-      alert("Erreur lors de la mise à jour du statut du contrat : " + (err.response?.data?.message || err.message));
+      alert("Erreur lors de la mise à jour du statut de la location : " + (err.response?.data?.message || err.message));
+    }
+  };
+
+  const handleTripStatusChange = async (id, newStatus) => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+      await API.put(`/bookings/${id}/status`, { status: newStatus }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setTripsList(prev => prev.map(trip => trip.id === id ? { ...trip, status: newStatus } : trip));
+    } catch (err) {
+      alert("Erreur lors de la mise à jour du statut de la réservation trip : " + (err.response?.data?.message || err.message));
     }
   };
 
@@ -229,6 +261,12 @@ function AdminDashboard() {
     rental.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
     rental.vehicle.toLowerCase().includes(searchQuery.toLowerCase()) ||
     rental.id.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredTrips = tripsList.filter(trip => 
+    trip.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    trip.vehicle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    trip.id.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -323,7 +361,13 @@ function AdminDashboard() {
               className={`admin-tab-btn ${activeTab === "rentals" ? "active" : ""}`}
               onClick={() => setActiveTab("rentals")}
             >
-              Contrats Location ({rentalsList.length})
+              Locations Motos ({rentalsList.length})
+            </button>
+            <button 
+              className={`admin-tab-btn ${activeTab === "trips" ? "active" : ""}`}
+              onClick={() => setActiveTab("trips")}
+            >
+              Réservations Trips ({tripsList.length})
             </button>
           </div>
 
@@ -495,12 +539,12 @@ function AdminDashboard() {
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>Réf Contrat</th>
-                  <th>Locataire</th>
-                  <th>Contact</th>
-                  <th>Moto de location</th>
-                  <th>Date début</th>
-                  <th>Date fin</th>
+                  <th>Réf Résa</th>
+                  <th>Client</th>
+                  <th>Contact Email</th>
+                  <th>Moto Louée</th>
+                  <th>Date Début</th>
+                  <th>Date Fin</th>
                   <th>Durée</th>
                   <th>Statut</th>
                   <th style={{ textAlign: "right" }}>Changer Statut</th>
@@ -509,7 +553,7 @@ function AdminDashboard() {
               <tbody>
                 {filteredRentals.length === 0 ? (
                   <tr>
-                    <td colSpan="8" className="no-records">Aucune location trouvée.</td>
+                    <td colSpan="9" className="no-records">Aucune location trouvée.</td>
                   </tr>
                 ) : (
                   filteredRentals.map((rental) => (
@@ -521,9 +565,7 @@ function AdminDashboard() {
                         <span className="table-bold-text">{rental.client}</span>
                       </td>
                       <td>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#60a5fa', fontSize: '13px' }}>
-                          ✉️ {rental.email}
-                        </span>
+                        <span style={{ color: '#60a5fa', fontSize: '13px' }}>✉️ {rental.email}</span>
                       </td>
                       <td>{rental.vehicle}</td>
                       <td>{rental.dateStart}</td>
@@ -531,11 +573,11 @@ function AdminDashboard() {
                       <td>{rental.duration}</td>
                       <td>
                         <span className={`status-pill ${
-                          rental.status === "terminé" ? "green" : 
-                          rental.status === "en cours" ? "blue" : 
+                          rental.status === "en cours" ? "green" : 
+                          rental.status === "réservé" ? "blue" : 
                           rental.status === "annulé" ? "red" : "yellow"
                         }`}>
-                          {rental.status === "réservé" ? "réservé" : rental.status}
+                          {rental.status}
                         </span>
                       </td>
                       <td style={{ textAlign: "right" }}>
@@ -546,6 +588,78 @@ function AdminDashboard() {
                         >
                           <option value="réservé">Réservé</option>
                           <option value="en cours">En cours</option>
+                          <option value="terminé">Terminé</option>
+                          <option value="annulé">Annulé</option>
+                        </select>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          )}
+
+          {/* TAB 4: TRIPS */}
+          {activeTab === "trips" && (
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Réf Résa</th>
+                  <th>Client</th>
+                  <th>Contacts</th>
+                  <th>Destination / Moto</th>
+                  <th>Date Demande</th>
+                  <th>Détails (Prix / Durée)</th>
+                  <th>Message</th>
+                  <th>Statut</th>
+                  <th style={{ textAlign: "right" }}>Changer Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredTrips.length === 0 ? (
+                  <tr>
+                    <td colSpan="9" className="no-records">Aucune réservation de trip trouvée.</td>
+                  </tr>
+                ) : (
+                  filteredTrips.map((trip) => (
+                    <tr key={trip.id}>
+                      <td>
+                        <span className="table-bold-text text-neon-blue">{trip.id}</span>
+                      </td>
+                      <td>
+                        <span className="table-bold-text">{trip.client}</span>
+                      </td>
+                      <td>
+                        <span style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                          <span style={{ color: '#4ade80', fontSize: '13px' }}>📞 {trip.phone}</span>
+                          <span style={{ color: '#60a5fa', fontSize: '13px' }}>✉️ {trip.email}</span>
+                        </span>
+                      </td>
+                      <td>{trip.vehicle}</td>
+                      <td>{trip.dateStart}</td>
+                      <td>{trip.duration}</td>
+                      <td>
+                        <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.7)' }}>
+                          {trip.message ? (trip.message.length > 30 ? trip.message.substring(0, 30) + '...' : trip.message) : '—'}
+                        </span>
+                      </td>
+                      <td>
+                        <span className={`status-pill ${
+                          trip.status === "terminé" ? "green" : 
+                          trip.status === "confirmé" ? "blue" : 
+                          trip.status === "annulé" ? "red" : "yellow"
+                        }`}>
+                          {trip.status === "pending" ? "en attente" : trip.status}
+                        </span>
+                      </td>
+                      <td style={{ textAlign: "right" }}>
+                        <select 
+                          className="table-select"
+                          value={trip.status}
+                          onChange={(e) => handleTripStatusChange(trip.id, e.target.value)}
+                        >
+                          <option value="pending">En attente</option>
+                          <option value="confirmé">Confirmé</option>
                           <option value="terminé">Terminé</option>
                           <option value="annulé">Annulé</option>
                         </select>

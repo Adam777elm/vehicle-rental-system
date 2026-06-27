@@ -229,9 +229,43 @@ function Navbar() {
             <div className="nav-center">
                 <div className="nav-pill">
                     <Link to="/">ACCUEIL</Link>
-                    <Link to="/motos">ROUTE</Link>
+                    <div className="nav-item-dropdown">
+                        <Link to="/motos" className="dropdown-trigger">ROUTE</Link>
+                        <div className="mega-menu">
+                            <div className="mega-menu-column main-cats">
+                                <Link to="/motos">MOTORCYCLES <span className="arrow">&gt;</span></Link>
+                            </div>
+                            <div className="mega-menu-column sub-cats">
+                                <Link to="/motos/supersport">Supersport <span className="arrow">&gt;</span></Link>
+                                <Link to="/motos/roadster">Hyper Naked <span className="arrow">&gt;</span></Link>
+                                <Link to="/motos/sport-touring">Sport Touring <span className="arrow">&gt;</span></Link>
+                                <Link to="/motos/off-road">Off Road <span className="arrow">&gt;</span></Link>
+                            </div>
+                            <div className="mega-menu-column extra-cats">
+                                <Link to="/motos/scooters">Sport Scooters <span className="arrow">&gt;</span></Link>
+                            </div>
+                        </div>
+                    </div>
                     <Link to="/location-trips">LOCATION & TRIPS</Link>
-                    <Link to="/marine">MARINE</Link>
+                    <div className="nav-item-dropdown">
+                        <Link to="/marine" className="dropdown-trigger">MARINE</Link>
+                        <div className="mega-menu mega-menu-marine">
+                            <div className="mega-menu-column main-cats">
+                                <Link to="/marine/waverunner">WAVERUNNERS <span className="arrow">&gt;</span></Link>
+                                <Link to="/marine/waveboat">BOATS <span className="arrow">&gt;</span></Link>
+                                <Link to="/marine">MARINE ENGINES <span className="arrow">&gt;</span></Link>
+                            </div>
+                            <div className="mega-menu-column sub-cats">
+                                <Link to="/marine/superjet">Sport <span className="arrow">&gt;</span></Link>
+                                <Link to="/marine/waverunner">Cruising <span className="arrow">&gt;</span></Link>
+                                <Link to="/marine/waverunner">Recreation <span className="arrow">&gt;</span></Link>
+                            </div>
+                            <div className="mega-menu-column extra-cats">
+                                <Link to="/marine">Accessoires <span className="arrow">&gt;</span></Link>
+                                <Link to="/marine">Pièces d'Origine <span className="arrow">&gt;</span></Link>
+                            </div>
+                        </div>
+                    </div>
                     <Link to="/marketplace">MARKETPLACE</Link>
                     <Link to="/about">POLITIQUES DE QUALITÉ</Link>
                 </div>
@@ -287,8 +321,11 @@ function Navbar() {
                                                 className="suggestion-item"
                                                 onMouseDown={() => handleSuggestionClick(v)}
                                             >
-                                                <span className="sug-name">{v.name}</span>
-                                                <span className="sug-cat">{v.category}</span>
+                                                <img src={v.image} alt={v.name} className="sug-thumb" />
+                                                <div className="sug-info">
+                                                    <span className="sug-name">{v.name}</span>
+                                                    <span className="sug-cat">{v.category}</span>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>

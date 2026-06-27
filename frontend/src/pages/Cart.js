@@ -13,6 +13,8 @@ function Cart() {
   // Checkout Modal State
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("cod"); // "cod" or "card"
+  const [isProcessingCard, setIsProcessingCard] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
@@ -102,6 +104,13 @@ function Cart() {
     }
 
     try {
+      if (paymentMethod === "card") {
+        setIsProcessingCard(true);
+        // Simulate Stripe API call delay
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        setIsProcessingCard(false);
+      }
+
       // Save order in backend database
       await API.post(
         "/orders",
@@ -121,7 +130,8 @@ function Cart() {
           phone: formData.phone,
           city: formData.city,
           address: formData.address,
-          note: formData.note
+          note: formData.note,
+          paymentMethod: paymentMethod === "card" ? "Carte Bancaire" : "Paiement à la livraison"
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -141,7 +151,7 @@ ${formData.note.trim() ? `• Note : ${formData.note}\n` : ""}
 ${cartItems.map(item => `• ${item.name} (${item.quantity}x) ${item.color ? `[Couleur : ${item.color}]` : ""} - ${item.price}`).join("\n")}
 
 💵 *Total :* ${finalTotal.toLocaleString()} DHS
-Mode de paiement : Paiement à la livraison
+Mode de paiement : ${paymentMethod === "card" ? "Carte Bancaire (Payé en ligne)" : "Paiement à la livraison"}
 
 Merci de me confirmer la réception de ma commande.`;
 
@@ -156,6 +166,7 @@ Merci de me confirmer la réception de ma commande.`;
       // Open WhatsApp
       window.open(whatsappLink, "_blank");
     } catch (err) {
+      setIsProcessingCard(false);
       setCheckoutError(
         err.response?.data?.message || "Impossible d'enregistrer votre commande. Réessayez ou contactez-nous sur WhatsApp."
       );
@@ -325,13 +336,62 @@ Merci de me confirmer la réception de ma commande.`;
               </div>
 
               <div className="checkout-payment-info">
-                <span>💵 Mode de paiement : <strong>Paiement à la livraison (Cash on Delivery)</strong></span>
+                <label style={{ fontSize: "13px", fontWeight: "700", color: "#aaa", textTransform: "uppercase", marginBottom: "10px", display: "block" }}>Mode de paiement *</label>
+                
+                <div className="payment-options">
+                  <div className={`payment-option ${paymentMethod === "cod" ? "active" : ""}`} onClick={() => setPaymentMethod("cod")}>
+                    <div className="payment-radio">
+                      {paymentMethod === "cod" && <div className="payment-radio-dot"></div>}
+                    </div>
+                    <div className="payment-text">
+                      <span className="payment-title">💵 Paiement à la livraison</span>
+                      <span className="payment-desc">Payez en espèces lors de la réception.</span>
+                    </div>
+                  </div>
+                  
+                  <div className={`payment-option ${paymentMethod === "card" ? "active" : ""}`} onClick={() => setPaymentMethod("card")}>
+                    <div className="payment-radio">
+                      {paymentMethod === "card" && <div className="payment-radio-dot"></div>}
+                    </div>
+                    <div className="payment-text">
+                      <span className="payment-title">💳 Carte Bancaire</span>
+                      <span className="payment-desc">Paiement sécurisé via notre partenaire.</span>
+                    </div>
+                  </div>
+                </div>
+
+                {paymentMethod === "card" && (
+                  <div className="stripe-mock-container">
+                    <div className="stripe-mock-header">
+                      <span>Détails de la carte</span>
+                      <div className="card-icons">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png" alt="MC" className="card-icon" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png" alt="Visa" className="card-icon" />
+                      </div>
+                    </div>
+                    <div className="stripe-input-group">
+                      <input type="text" placeholder="Numéro de carte" className="stripe-input full-width" maxLength="19" />
+                      <div className="stripe-row">
+                        <input type="text" placeholder="MM / AA" className="stripe-input half-width" maxLength="5" />
+                        <input type="text" placeholder="CVC" className="stripe-input half-width" maxLength="3" />
+                      </div>
+                    </div>
+                    <p className="stripe-secure-msg">🔒 Les données sont chiffrées de bout en bout.</p>
+                  </div>
+                )}
               </div>
 
               {checkoutError && <p className="checkout-error-msg">{checkoutError}</p>}
 
-              <button type="submit" className="checkout-submit-btn">
-                CONFIRMER ET ENVOYER SUR WHATSAPP →
+              <button type="submit" className="checkout-submit-btn" disabled={isProcessingCard}>
+                {isProcessingCard ? (
+                  <span className="processing-text">
+                    <svg className="spinner" viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle></svg>
+                    TRAITEMENT...
+                  </span>
+                ) : (
+                  paymentMethod === "card" ? "PAYER ET CONFIRMER →" : "CONFIRMER ET ENVOYER SUR WHATSAPP →"
+                )}
               </button>
             </form>
           </div>

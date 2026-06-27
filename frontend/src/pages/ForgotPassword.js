@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import API from "../services/api";
 import "./CSS/ForgotPassword.css";
 
 function ForgotPassword() {
@@ -22,20 +23,23 @@ function ForgotPassword() {
     }, 2500);
   };
 
-  const handleSendCode = (e) => {
+  const handleSendCode = async (e) => {
     e.preventDefault();
     if (!email || !email.includes("@")) {
       showToast("Veuillez entrer une adresse email valide.", "error");
       return;
     }
 
-    // Simulate sending email verification code
-    const generated = Math.floor(100000 + Math.random() * 900000).toString();
-    setGeneratedCode(generated);
-    console.log("DEMO RECOVERY CODE:", generated); // For testing visibility
-
-    showToast("Un code de vérification a été envoyé par email.", "success");
-    setStep(2);
+    try {
+      const { data } = await API.post("/users/forgot-password", { email });
+      setGeneratedCode(data.code);
+      console.log("DEMO RECOVERY CODE (from backend):", data.code);
+      
+      showToast("Un code de vérification a été envoyé par email.", "success");
+      setStep(2);
+    } catch (error) {
+      showToast(error.response?.data?.message || "Erreur lors de l'envoi de l'email.", "error");
+    }
   };
 
   const handleVerifyCode = (e) => {
