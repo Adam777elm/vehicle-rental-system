@@ -1,0 +1,710 @@
+/* 
+  TRIP DETAIL - ULTRA PREMIUM REDESIGN 
+  Aesthetics: Glassmorphism, Deep Space Dark Mode, Neon Yamaha Red, Cinematic Depth
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap');
+
+.trip-detail-page {
+  padding: 120px 5% 80px;
+  background: radial-gradient(circle at 50% 0%, #1a1015 0%, #050914 100%);
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtly animated background glow */
+.trip-detail-page::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(217, 56, 56, 0.08) 0%, transparent 60%);
+  filter: blur(100px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.trip-detail-page::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+  filter: blur(100px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ensure content stays above background glows */
+.trip-detail-header, .trip-detail-top-grid, .trip-bloc-3-config {
+  position: relative;
+  z-index: 10;
+}
+
+.trip-detail-header {
+  text-align: center;
+  margin-bottom: 60px;
+  animation: slideDownFade 0.8s ease-out forwards;
+}
+
+@keyframes slideDownFade {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.trip-detail-header h1 {
+  font-size: 4.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #ffffff 0%, #a0a5b5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
+  line-height: 1.1;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.trip-tag {
+  display: inline-block;
+  background: linear-gradient(90deg, rgba(217,56,56,0.1) 0%, rgba(217,56,56,0.2) 100%);
+  color: var(--yamaha-red);
+  padding: 8px 24px;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  border: 1px solid rgba(217, 56, 56, 0.3);
+  box-shadow: 0 0 20px rgba(217, 56, 56, 0.2);
+  text-transform: uppercase;
+}
+
+.trip-detail-top-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1200px) {
+  .trip-detail-top-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Glassmorphism Card Base */
+.glass-card {
+  background: rgba(20, 25, 35, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 30px;
+}
+
+/* BLOC 1: Images */
+.trip-bloc-1-images {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: slideRightFade 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+@keyframes slideRightFade {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.trip-main-image-container {
+  width: 100%;
+  height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.trip-main-image-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5,9,20,0.8) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.trip-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.trip-main-image-container:hover .trip-main-image {
+  transform: scale(1.05);
+}
+
+.trip-thumbnails {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.trip-thumbnails::-webkit-scrollbar {
+  height: 4px;
+}
+.trip-thumbnails::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+
+.trip-thumb {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  opacity: 0.5;
+  border: 2px solid transparent;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex-shrink: 0;
+}
+
+.trip-thumb:hover {
+  opacity: 0.8;
+  transform: translateY(-3px);
+}
+
+.trip-thumb.active {
+  opacity: 1;
+  border-color: var(--yamaha-red);
+  box-shadow: 0 10px 20px rgba(217, 56, 56, 0.3);
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* BLOC 2: Map & Stats */
+.trip-bloc-2-map {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  animation: slideLeftFade 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+@keyframes slideLeftFade {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.trip-map-container {
+  width: 100%;
+  height: 350px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.trip-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.trip-stat-item {
+  background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.trip-stat-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--yamaha-red);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+  transform-origin: bottom;
+}
+
+.trip-stat-item:hover {
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.trip-stat-item:hover::before {
+  transform: scaleY(1);
+}
+
+.stat-icon {
+  font-size: 1.8rem;
+  background: rgba(217, 56, 56, 0.1);
+  width: 50px; height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid rgba(217, 56, 56, 0.2);
+}
+
+.stat-text strong {
+  display: block;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.stat-text span {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* BLOC 3: Configuration */
+.trip-bloc-3-config {
+  padding: 50px;
+  animation: slideUpFade 0.8s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.trip-bloc-3-config h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.trip-bloc-3-config p {
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 40px;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+.moto-choice-toggle {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+  background: rgba(0,0,0,0.2);
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.choice-btn {
+  flex: 1;
+  padding: 25px;
+  background: transparent;
+  border: 2px solid transparent;
+  color: rgba(255,255,255,0.6);
+  border-radius: 14px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.choice-btn:hover {
+  background: rgba(255,255,255,0.03);
+  color: #fff;
+}
+
+.choice-btn.active {
+  background: linear-gradient(135deg, rgba(217, 56, 56, 0.15) 0%, rgba(217, 56, 56, 0.05) 100%);
+  border-color: var(--yamaha-red);
+  color: #fff;
+  box-shadow: 0 15px 30px rgba(217, 56, 56, 0.15);
+  transform: scale(1.02);
+}
+
+.rental-motos-slider h3 {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.rental-motos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.rental-moto-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.3) 100%);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 25px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.rental-moto-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--yamaha-red);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.rental-moto-card img {
+  width: 100%;
+  height: 130px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  transition: transform 0.5s ease;
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));
+}
+
+.rental-moto-card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.rental-moto-card p {
+  color: var(--yamaha-red);
+  font-weight: 700;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.rental-moto-card:hover {
+  transform: translateY(-10px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.5) 100%);
+  border-color: rgba(255,255,255,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.rental-moto-card:hover img {
+  transform: scale(1.1) translateY(-5px);
+}
+
+.rental-moto-card.selected {
+  border-color: var(--yamaha-red);
+  background: linear-gradient(180deg, rgba(217, 56, 56, 0.1) 0%, rgba(0,0,0,0.4) 100%);
+  box-shadow: 0 20px 40px rgba(217, 56, 56, 0.2);
+}
+
+.rental-moto-card.selected::before {
+  transform: scaleX(1);
+}
+
+/* Booking Summary & Form */
+.trip-booking-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  background: rgba(0,0,0,0.4);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.03);
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .trip-booking-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summary-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-details h3, .trip-booking-form h3 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: #fff;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.summary-details h3::before, .trip-booking-form h3::before {
+  content: '';
+  width: 4px;
+  height: 24px;
+  background: var(--yamaha-red);
+  border-radius: 4px;
+}
+
+.summary-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+  flex-grow: 1;
+}
+
+.summary-details li {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.1);
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.summary-details li span {
+  font-weight: 800;
+  color: #fff;
+}
+
+.total-price {
+  font-size: 2rem;
+  font-weight: 900;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(217,56,56,0.1) 0%, transparent 100%);
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 4px solid var(--yamaha-red);
+}
+
+.total-price span {
+  color: var(--yamaha-red);
+  font-size: 2.5rem;
+}
+
+.trip-booking-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.trip-booking-form .form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.trip-booking-form input, .trip-booking-form textarea {
+  width: 100%;
+  padding: 18px 20px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #fff;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.trip-booking-form input:focus, .trip-booking-form textarea:focus {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(217,56,56,0.5);
+  box-shadow: 0 0 20px rgba(217,56,56,0.1);
+  outline: none;
+}
+
+.trip-booking-form textarea {
+  min-height: 120px;
+  margin-bottom: 30px;
+  resize: vertical;
+}
+
+.btn-confirm-booking {
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(135deg, #d93838 0%, #b3140e 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(217, 56, 56, 0.3);
+  margin-top: auto;
+}
+
+.btn-confirm-booking:hover:not(:disabled) {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(217, 56, 56, 0.5);
+}
+
+.btn-confirm-booking:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.success-msg {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(46, 204, 113, 0.1);
+  border: 1px solid #2ecc71;
+  color: #2ecc71;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  animation: slideUpFade 0.3s ease;
+}
+
+/* BLOC 4: Itinerary */
+.trip-bloc-4-itinerary {
+  margin-top: 50px;
+  background: rgba(20, 25, 35, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  border-radius: 24px;
+  padding: 50px;
+  animation: slideUpFade 0.8s ease-out 0.8s forwards;
+  opacity: 0;
+}
+
+.itinerary-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.itinerary-header-row h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.itinerary-header-row h2::before {
+  content: '';
+  width: 5px;
+  height: 30px;
+  background: var(--yamaha-red);
+  border-radius: 4px;
+}
+
+.btn-download-pdf {
+  padding: 14px 24px;
+  background: rgba(217, 56, 56, 0.15);
+  color: var(--yamaha-red);
+  border: 1px solid rgba(217, 56, 56, 0.3);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-download-pdf:hover {
+  background: var(--yamaha-red);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(217, 56, 56, 0.4);
+  transform: translateY(-2px);
+}
+
+.itinerary-timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.itinerary-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 14px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--yamaha-red) 0%, rgba(217,56,56,0.1) 100%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -30px;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  background: var(--yamaha-red);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(217, 56, 56, 0.8);
+  border: 3px solid #1a1015;
+}
+
+.timeline-content {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+  padding: 20px 25px;
+  border-radius: 12px;
+  border-left: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.timeline-item:hover .timeline-content {
+  background: linear-gradient(90deg, rgba(217,56,56,0.05) 0%, transparent 100%);
+  transform: translateX(10px);
+  border-left-color: rgba(217,56,56,0.3);
+}
+
+.timeline-day {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--yamaha-red);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.timeline-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.timeline-details {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+}

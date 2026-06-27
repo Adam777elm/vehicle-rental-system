@@ -1,16 +1,13 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./CSS/Location.css";
-import heroImg from "../assets/HOME_IMG/Loca3.jpg";
+import heroImg from "../assets/HOME_IMG/coastal_trip.png";
 import API from "../services/api";
 import { RENTAL_FLEET, RENTAL_CATEGORIES, formatPricePerDay, mergeWithDbVehicles } from "../data/rentalFleet";
 import { getUploadUrl, resolveVehicleImage } from "../utils/imageUrl";
 
-// Trip Images
-import packImg from "../assets/TRIPS_IMG/pack-decouverte.png";
-import coastImg from "../assets/TRIPS_IMG/trips-coast.png";
-import desertImg from "../assets/TRIPS_IMG/trips-desert.png";
-import tripsHeroImg from "../assets/TRIPS_IMG/trips-hero.png";
+// Import trip data
+import { tripPackages } from "../data/tripData";
 
 function LocationTrips() {
   const navigate = useNavigate();
@@ -34,14 +31,26 @@ function LocationTrips() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleDevisSubmit = (e) => {
+  const handleDevisSubmit = async (e) => {
     e.preventDefault();
-    console.log("Demande de devis:", formData);
-    setFormSubmitted(true);
-    setTimeout(() => {
-      setFormSubmitted(false);
-      setFormData({ nom: "", email: "", telephone: "", destination: "", message: "" });
-    }, 4000);
+    try {
+      await API.post("/bookings", {
+        nom: formData.nom,
+        email: formData.email,
+        telephone: formData.telephone,
+        destination: formData.destination,
+        message: formData.message || "",
+        type: "Sur-mesure"
+      });
+      setFormSubmitted(true);
+      setTimeout(() => {
+        setFormSubmitted(false);
+        setFormData({ nom: "", email: "", telephone: "", destination: "", message: "" });
+      }, 4000);
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de la demande:", error);
+      alert("Une erreur s'est produite lors de l'envoi de votre demande. Veuillez réessayer.");
+    }
   };
 
   const handleAlertSubmit = () => {
@@ -54,35 +63,7 @@ function LocationTrips() {
     document.getElementById("trips-contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const tripPackages = useMemo(() => [
-    {
-      id: 1,
-      tag: "AVENTURE",
-      title: "Route de l'Atlas",
-      desc: "Traversée épique des cols de l'Atlas avec des paysages à couper le souffle. Routes sinueuses et panoramas grandioses.",
-      image: tripsHeroImg,
-      duration: "5 jours",
-      price: "4 500",
-    },
-    {
-      id: 2,
-      tag: "CÔTE ATLANTIQUE",
-      title: "Essaouira Ride",
-      desc: "Longez la côte atlantique marocaine, d'Agadir à Essaouira. Falaises, plages sauvages et villages de pêcheurs.",
-      image: coastImg,
-      duration: "3 jours",
-      price: "2 800",
-    },
-    {
-      id: 3,
-      tag: "DÉSERT",
-      title: "Sahara Express",
-      desc: "Aventure dans les dunes de Merzouga. Bivouac sous les étoiles et traversée de paysages lunaires inoubliables.",
-      image: desertImg,
-      duration: "4 jours",
-      price: "5 200",
-    },
-  ], []);
+  // Removed local tripPackages, using imported one
 
   const secondaryImg = getUploadUrl("1776370846917-Loca-1.webp");
 
@@ -383,7 +364,6 @@ function LocationTrips() {
                 key={trip.id}
                 className="trip-package-card trips-reveal"
                 style={{ transitionDelay: `${index * 0.15}s` }}
-                onClick={() => handleRentSelect(trip.id === 1 ? "atlas" : trip.id === 2 ? "coast" : "desert")}
               >
                 <div className="trip-package-image">
                   <img src={trip.image} alt={trip.title} />
@@ -401,17 +381,14 @@ function LocationTrips() {
                   <p className="trip-package-desc">{trip.desc}</p>
                   <div className="trip-package-footer">
                     <div className="trip-package-price">
-                      {trip.price} DHS <span>/ pers</span>
+                      {trip.price.toLocaleString()} DHS <span>/ pers</span>
                     </div>
-                    <button
+                    <Link
+                      to={`/trips/${trip.id}`}
                       className="trip-package-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleRentSelect(trip.id === 1 ? "atlas" : trip.id === 2 ? "coast" : "desert");
-                      }}
                     >
-                      RÉSERVER
-                    </button>
+                      DÉTAILS
+                    </Link>
                   </div>
                 </div>
               </div>
