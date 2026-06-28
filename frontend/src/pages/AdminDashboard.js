@@ -441,7 +441,7 @@ function AdminDashboard() {
                       </td>
                       <td style={{ textAlign: "right" }}>
                         <div className="actions-cell">
-                          {item.status === "en attente" && (
+                          {item.status === "en attente" ? (
                             <>
                               <button 
                                 onClick={() => handleApproveMarket(item.id)} 
@@ -458,14 +458,11 @@ function AdminDashboard() {
                                 ✕ Rejeter
                               </button>
                             </>
+                          ) : (
+                            <span className="admin-no-action-text" style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>
+                              Aucune action requise
+                            </span>
                           )}
-                          <button 
-                            onClick={() => handleDeleteMarket(item.id)} 
-                            className="action-btn delete"
-                            title="Supprimer"
-                          >
-                            🗑
-                          </button>
                         </div>
                       </td>
                     </tr>
