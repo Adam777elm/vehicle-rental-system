@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./CSS/Marketplace.css";
+import API from "../services/api";
 
 // Moroccan cities and prominent motorcycle brands
 const BRANDS = ["Yamaha", "BMW", "Kawasaki", "Honda", "Suzuki", "Ducati", "Harley-Davidson", "KTM", "Triumph"];
@@ -22,25 +23,24 @@ const CATEGORY_IMAGES = {
 };
 
 function Marketplace() {
-  // Listings state initialized from localStorage to enable fully dynamic persistency
+  // Listings state initialized from database
   const [bikes, setBikes] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 
-  // Load from localStorage on mount
+  // Load from database on mount
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Clear any previously saved default mockup listings
-    const saved = localStorage.getItem("aa_marketplace_motos");
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      // Filter out mockup listings (which had IDs 1, 2, 3, 4)
-      const userBikes = parsed.filter(b => b.id > 10);
-      setBikes(userBikes);
-      localStorage.setItem("aa_marketplace_motos", JSON.stringify(userBikes));
-    } else {
-      setBikes([]);
-    }
+    const fetchBikes = async () => {
+      try {
+        const res = await API.get("/marketplace?status=approuvé");
+        setBikes(res.data);
+      } catch (err) {
+        console.error("Erreur lors de la récupération des annonces:", err);
+      }
+    };
+
+    fetchBikes();
 
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
@@ -120,7 +120,6 @@ function Marketplace() {
     const conditionObj = CONDITIONS.find(c => c.id === newBike.condition);
 
     const bikeToAdd = {
-      id: Date.now(), // Unique ID
       title: newBike.title,
       brand: newBike.brand,
       model: newBike.model,
@@ -146,41 +145,65 @@ function Marketplace() {
       publisherEmail: currentUser ? currentUser.email : null
     };
 
-    const updated = [bikeToAdd, ...bikes];
-    saveToLocalStorage(updated);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Vous devez être connecté pour publier une annonce.");
+      return;
+    }
 
-    // Reset Form & Close
-    setNewBike({
-      title: "",
-      brand: "Yamaha",
-      model: "",
-      category: "Roadster",
-      year: "",
-      mileage: "",
-      price: "",
-      condition: "excellent",
-      location: "Casablanca",
-      image: "",
-      description: "",
-      engine: "",
-      power: "",
-      gearbox: "",
-      fuel: "Essence",
-      sellerName: "",
-      sellerPhone: ""
-    });
-    setShowAddForm(false);
+    API.post("/marketplace", bikeToAdd, { headers: { Authorization: `Bearer ${token}` } })
+      .then(res => {
+        alert("Votre annonce a été publiée avec succès et est en attente de modération par l'administrateur !");
+        
+        // Reset Form & Close
+        setNewBike({
+          title: "",
+          brand: "Yamaha",
+          model: "",
+          category: "Roadster",
+          year: "",
+          mileage: "",
+          price: "",
+          condition: "excellent",
+          location: "Casablanca",
+          image: "",
+          description: "",
+          engine: "",
+          power: "",
+          gearbox: "",
+          fuel: "Essence",
+          sellerName: "",
+          sellerPhone: ""
+        });
+        setShowAddForm(false);
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Erreur lors de la publication de l'annonce.");
+      });
   };
 
   // Delete product (Allows user to manage their marketplace)
   const handleDeleteBike = (bikeId, e) => {
     e.stopPropagation();
     if (window.confirm("Êtes-vous sûr de vouloir supprimer cette annonce ?")) {
-      const updated = bikes.filter(b => b.id !== bikeId);
-      saveToLocalStorage(updated);
-      if (selectedBike && selectedBike.id === bikeId) {
-        setSelectedBike(null);
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Vous devez être connecté pour supprimer une annonce.");
+        return;
       }
+
+      API.delete(`/marketplace/${bikeId}`, { headers: { Authorization: `Bearer ${token}` } })
+        .then(() => {
+          setBikes(bikes.filter(b => b._id !== bikeId && b.id !== bikeId));
+          if (selectedBike && (selectedBike._id === bikeId || selectedBike.id === bikeId)) {
+            setSelectedBike(null);
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          alert("Erreur lors de la suppression de l'annonce.");
+        });
     }
   };
 
@@ -220,7 +243,11 @@ function Marketplace() {
 
   // Sort function
   const sortedBikes = [...filteredBikes].sort((a, b) => {
-    if (sortBy === "newest") return b.year - a.year || b.id - a.id;
+    if (sortBy === "newest") {
+      const dateA = a.createdAt ? new Date(a.createdAt) : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt) : 0;
+      return b.year - a.year || dateB - dateA || (b._id || b.id || "").toString().localeCompare((a._id || a.id || "").toString());
+    }
     if (sortBy === "cheapest") return a.price - b.price;
     if (sortBy === "highest") return b.price - a.price;
     return 0;
@@ -470,7 +497,7 @@ function Marketplace() {
         {sortedBikes.length > 0 ? (
           <div className="market-listings-grid">
             {sortedBikes.map((bike) => (
-              <article key={bike.id} className="market-card market-reveal">
+              <article key={bike._id || bike.id} className="market-card market-reveal">
                 
                 {/* Image and Badges */}
                 <div className="market-card-img-wrapper">
@@ -492,7 +519,7 @@ function Marketplace() {
                   {currentUser && (currentUser.email === bike.publisherEmail || currentUser.role === "admin") && (
                     <button 
                       className="market-delete-badge"
-                      onClick={(e) => handleDeleteBike(bike.id, e)}
+                      onClick={(e) => handleDeleteBike(bike._id || bike.id, e)}
                       title="Supprimer cette annonce"
                     >
                       🗑️

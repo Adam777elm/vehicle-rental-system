@@ -3,34 +3,9 @@ import API from "../services/api";
 import { ALL_VEHICLES } from "../components/Navbar";
 import "./CSS/AdminDashboard.css";
 
-// MOCK DATA for Admin panel representation
-const INITIAL_MARKETPLACE = [
-  { id: 1, name: "Yamaha MT-07 Custom", price: "78 000 DH", seller: "Youssef El", image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2024/MT700A/2024-Yamaha-MT700A-EU-Storm_Fluo-360-Degrees-001-03.jpg", status: "en attente" },
-  { id: 2, name: "Yamaha YZF-R1M", price: "260 000 DH", seller: "Karim B.", image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2024/YZF1000R1SPL/2024-Yamaha-YZF1000R1SPL-EU-Icon_Performance-360-Degrees-001-03_Mobile.jpg", status: "approuvé" },
-  { id: 3, name: "TMAX 560 Tech Max", price: "152 000 DH", seller: "Anass M.", image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/XP500A/2025-Yamaha-XP500A-EU-Icon_Black_-Studio-001-03.jpg", status: "en attente" },
-  { id: 4, name: "Tracer 9 GT 2023", price: "138 000 DH", seller: "Mehdi K.", image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT09ATRDXS/2025-Yamaha-MT09ATRDXS-EU-Ceramic_Ice-360-Degrees-001-03_Mobile.jpg", status: "refusé" },
-  { id: 5, name: "NMAX 155 Tech Grey", price: "46 000 DH", seller: "Sofia L.", image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/G125YMSV/2025-Yamaha-G125YMSV-EU-Ceramic_Grey-360-Degrees-001-03_Mobile.jpg", status: "approuvé" }
-];
-
-const INITIAL_ORDERS = [
-  { id: "CMD-8721", client: "Hamza Bennani", vehicle: "Yamaha YZF-R9", price: "155 000 DH", date: "2026-06-01", status: "en attente" },
-  { id: "CMD-8659", client: "Nadia Tazi", vehicle: "Scooter XMAX 300", price: "85 000 DH", date: "2026-05-29", status: "confirmé" },
-  { id: "CMD-8630", client: "Omar Alaoui", vehicle: "Yamaha MT-10 SP", price: "195 000 DH", date: "2026-05-28", status: "livré" },
-  { id: "CMD-8541", client: "Imane Regragui", vehicle: "Tracer 7 GT", price: "105 000 DH", date: "2026-05-24", status: "annulé" },
-  { id: "CMD-8512", client: "Khalid Jouahri", vehicle: "Yamaha R1M", price: "285 000 DH", date: "2026-05-22", status: "confirmé" }
-];
-
-const INITIAL_RENTALS = [
-  { id: "LOC-202", client: "Adnane Sbaï", vehicle: "Yamaha TMAX (Location)", duration: "3 Jours", dateStart: "2026-06-10", dateEnd: "2026-06-13", status: "réservé" },
-  { id: "LOC-199", client: "Yasmine Filali", vehicle: "MT-09 SP Roadster", duration: "1 Jour", dateStart: "2026-06-05", dateEnd: "2026-06-06", status: "réservé" },
-  { id: "LOC-194", client: "Zouhair Amrani", vehicle: "Tracer 9 GT Tourer", duration: "5 Jours", dateStart: "2026-05-30", dateEnd: "2026-06-04", status: "en cours" },
-  { id: "LOC-189", client: "Noureddine B.", vehicle: "Yamaha NMAX 125", duration: "7 Jours", dateStart: "2026-05-20", dateEnd: "2026-05-27", status: "terminé" },
-  { id: "LOC-182", client: "Ghita Messari", vehicle: "Jet-Ski Waverunner", duration: "2 Jours", dateStart: "2026-05-15", dateEnd: "2026-05-17", status: "annulé" }
-];
-
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("marketplace");
-  const [marketplaceList, setMarketplaceList] = useState(INITIAL_MARKETPLACE);
+  const [marketplaceList, setMarketplaceList] = useState([]);
   const [ordersList, setOrdersList] = useState([]);
   const [rentalsList, setRentalsList] = useState([]);
   const [tripsList, setTripsList] = useState([]);
@@ -56,11 +31,12 @@ function AdminDashboard() {
     if (showSpinner) setIsRefreshing(true);
 
     try {
-      // Fetch Orders, Rentals & Bookings (Trips) in parallel
-      const [ordersRes, rentalsRes, tripsRes] = await Promise.all([
+      // Fetch Orders, Rentals, Bookings & Marketplace in parallel
+      const [ordersRes, rentalsRes, tripsRes, marketRes] = await Promise.all([
         API.get("/orders", { headers: { Authorization: `Bearer ${token}` } }),
         API.get("/reservations", { headers: { Authorization: `Bearer ${token}` } }),
-        API.get("/bookings", { headers: { Authorization: `Bearer ${token}` } })
+        API.get("/bookings", { headers: { Authorization: `Bearer ${token}` } }),
+        API.get("/marketplace", { headers: { Authorization: `Bearer ${token}` } })
       ]);
 
       const mappedOrders = ordersRes.data.map(order => ({
@@ -110,6 +86,17 @@ function AdminDashboard() {
         };
       });
       setTripsList(mappedTrips);
+
+      const mappedMarket = marketRes.data.map(item => ({
+        id: item._id,
+        name: item.title,
+        price: `${item.price.toLocaleString("fr-FR")} DH`,
+        seller: `${item.sellerName} (${item.publisherEmail || "No email"})`,
+        image: item.image,
+        status: item.status === "pending" ? "en attente" : item.status
+      }));
+      setMarketplaceList(mappedMarket);
+
       setLastUpdated(new Date());
     } catch (err) {
       console.error("Error fetching admin data:", err);
@@ -181,17 +168,44 @@ function AdminDashboard() {
     .toLocaleString();
 
   // Actions for Marketplace
-  const handleApproveMarket = (id) => {
-    setMarketplaceList(prev => prev.map(item => item.id === id ? { ...item, status: "approuvé" } : item));
+  const handleApproveMarket = async (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+    try {
+      await API.put(`/marketplace/${id}/status`, { status: "approuvé" }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setMarketplaceList(prev => prev.map(item => item.id === id ? { ...item, status: "approuvé" } : item));
+    } catch (err) {
+      alert("Erreur lors de l'approbation de l'annonce : " + (err.response?.data?.message || err.message));
+    }
   };
 
-  const handleRejectMarket = (id) => {
-    setMarketplaceList(prev => prev.map(item => item.id === id ? { ...item, status: "refusé" } : item));
+  const handleRejectMarket = async (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+    try {
+      await API.put(`/marketplace/${id}/status`, { status: "refusé" }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setMarketplaceList(prev => prev.map(item => item.id === id ? { ...item, status: "refusé" } : item));
+    } catch (err) {
+      alert("Erreur lors du rejet de l'annonce : " + (err.response?.data?.message || err.message));
+    }
   };
 
-  const handleDeleteMarket = (id) => {
+  const handleDeleteMarket = async (id) => {
     if (window.confirm("Voulez-vous vraiment supprimer cette annonce ?")) {
-      setMarketplaceList(prev => prev.filter(item => item.id !== id));
+      const token = localStorage.getItem("token");
+      if (!token) return;
+      try {
+        await API.delete(`/marketplace/${id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setMarketplaceList(prev => prev.filter(item => item.id !== id));
+      } catch (err) {
+        alert("Erreur lors de la suppression de l'annonce : " + (err.response?.data?.message || err.message));
+      }
     }
   };
 
