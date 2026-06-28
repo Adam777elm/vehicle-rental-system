@@ -127,6 +127,7 @@ const DEFAULT_MARKET_BIKES = [
 function Marketplace() {
   // Listings state initialized from localStorage to enable fully dynamic persistency
   const [bikes, setBikes] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -138,6 +139,11 @@ function Marketplace() {
       // Initialize with default mockup listings if empty
       localStorage.setItem("aa_marketplace_motos", JSON.stringify(DEFAULT_MARKET_BIKES));
       setBikes(DEFAULT_MARKET_BIKES);
+    }
+
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      setCurrentUser(JSON.parse(savedUser));
     }
 
     // Scroll reveal observer
@@ -235,7 +241,8 @@ function Marketplace() {
         owners: "1ère Main"
       },
       sellerName: newBike.sellerName,
-      sellerPhone: newBike.sellerPhone
+      sellerPhone: newBike.sellerPhone,
+      publisherEmail: currentUser ? currentUser.email : null
     };
 
     const updated = [bikeToAdd, ...bikes];
@@ -581,13 +588,15 @@ function Marketplace() {
                   </div>
                   
                   {/* Delete button (Allows user to delete listings they added) */}
-                  <button 
-                    className="market-delete-badge"
-                    onClick={(e) => handleDeleteBike(bike.id, e)}
-                    title="Supprimer cette annonce"
-                  >
-                    🗑️
-                  </button>
+                  {currentUser && (currentUser.email === bike.publisherEmail || currentUser.role === "admin") && (
+                    <button 
+                      className="market-delete-badge"
+                      onClick={(e) => handleDeleteBike(bike.id, e)}
+                      title="Supprimer cette annonce"
+                    >
+                      🗑️
+                    </button>
+                  )}
 
                   <span className="market-card-price-tag">
                     {bike.price.toLocaleString("fr-FR")} DH
