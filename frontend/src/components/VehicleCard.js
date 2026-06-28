@@ -23,6 +23,7 @@ function VehicleCard({ bike, badge, onNav }) {
       {/* ── Image box ── */}
       <div className="vc-image-box">
         {badge && <div className="vc-badge">{badge}</div>}
+        <span className="app-category-badge badge-vente">À VENDRE (NEUF)</span>
         <img
           src={currentImage}
           alt={`${bike.name} – ${currentColor ? currentColor.name : ""}`}

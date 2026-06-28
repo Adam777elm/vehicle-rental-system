@@ -58,8 +58,6 @@ function Navbar() {
     const [showSearch, setShowSearch] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
-    const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
     
     // AI Agent States
@@ -198,26 +196,11 @@ function Navbar() {
         return formatted;
     };
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
 
-            // Masquer si on descend de plus de 50px, Afficher si on remonte
-            if (currentScrollY > lastScrollY && currentScrollY > 50) {
-                setIsVisible(false);
-            } else {
-                setIsVisible(true);
-            }
-            setLastScrollY(currentScrollY);
-        };
-
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
 
     return (
         <>
-        <nav className={`navbar ${isVisible ? "" : "navbar-hidden"}`}>
+        <nav className="navbar">
             {/* LEFT: LOGOS */}
             <div className="logo-section">
                 <Link to="/">
@@ -251,18 +234,16 @@ function Navbar() {
                         <Link to="/marine" className="dropdown-trigger">MARINE</Link>
                         <div className="mega-menu mega-menu-marine">
                             <div className="mega-menu-column main-cats">
-                                <Link to="/marine/waverunner">WAVERUNNERS <span className="arrow">&gt;</span></Link>
-                                <Link to="/marine/waveboat">BOATS <span className="arrow">&gt;</span></Link>
                                 <Link to="/marine">MARINE ENGINES <span className="arrow">&gt;</span></Link>
                             </div>
                             <div className="mega-menu-column sub-cats">
                                 <Link to="/marine/superjet">Sport <span className="arrow">&gt;</span></Link>
-                                <Link to="/marine/waverunner">Cruising <span className="arrow">&gt;</span></Link>
-                                <Link to="/marine/waverunner">Recreation <span className="arrow">&gt;</span></Link>
+                                <Link to="/marine/waverunner">Waverunners <span className="arrow">&gt;</span></Link>
+                                <Link to="/marine/waveboat">Boats <span className="arrow">&gt;</span></Link>
                             </div>
                             <div className="mega-menu-column extra-cats">
-                                <Link to="/marine">Accessoires <span className="arrow">&gt;</span></Link>
-                                <Link to="/marine">Pièces d'Origine <span className="arrow">&gt;</span></Link>
+                                <Link to="/marine/accessories">Accessoires <span className="arrow">&gt;</span></Link>
+                                <a href="https://wa.me/212774593031?text=Bonjour%20AA%20Motors,%20je%20souhaite%20commander%20des%20pi%C3%A8ces%20d'origine%20pour%20mon%20v%C3%A9hicule%20marine." target="_blank" rel="noopener noreferrer">Pièces d'Origine <span className="arrow">&gt;</span></a>
                             </div>
                         </div>
                     </div>

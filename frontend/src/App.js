@@ -29,6 +29,7 @@ import LocationTrips from "./pages/LocationTrips";
 import RentalDetail from "./pages/RentalDetail";
 import Marketplace from "./pages/Marketplace";
 import Equipement from "./pages/Equipement";
+import Accessories from "./pages/Accessories";
 import ForgotPassword from "./pages/ForgotPassword";
 import AdminDashboard from "./pages/AdminDashboard";
 import ConditionsDeVente from "./pages/ConditionsDeVente";
@@ -152,6 +153,11 @@ function App() {
         <Route
           path="/equipement"
           element={<Equipement />}
+        />
+
+        <Route
+          path="/marine/accessories"
+          element={<Accessories />}
         />
 
         <Route
