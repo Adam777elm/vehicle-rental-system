@@ -714,6 +714,22 @@ input:checked + .ai-slider:before {
   animation: slideBarUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+@media (max-width: 768px) {
+  .ai-prompt-bar {
+    bottom: 70px; /* Sit above the bottom nav */
+    padding: 0 16px;
+    height: 60px;
+  }
+
+  .ai-prompt-left {
+    display: none; /* Hide YAMAHA | Ai Agent label on mobile to save space */
+  }
+
+  .ai-prompt-center {
+    margin: 0;
+  }
+}
+
 @keyframes slideBarUp {
   from { transform: translateY(100%); }
   to { transform: translateY(0); }
@@ -833,6 +849,15 @@ input:checked + .ai-slider:before {
   box-shadow: -20px 0 50px rgba(0, 0, 0, 0.6);
   transform: translateX(100%);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 768px) {
+  .ai-chat-drawer {
+    width: 100vw;
+    border-left: none;
+    top: 0;
+    bottom: 70px; /* leave room for bottom nav */
+  }
 }
 
 .ai-chat-drawer.open {

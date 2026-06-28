@@ -440,11 +440,13 @@ body.light-mode .moto-specs-sheet {
 
 @media (max-width: 768px) {
   .moto-detail-wrapper {
-    padding-top: 90px;
-    padding-bottom: 80px;
+    padding-top: 80px;
+    padding-bottom: 100px; /* Space for bottom nav */
+    padding-left: 4%;
+    padding-right: 4%;
   }
   .moto-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
   .main-image-container {
     aspect-ratio: 4/3;
@@ -458,6 +460,51 @@ body.light-mode .moto-specs-sheet {
   .quantity-selector {
     width: 100%;
     justify-content: center;
+  }
+  .moto-specs-sheet {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px;
+  }
+  .price-section {
+    font-size: 1.3rem;
+    flex-wrap: wrap;
+  }
+  .recommendations-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .moto-detail-wrapper {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  .moto-title {
+    font-size: 1.8rem;
+  }
+  .recommendations-grid {
+    grid-template-columns: 1fr;
+  }
+  .brand-text {
+    font-size: 24px;
+  }
+  .apercue-rapide {
+    width: 100%;
+    margin-left: 0;
+  }
+  .detailed-specs-container {
+    width: 100%;
+    margin-left: 0;
+  }
+  .showcase-container {
+    width: 100%;
+    margin-left: 0;
+  }
+  .recommendations-container {
+    width: 100%;
+    margin-left: 0;
   }
 }
 
