@@ -516,7 +516,7 @@ function Marketplace() {
                   </div>
                   
                   {/* Delete button (Allows user to delete listings they added) */}
-                  {currentUser && (currentUser.email === bike.publisherEmail || currentUser.role === "admin") && (
+                  {currentUser && currentUser.email === bike.publisherEmail && (
                     <button 
                       className="market-delete-badge"
                       onClick={(e) => handleDeleteBike(bike._id || bike.id, e)}

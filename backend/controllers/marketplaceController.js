@@ -48,12 +48,11 @@ exports.deleteBike = async (req, res) => {
       return res.status(404).json({ message: "Annonce non trouvée" });
     }
 
-    // Authorization check: only original publisher or admin can delete
+    // Authorization check: only original publisher can delete
     const isOwner = req.user && req.user.email === bike.publisherEmail;
-    const isAdmin = req.user && (req.user.role === "admin" || req.user.email.toLowerCase().includes("admin") || req.user.email === "eelmadam2004@gmail.com");
 
-    if (!isOwner && !isAdmin) {
-      return res.status(403).json({ message: "Action non autorisée" });
+    if (!isOwner) {
+      return res.status(403).json({ message: "Action non autorisée. Seul le propriétaire de l'annonce peut la supprimer." });
     }
 
     await MarketplaceBike.findByIdAndDelete(req.params.id);
