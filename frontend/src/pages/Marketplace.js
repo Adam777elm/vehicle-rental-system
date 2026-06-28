@@ -17,9 +17,108 @@ const CATEGORY_IMAGES = {
   Roadster: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&q=80&w=800",
   Supersport: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=800",
   Adventure: "https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?auto=format&fit=crop&q=80&w=800",
-  "Sport Touring": "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=800",
-  Scooter: "https://images.unsplash.com/photo-1563260797-cb5cd70254c8?auto=format&fit=crop&q=80&w=800"
-};
+const DEFAULT_MARKET_BIKES = [
+  {
+    id: 1,
+    title: "Yamaha MT-07 SP - Pot Akrapovič",
+    brand: "Yamaha",
+    model: "MT-07 SP",
+    category: "Roadster",
+    year: 2021,
+    mileage: 12000,
+    price: 76000,
+    condition: "excellent",
+    conditionLabel: "Excellent",
+    location: "Casablanca",
+    image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&q=80&w=800",
+    description: "Superbe MT-07 SP de 2021, première main, toujours entretenue chez Yamaha. Pot Akrapovič complet carbone homologué. État impeccable.",
+    specs: {
+      engine: "689 cc - CP2",
+      power: "73.4 ch",
+      color: "SP Colors (Gris/Noir/Bleu)",
+      gearbox: "Manuelle",
+      fuel: "Essence",
+      owners: "1ère Main"
+    },
+    sellerName: "Amine",
+    sellerPhone: "+212661234567"
+  },
+  {
+    id: 2,
+    title: "BMW R 1250 GS Adventure Triple Black",
+    brand: "BMW",
+    model: "R 1250 GS",
+    category: "Adventure",
+    year: 2020,
+    mileage: 28000,
+    price: 165000,
+    condition: "tres-bon",
+    conditionLabel: "Très bon",
+    location: "Rabat",
+    image: "https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?auto=format&fit=crop&q=80&w=800",
+    description: "BMW R1250GS Adventure toutes options (Packs Dynamic, Touring, Comfort). Entretien exclusif BMW Maroc. Pneus neufs.",
+    specs: {
+      engine: "1254 cc - Boxer",
+      power: "136 ch",
+      color: "Triple Black",
+      gearbox: "Manuelle",
+      fuel: "Essence",
+      owners: "2ème Main"
+    },
+    sellerName: "Yassine",
+    sellerPhone: "+212670112233"
+  },
+  {
+    id: 3,
+    title: "Kawasaki Ninja ZX-10R Showroom",
+    brand: "Kawasaki",
+    model: "ZX-10R",
+    category: "Supersport",
+    year: 2022,
+    mileage: 5800,
+    price: 175000,
+    condition: "neuf",
+    conditionLabel: "Neuf (État Vitrine)",
+    location: "Tanger",
+    image: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=800",
+    description: "Moto de passionné dans un état showroom absolu. Aucun frais à prévoir. Protection complète R&G et shifter d'origine.",
+    specs: {
+      engine: "998 cc - 4 cylindres",
+      power: "203 ch",
+      color: "KRT Green",
+      gearbox: "Manuelle",
+      fuel: "Essence",
+      owners: "1ère Main"
+    },
+    sellerName: "Omar",
+    sellerPhone: "+212662998877"
+  },
+  {
+    id: 4,
+    title: "Yamaha TMAX 560 Tech Max",
+    brand: "Yamaha",
+    model: "TMAX 560 Tech Max",
+    category: "Scooter",
+    year: 2022,
+    mileage: 9500,
+    price: 125000,
+    condition: "excellent",
+    conditionLabel: "Excellent",
+    location: "Marrakech",
+    image: "https://images.unsplash.com/photo-1563260797-cb5cd70254c8?auto=format&fit=crop&q=80&w=800",
+    description: "Yamaha TMAX 560 Tech Max. Bulle électrique, selle et poignées chauffantes, régulateur de vitesse. Révision des 10 000 km anticipée.",
+    specs: {
+      engine: "562 cc - Bi-cylindre",
+      power: "47.6 ch",
+      color: "Dark Petrol",
+      gearbox: "Automatique",
+      fuel: "Essence",
+      owners: "1ère Main"
+    },
+    sellerName: "Mehdi",
+    sellerPhone: "+212665778899"
+  }
+];
 
 function Marketplace() {
   // Listings state initialized from localStorage to enable fully dynamic persistency
@@ -29,11 +128,12 @@ function Marketplace() {
   useEffect(() => {
     window.scrollTo(0, 0);
     const saved = localStorage.getItem("aa_marketplace_motos");
-    if (saved) {
+    if (saved && JSON.parse(saved).length > 0) {
       setBikes(JSON.parse(saved));
     } else {
-      // Initialize with an empty array as requested: "remove the actual motos occasion"
-      setBikes([]);
+      // Initialize with default mockup listings if empty
+      localStorage.setItem("aa_marketplace_motos", JSON.stringify(DEFAULT_MARKET_BIKES));
+      setBikes(DEFAULT_MARKET_BIKES);
     }
 
     // Scroll reveal observer
