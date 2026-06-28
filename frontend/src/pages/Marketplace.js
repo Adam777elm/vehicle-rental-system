@@ -26,6 +26,14 @@ function Marketplace() {
   // Listings state initialized from database
   const [bikes, setBikes] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [toast, setToast] = useState({ message: "", type: "", visible: false });
+
+  const showToast = (message, type = "success") => {
+    setToast({ message, type, visible: true });
+    setTimeout(() => {
+      setToast(prev => ({ ...prev, visible: false }));
+    }, 4500);
+  };
 
   // Load from database on mount
   useEffect(() => {
@@ -110,7 +118,7 @@ function Marketplace() {
   const handleAddBikeSubmit = (e) => {
     e.preventDefault();
     if (!newBike.title || !newBike.model || !newBike.price || !newBike.sellerName || !newBike.sellerPhone) {
-      alert("Veuillez remplir tous les champs obligatoires (Titre, Modèle, Prix, Nom et Téléphone).");
+      showToast("Veuillez remplir tous les champs obligatoires (Titre, Modèle, Prix, Nom et Téléphone).", "error");
       return;
     }
 
@@ -147,13 +155,13 @@ function Marketplace() {
 
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("Vous devez être connecté pour publier une annonce.");
+      showToast("Vous devez être connecté pour publier une annonce.", "error");
       return;
     }
 
     API.post("/marketplace", bikeToAdd, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => {
-        alert("Votre annonce a été publiée avec succès et est en attente de modération par l'administrateur !");
+        showToast("Votre annonce a été publiée avec succès et est en attente de modération par l'administrateur !", "success");
         
         // Reset Form & Close
         setNewBike({
@@ -179,7 +187,7 @@ function Marketplace() {
       })
       .catch(err => {
         console.error(err);
-        alert("Erreur lors de la publication de l'annonce.");
+        showToast("Erreur lors de la publication de l'annonce.", "error");
       });
   };
 
@@ -189,7 +197,7 @@ function Marketplace() {
     if (window.confirm("Êtes-vous sûr de vouloir supprimer cette annonce ?")) {
       const token = localStorage.getItem("token");
       if (!token) {
-        alert("Vous devez être connecté pour supprimer une annonce.");
+        showToast("Vous devez être connecté pour supprimer une annonce.", "error");
         return;
       }
 
@@ -199,10 +207,11 @@ function Marketplace() {
           if (selectedBike && (selectedBike._id === bikeId || selectedBike.id === bikeId)) {
             setSelectedBike(null);
           }
+          showToast("Annonce supprimée avec succès !", "success");
         })
         .catch(err => {
           console.error(err);
-          alert("Erreur lors de la suppression de l'annonce.");
+          showToast("Erreur lors de la suppression de l'annonce.", "error");
         });
     }
   };
@@ -277,6 +286,11 @@ function Marketplace() {
 
   return (
     <div className="market-page">
+      {toast.visible && (
+        <div className={`toast-notification ${toast.type}`}>
+          <span>{toast.message}</span>
+        </div>
+      )}
       <div className="market-red-bar"></div>
 
       {/* HERO BANNER SECTION */}
