@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap');
 
 .trip-detail-page {
-  padding: 120px 5% 80px;
+  padding: 30px 5% 80px;
   background: radial-gradient(circle at 50% 0%, #1a1015 0%, #050914 100%);
   min-height: 100vh;
   color: #fff;

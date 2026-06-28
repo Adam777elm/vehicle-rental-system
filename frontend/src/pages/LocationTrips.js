@@ -132,6 +132,7 @@ function LocationTrips() {
         <div className="loc-card-image-box">
           <div className="loc-card-img-bg" />
           <img src={imgSrc} alt={bike.name} className="loc-bike-image" />
+          <span className="app-category-badge badge-location">À LOUER (LOCATION)</span>
           {unavailable && <div className="loc-unavailable-overlay">INDISPONIBLE</div>}
           {badgeStyle && (
             <span

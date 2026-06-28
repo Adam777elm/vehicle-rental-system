@@ -105,6 +105,7 @@ function SearchResults() {
                             >
                                 <div className="search-card-img">
                                     <span className="cat-badge">{bike.category}</span>
+                                    <span className="app-category-badge badge-vente">VENTE</span>
                                     <img
                                         src={bike.image}
                                         alt={bike.name}
@@ -126,6 +127,7 @@ function SearchResults() {
                             <div key={bike._id} className="search-card" onClick={() => navigate(`/moto/${bike._id}`)}>
                                 <div className="search-card-img">
                                     <span className="cat-badge">{bike.category}</span>
+                                    <span className="app-category-badge badge-vente">VENTE</span>
                                     <img
                                         src={resolveVehicleImage(bike.image)}
                                         alt={bike.name}

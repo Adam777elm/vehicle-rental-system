@@ -469,6 +469,7 @@ function Marketplace() {
                     loading="lazy" 
                   />
                   <div className="market-card-img-gradient"></div>
+                  <span className="app-category-badge badge-marketplace">D'OCCASION (VENTE)</span>
                   <div className="market-card-badges">
                     <span className={`market-card-badge-cond ${bike.condition}`}>
                       {bike.conditionLabel}

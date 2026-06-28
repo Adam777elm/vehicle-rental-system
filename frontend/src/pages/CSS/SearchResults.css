@@ -3,7 +3,7 @@
     background-color: var(--bg-color, #050505);
     color: var(--text-color, #fff);
     font-family: 'Outfit', 'Inter', sans-serif;
-    padding-top: 80px;
+    padding-top: 30px;
 }
 
 /* HEADER */

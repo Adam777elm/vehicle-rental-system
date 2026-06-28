@@ -9,8 +9,10 @@
   border-bottom: 2px solid transparent;
   border-image: linear-gradient(90deg, #f43f5e 0%, #ec4899 50%, #3b82f6 100%) 1;
   color: white;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   font-family: 'Inter', sans-serif;
   transition: transform 0.4s ease-in-out, background-color 0.3s;
