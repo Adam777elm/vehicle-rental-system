@@ -440,7 +440,7 @@ function Navbar() {
         )}
 
         {/* SLIDE-OUT AI CHAT DRAWER */}
-        <div className={`ai-chat-drawer ${isDrawerOpen ? "open" : ""}`}>
+        <div className={`ai-chat-drawer ${isDrawerOpen ? "open" : ""} ${isAiActive ? "with-prompt" : ""}`}>
             <div className="ai-drawer-header">
                 <div className="ai-drawer-title-group">
                     <span className="yamaha-drawer-logo">YAMAHA</span>
@@ -483,21 +483,6 @@ function Navbar() {
                 <button onClick={() => handleSendAiQuery("Comment vous contacter par WhatsApp ?")}>💬 Contact WhatsApp</button>
             </div>
 
-            <div className="ai-drawer-footer">
-                <input
-                    type="text"
-                    placeholder="Posez une autre question..."
-                    className="ai-drawer-input"
-                    value={aiQuery}
-                    onChange={(e) => setAiQuery(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") handleSendAiQuery();
-                    }}
-                />
-                <button className="ai-drawer-send-btn" onClick={() => handleSendAiQuery()} aria-label="Envoyer">
-                    ➔
-                </button>
-            </div>
         </div>
         </>
     );
