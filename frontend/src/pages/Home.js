@@ -5,7 +5,7 @@ import motoVideo from "../assets/HOME_IMG/MotoVid.mp4";
 import heroBanner from "../assets/HOME_IMG/hero_banner.png";
 
 import motoImg from "../assets/HOME_IMG/R1-1.jpg";
-import locaImg from "../assets/HOME_IMG/Loca3.jpg";
+import locaImg from "../assets/HOME_IMG/coastal_trip.png";
 import marineImg from "../assets/HOME_IMG/JetSki-1.jpg";
 import equipImg from "../assets/HOME_IMG/Equip-1.avif";
 
