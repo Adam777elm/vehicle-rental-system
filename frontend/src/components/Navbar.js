@@ -61,7 +61,6 @@ function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     
     // AI Agent States
-    const [isAiActive, setIsAiActive] = useState(false);
     const [aiQuery, setAiQuery] = useState("");
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [chatMessages, setChatMessages] = useState([
@@ -258,8 +257,8 @@ function Navbar() {
                         <label className="ai-switch">
                             <input 
                               type="checkbox" 
-                              checked={isAiActive}
-                              onChange={() => setIsAiActive(!isAiActive)} 
+                              checked={isDrawerOpen}
+                              onChange={() => setIsDrawerOpen(!isDrawerOpen)} 
                             />
                             <span className="ai-slider">
                                 <span className="ai-on-label">ON</span>
@@ -368,9 +367,9 @@ function Navbar() {
                         <label className="ai-switch">
                             <input 
                               type="checkbox" 
-                              checked={isAiActive}
+                              checked={isDrawerOpen}
                               onChange={() => {
-                                  setIsAiActive(!isAiActive);
+                                  setIsDrawerOpen(!isDrawerOpen);
                                   setMenuOpen(false);
                               }}
                             />
@@ -403,44 +402,8 @@ function Navbar() {
             </Link>
         </div>
 
-        {/* BOTTOM AI PROMPT BAR */}
-        {isAiActive && (
-            <div className="ai-prompt-bar">
-                <div className="ai-prompt-left">
-                    <span className="yamaha-ai-logo">YAMAHA</span>
-                    <span className="yamaha-ai-separator">|</span>
-                    <span className="yamaha-ai-text">Ai Agent</span>
-                </div>
-                <div className="ai-prompt-center">
-                    <div className="ai-input-container">
-                        <input
-                            type="text"
-                            placeholder="Ask Yamaha AI Agent anything..."
-                            className="ai-prompt-input"
-                            value={aiQuery}
-                            onChange={(e) => setAiQuery(e.target.value)}
-                            onKeyDown={(e) => {
-                                if (e.key === "Enter") handleSendAiQuery();
-                            }}
-                        />
-                        <button className="ai-send-btn" onClick={() => handleSendAiQuery()} aria-label="Envoyer à l'IA">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <button className="ai-prompt-close-btn" onClick={() => setIsAiActive(false)} aria-label="Fermer la barre d'IA">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="18 15 12 9 6 15"></polyline>
-                    </svg>
-                </button>
-            </div>
-        )}
-
         {/* SLIDE-OUT AI CHAT DRAWER */}
-        <div className={`ai-chat-drawer ${isDrawerOpen ? "open" : ""} ${isAiActive ? "with-prompt" : ""}`}>
+        <div className={`ai-chat-drawer ${isDrawerOpen ? "open" : ""}`}>
             <div className="ai-drawer-header">
                 <div className="ai-drawer-title-group">
                     <span className="yamaha-drawer-logo">YAMAHA</span>
@@ -483,6 +446,21 @@ function Navbar() {
                 <button onClick={() => handleSendAiQuery("Comment vous contacter par WhatsApp ?")}>💬 Contact WhatsApp</button>
             </div>
 
+            <div className="ai-drawer-footer">
+                <input
+                    type="text"
+                    placeholder="Posez une autre question..."
+                    className="ai-drawer-input"
+                    value={aiQuery}
+                    onChange={(e) => setAiQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") handleSendAiQuery();
+                    }}
+                />
+                <button className="ai-drawer-send-btn" onClick={() => handleSendAiQuery()} aria-label="Envoyer">
+                    ➔
+                </button>
+            </div>
         </div>
         </>
     );
