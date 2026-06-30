@@ -211,45 +211,47 @@ function Navbar() {
 
             {/* CENTER: NAV PILL */}
             <div className="nav-center">
-                <div className="nav-pill">
-                    <Link to="/" className={activePath === "/" ? "active" : ""}>ACCUEIL</Link>
-                    <div className="nav-item-dropdown">
-                        <Link to="/motos" className={`dropdown-trigger ${activePath.startsWith("/motos") ? "active" : ""}`}>ROUTE</Link>
-                        <div className="mega-menu">
-                            <div className="mega-menu-column main-cats">
-                                <Link to="/motos">MOTORCYCLES <span className="arrow">&gt;</span></Link>
-                            </div>
-                            <div className="mega-menu-column sub-cats">
-                                <Link to="/motos/supersport">Supersport <span className="arrow">&gt;</span></Link>
-                                <Link to="/motos/roadster">Hyper Naked <span className="arrow">&gt;</span></Link>
-                                <Link to="/motos/sport-touring">Sport Touring <span className="arrow">&gt;</span></Link>
-                                <Link to="/motos/off-road">Off Road <span className="arrow">&gt;</span></Link>
-                            </div>
-                            <div className="mega-menu-column extra-cats">
-                                <Link to="/motos/scooters">Sport Scooters <span className="arrow">&gt;</span></Link>
-                            </div>
-                        </div>
-                    </div>
-                    <Link to="/location-trips" className={activePath.startsWith("/location-trips") ? "active" : ""}>LOCATION & TRIPS</Link>
-                    <div className="nav-item-dropdown">
-                        <Link to="/marine" className={`dropdown-trigger ${activePath.startsWith("/marine") ? "active" : ""}`}>MARINE</Link>
-                        <div className="mega-menu mega-menu-marine">
-                            <div className="mega-menu-column main-cats">
-                                <Link to="/marine">MARINE ENGINES <span className="arrow">&gt;</span></Link>
-                            </div>
-                            <div className="mega-menu-column sub-cats">
-                                <Link to="/marine/superjet">Sport <span className="arrow">&gt;</span></Link>
-                                <Link to="/marine/waverunner">Waverunners <span className="arrow">&gt;</span></Link>
-                                <Link to="/marine/waveboat">Boats <span className="arrow">&gt;</span></Link>
-                            </div>
-                            <div className="mega-menu-column extra-cats">
-                                <Link to="/marine/accessories">Accessoires <span className="arrow">&gt;</span></Link>
-                                <a href="https://wa.me/212774593031?text=Bonjour%20AA%20Motors,%20je%20souhaite%20commander%20des%20pi%C3%A8ces%20d'origine%20pour%20mon%20v%C3%A9hicule%20marine." target="_blank" rel="noopener noreferrer">Pièces d'Origine <span className="arrow">&gt;</span></a>
+                <div className="nav-pill-wrapper">
+                    <div className="nav-pill">
+                        <Link to="/">ACCUEIL</Link>
+                        <div className="nav-item-dropdown">
+                            <Link to="/motos" className="dropdown-trigger">ROUTE</Link>
+                            <div className="mega-menu">
+                                <div className="mega-menu-column main-cats">
+                                    <Link to="/motos">MOTORCYCLES <span className="arrow">&gt;</span></Link>
+                                </div>
+                                <div className="mega-menu-column sub-cats">
+                                    <Link to="/motos/supersport">Supersport <span className="arrow">&gt;</span></Link>
+                                    <Link to="/motos/roadster">Hyper Naked <span className="arrow">&gt;</span></Link>
+                                    <Link to="/motos/sport-touring">Sport Touring <span className="arrow">&gt;</span></Link>
+                                    <Link to="/motos/off-road">Off Road <span className="arrow">&gt;</span></Link>
+                                </div>
+                                <div className="mega-menu-column extra-cats">
+                                    <Link to="/motos/scooters">Sport Scooters <span className="arrow">&gt;</span></Link>
+                                </div>
                             </div>
                         </div>
+                        <Link to="/location-trips">LOCATION & TRIPS</Link>
+                        <div className="nav-item-dropdown">
+                            <Link to="/marine" className="dropdown-trigger">MARINE</Link>
+                            <div className="mega-menu mega-menu-marine">
+                                <div className="mega-menu-column main-cats">
+                                    <Link to="/marine">MARINE ENGINES <span className="arrow">&gt;</span></Link>
+                                </div>
+                                <div className="mega-menu-column sub-cats">
+                                    <Link to="/marine/superjet">Sport <span className="arrow">&gt;</span></Link>
+                                    <Link to="/marine/waverunner">Waverunners <span className="arrow">&gt;</span></Link>
+                                    <Link to="/marine/waveboat">Boats <span className="arrow">&gt;</span></Link>
+                                </div>
+                                <div className="mega-menu-column extra-cats">
+                                    <Link to="/marine/accessories">Accessoires <span className="arrow">&gt;</span></Link>
+                                    <a href="https://wa.me/212774593031?text=Bonjour%20AA%20Motors,%20je%20souhaite%20commander%20des%20pi%C3%A8ces%20d'origine%20pour%20mon%20v%C3%A9hicule%20marine." target="_blank" rel="noopener noreferrer">Pièces d'Origine <span className="arrow">&gt;</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <Link to="/marketplace">MARKETPLACE</Link>
+                        <Link to="/about">POLITIQUES DE QUALITÉ</Link>
                     </div>
-                    <Link to="/marketplace" className={activePath.startsWith("/marketplace") ? "active" : ""}>MARKETPLACE</Link>
-                    <Link to="/about" className={activePath.startsWith("/about") ? "active" : ""}>POLITIQUES DE QUALITÉ</Link>
                 </div>
 
                 {/* AI AGENT TOGGLE */}
