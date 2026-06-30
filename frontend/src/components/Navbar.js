@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { getAiResponse } from "../utils/aiResponses";
 
@@ -55,6 +55,8 @@ export const ALL_VEHICLES = [
 ];
 
 function Navbar() {
+    const location = useLocation();
+    const activePath = location.pathname;
     const [showSearch, setShowSearch] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
@@ -210,9 +212,9 @@ function Navbar() {
             {/* CENTER: NAV PILL */}
             <div className="nav-center">
                 <div className="nav-pill">
-                    <Link to="/">ACCUEIL</Link>
+                    <Link to="/" className={activePath === "/" ? "active" : ""}>ACCUEIL</Link>
                     <div className="nav-item-dropdown">
-                        <Link to="/motos" className="dropdown-trigger">ROUTE</Link>
+                        <Link to="/motos" className={`dropdown-trigger ${activePath.startsWith("/motos") ? "active" : ""}`}>ROUTE</Link>
                         <div className="mega-menu">
                             <div className="mega-menu-column main-cats">
                                 <Link to="/motos">MOTORCYCLES <span className="arrow">&gt;</span></Link>
@@ -228,9 +230,9 @@ function Navbar() {
                             </div>
                         </div>
                     </div>
-                    <Link to="/location-trips">LOCATION & TRIPS</Link>
+                    <Link to="/location-trips" className={activePath.startsWith("/location-trips") ? "active" : ""}>LOCATION & TRIPS</Link>
                     <div className="nav-item-dropdown">
-                        <Link to="/marine" className="dropdown-trigger">MARINE</Link>
+                        <Link to="/marine" className={`dropdown-trigger ${activePath.startsWith("/marine") ? "active" : ""}`}>MARINE</Link>
                         <div className="mega-menu mega-menu-marine">
                             <div className="mega-menu-column main-cats">
                                 <Link to="/marine">MARINE ENGINES <span className="arrow">&gt;</span></Link>
@@ -246,8 +248,8 @@ function Navbar() {
                             </div>
                         </div>
                     </div>
-                    <Link to="/marketplace">MARKETPLACE</Link>
-                    <Link to="/about">POLITIQUES DE QUALITÉ</Link>
+                    <Link to="/marketplace" className={activePath.startsWith("/marketplace") ? "active" : ""}>MARKETPLACE</Link>
+                    <Link to="/about" className={activePath.startsWith("/about") ? "active" : ""}>POLITIQUES DE QUALITÉ</Link>
                 </div>
 
                 {/* AI AGENT TOGGLE */}
