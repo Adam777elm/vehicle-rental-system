@@ -9,7 +9,7 @@ export const RENTAL_FLEET = [
     description:
       "Roadster léger au couple généreux. La référence pour une location moto fun et accessible à tous.",
     pricePerDay: 900,
-    image: imgMT07,
+    image: "https://moto-nautika.com/wp-content/uploads/2024/10/Yamaha-MT-07.jpg",
     features: ["689 cm³ CP2", "ABS", "Assurance incluse", "200 km/jour"],
   },
   {

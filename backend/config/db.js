@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Vehicle = require("../models/Vehicle");
 
 const RENTAL_SEED = [
-  { name: "MT-07", category: "roadster", price: 900, type: "rent", brand: "Yamaha", description: "Location MT-07 — AA Motors", availability: true, image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2024/MT700A/2024-Yamaha-MT700A-EU-Storm_Fluo-360-Degrees-001-03.jpg" },
+  { name: "MT-07", category: "roadster", price: 900, type: "rent", brand: "Yamaha", description: "Location MT-07 — AA Motors", availability: true, image: "https://moto-nautika.com/wp-content/uploads/2024/10/Yamaha-MT-07.jpg" },
   { name: "YZF-R7", category: "sport", price: 1100, type: "rent", brand: "Yamaha", description: "Location YZF-R7 — AA Motors", availability: true, image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2024/YZF700R7/2024-Yamaha-YZF700R7-EU-Icon_Blue-Studio-001-03.jpg" },
   { name: "TRACER 9", category: "touring", price: 1100, type: "rent", brand: "Yamaha", description: "Location TRACER 9 — AA Motors", availability: true, image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT09ATR/2025-Yamaha-MT09ATR-EU-Redline-360-Degrees-001-03_Mobile.jpg" },
   { name: "TRACER 7 GT", category: "touring", price: 950, type: "rent", brand: "Yamaha", description: "Location TRACER 7 GT — AA Motors", availability: true, image: "https://cdn2.yamaha-motor.eu/prod/product-assets/2026/MT07TRGTS/2026-Yamaha-MT07TRGTS-EU-Icon_Performance-360-Degrees-001-03_Mobile.jpg" },

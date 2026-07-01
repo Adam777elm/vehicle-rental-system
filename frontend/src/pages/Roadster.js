@@ -86,7 +86,7 @@ function Roadster() {
       price: "85 000 DH",
       type: "vente",
       availability: true,
-      image: imgMT07,
+      image: "https://moto-nautika.com/wp-content/uploads/2024/10/Yamaha-MT-07.jpg",
       specs: {
         engine: "CP2, 689 cm³, 2 cylindres",
         power: "73,4 ch (54,0 kW) @ 8 750 tr/min",
