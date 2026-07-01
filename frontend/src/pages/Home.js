@@ -4,9 +4,9 @@ import Sketchfab3DSection from "../components/Sketchfab3DSection";
 import motoVideo from "../assets/HOME_IMG/MotoVid.mp4";
 import heroBanner from "../assets/HOME_IMG/hero_banner.png";
 
-import motoImg from "../assets/HOME_IMG/R1-1.jpg";
+import motoImg from "../assets/HOME_IMG/moto_r1_on_road.png";
 import locaImg from "../assets/HOME_IMG/coastal_trip.png";
-import marineImg from "../assets/HOME_IMG/JetSki-1.jpg";
+import marineImg from "../assets/HOME_IMG/yamaha_boat_beach.png";
 import equipImg from "../assets/HOME_IMG/Equip-1.avif";
 
 function Home() {
